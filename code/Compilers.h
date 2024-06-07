@@ -58,14 +58,14 @@
  * ............................................................................
  */
 
-/* TO_DO: Adjust your language (cannot be "Rs") */
+/* TO_DO: Adjust your language (cannot be "sofia") */
 
 /* Language name */
 #define STR_LANGNAME	"RuanScript"
 
 /* Logical constants - adapt for your language */
-#define Rs_TRUE  1
-#define Rs_FALSE 0
+#define TRUE  1
+#define FALSE 0
 
 /*
 ------------------------------------------------------------
@@ -77,17 +77,30 @@ NOTE: Some types may not be directly used by your language,
 
 
 /* TO_DO: Define your typedefs */
-typedef char			Rs_char;
-typedef char*			Rs_string;
-typedef int				  Rs_intg;
-typedef float			Rs_real;
-typedef void			Rs_void;
+// typedef char			Rs_char;
+// typedef char*			Rs_string;
+// typedef int				  Rs_intg;
+// typedef float			Rs_real;
+// typedef void			Rs_void;
 
-typedef unsigned char	Rs_boln;
-typedef unsigned char	Rs_byte;
+// typedef unsigned char	Rs_boln;
+// typedef unsigned char	Rs_byte;
 
-typedef long			Rs_long;
-typedef double			Rs_doub;
+// typedef long			Rs_long;
+// typedef double			Rs_doub;
+
+/* TO_DO: Define your typedefs */
+typedef char*           Rs_string;  // JavaScript String type
+typedef double          Rs_number;  // JavaScript Number type (int, float, double combined)
+typedef unsigned char   Rs_boln; // JavaScript Boolean type
+
+typedef void*           Rs_undefined; // JavaScript Undefined type
+typedef void*           Rs_null;      // JavaScript Null type
+
+typedef int             Rs_intg;     // Specific integer type
+typedef float           Rs_float;   // Specific float type
+typedef double          Rs_double;  // Specific double type
+typedef void            Rs_void;    // Void type, similar to undefined in functions
 
 /*
 ------------------------------------------------------------
