@@ -92,7 +92,7 @@ BufferPointer readerCreate(Rs_intg size, Rs_intg increment, Rs_intg mode) {
 	if (!readerPointer)
 		return NULL;
 	readerPointer->content = (Rs_string)malloc(size);
-	
+
 	/* TO_DO: Defensive programming */
 	 if (!readerPointer->content) {
         free(readerPointer);
@@ -379,6 +379,9 @@ Rs_boln readerRecover(BufferPointer const readerPointer) {
 */
 Rs_boln readerRetract(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
+	if(!readerPointer){
+       return FALSE;
+	}
 	/* TO_DO: Retract (return 1 pos read) */
 	return TRUE;
 }
