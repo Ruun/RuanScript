@@ -1,8 +1,8 @@
 /*
 ************************************************************
 * COMPILERS COURSE - Algonquin College
-* Code version: Summer, 2024
-* Author: TO_DO
+* Code version: Spring 2024
+* Author: Ruan Simo
 * Professors: Paulo Sousa
 ************************************************************
 #

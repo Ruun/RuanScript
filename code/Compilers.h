@@ -1,8 +1,8 @@
 /*
 ************************************************************
 * COMPILERS COURSE - Algonquin College
-* Code version: Summer, 2024
-* Author: TO_DO
+* Code version: Spring, 2024
+* Author: Ruan Simo
 * Professors: Paulo Sousa
 ************************************************************
 #
@@ -90,17 +90,21 @@ NOTE: Some types may not be directly used by your language,
 // typedef double			Rs_doub;
 
 /* TO_DO: Define your typedefs */
-typedef char*           Rs_string;  // JavaScript String type
-typedef double          Rs_number;  // JavaScript Number type (int, float, double combined)
-typedef unsigned char   Rs_boln; // JavaScript Boolean type
+typedef char            Rs_char;      // Represents a single character (no direct equivalent in JavaScript, typically a string of length 1)
+typedef char*           Rs_string;    // Represents JavaScript's String type
+typedef double          Rs_number;    // Represents JavaScript's Number type (handles both integer and floating-point numbers)
+typedef unsigned char   Rs_boln;      // Represents JavaScript's Boolean type
+typedef unsigned char   Rs_byte;      // Represents a byte 
+typedef long long       Rs_long;      // Represents JavaScript's Bigint type (for large integers)
 
-typedef void*           Rs_undefined; // JavaScript Undefined type
-typedef void*           Rs_null;      // JavaScript Null type
+typedef void*           Rs_undefined; // Represents JavaScript's Undefined type
+typedef void*           Rs_null;      // Represents JavaScript's Null type
 
-typedef int             Rs_intg;     // Specific integer type
-typedef float           Rs_float;   // Specific float type
-typedef double          Rs_double;  // Specific double type
-typedef void            Rs_void;    // Void type, similar to undefined in functions
+typedef int             Rs_intg;      // Specific integer type (part of the JavaScript Number type)
+typedef float           Rs_float;     // Specific float type (part of the JavaScript Number type)
+typedef double          Rs_double;    // Specific double type (part of the JavaScript Number type)
+typedef void            Rs_void;      // Represents the absence of type (similar to undefined in JavaScript functions)
+
 
 /*
 ------------------------------------------------------------
