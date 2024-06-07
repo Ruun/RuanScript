@@ -84,13 +84,22 @@
 BufferPointer readerCreate(Rs_intg size, Rs_intg increment, Rs_intg mode) {
 	BufferPointer readerPointer;
 	/* TO_DO: Defensive programming */
+	 if (size < 0 || increment < 0) {
+        return NULL;
+    }
 	/* TO_DO: Adjust the values according to parameters */
 	readerPointer = (BufferPointer)calloc(1, sizeof(Buffer));
 	if (!readerPointer)
 		return NULL;
 	readerPointer->content = (Rs_string)malloc(size);
+
 	/* TO_DO: Defensive programming */
+	 if (!readerPointer->content) {
+        free(readerPointer);
+        return NULL;
+    }
 	/* TO_DO: Initialize the histogram */
+	
 	if (size != 0)
 		readerPointer->size = size;
 	else
@@ -370,6 +379,9 @@ Rs_boln readerRecover(BufferPointer const readerPointer) {
 */
 Rs_boln readerRetract(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
+	if(!readerPointer){
+       return FALSE;
+	}
 	/* TO_DO: Retract (return 1 pos read) */
 	return TRUE;
 }
