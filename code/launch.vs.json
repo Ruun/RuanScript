@@ -1,6 +1,4 @@
 {
-  "version": "0.2.1",
-  "defaults": {},
   "configurations": [
     {
       "type": "default",
@@ -12,5 +10,7 @@
         "test.rs"
       ]
     }
-  ]
+  ],
+  "defaults": {},
+  "version": "0.2.1"
 }
