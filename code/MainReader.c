@@ -201,7 +201,7 @@ Rs_void startReader(Rs_string program, Rs_string input, Rs_char mode, Rs_intg si
 		printf("Current size of buffer: %d.\n", readerGetSize(bufferp));
 		symbol = (char)fgetc(fileHandler);
 		printf("Last character read from the input file is: %c %d\n", symbol, symbol);
-		printf("Input file size: %ld\n", getFileSize(input));
+		printf("Input file size: %lld\n", getFileSize(input));
 	}
 
 	/* Close source file */
