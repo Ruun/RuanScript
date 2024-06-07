@@ -1,0 +1,5 @@
+# ninja log v5
+15	185	7394924388314107	CMakeFiles/Compiler.dir/Compilers.c.obj	415acfa213439be1
+22	191	7394924388314569	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
+28	205	7394924388505498	CMakeFiles/Compiler.dir/MainReader.c.obj	a8187c3450edeeda
+207	1442	7394924400386683	Compiler.exe	60774a4753864fbb

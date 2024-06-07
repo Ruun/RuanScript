@@ -1,0 +1,3 @@
+C:/Mac/Home/Downloads/RuanScript/code/out/build/x64-Debug/CMakeFiles/Compiler.dir
+C:/Mac/Home/Downloads/RuanScript/code/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Mac/Home/Downloads/RuanScript/code/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
