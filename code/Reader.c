@@ -1,8 +1,8 @@
 /*
 ************************************************************
 * COMPILERS COURSE - Algonquin College
-* Code version: Summer, 2024
-* Author: TO_DO
+* Code version: Spring, 2024
+* Author: Ruan Simo
 * Professors: Paulo Sousa
 ************************************************************
 #
@@ -183,7 +183,7 @@ Rs_boln readerClear(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	/* TO_DO: Adjust flags original */
 	readerPointer->position.wrte = readerPointer->position.mark = readerPointer->position.read = 0;
-	return Rs_TRUE;
+	return TRUE;
 }
 
 /*
@@ -203,7 +203,7 @@ Rs_boln readerClear(BufferPointer const readerPointer) {
 Rs_boln readerFree(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	/* TO_DO: Free pointers */
-	return Rs_TRUE;
+	return TRUE;
 }
 
 /*
@@ -223,7 +223,7 @@ Rs_boln readerFree(BufferPointer const readerPointer) {
 Rs_boln readerIsFull(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	/* TO_DO: Check flag if buffer is FUL */
-	return Rs_FALSE;
+	return FALSE;
 }
 
 
@@ -244,7 +244,7 @@ Rs_boln readerIsFull(BufferPointer const readerPointer) {
 Rs_boln readerIsEmpty(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	/* TO_DO: Check flag if buffer is EMP */
-	return Rs_FALSE;
+	return FALSE;
 }
 
 /*
@@ -266,7 +266,7 @@ Rs_boln readerSetMark(BufferPointer const readerPointer, Rs_intg mark) {
 	/* TO_DO: Defensive programming */
 	/* TO_DO: Adjust mark */
 	readerPointer->position.mark = mark;
-	return Rs_TRUE;
+	return TRUE;
 }
 
 
@@ -350,7 +350,7 @@ Rs_boln readerRecover(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	/* TO_DO: Recover positions */
 	readerPointer->position.read = 0;
-	return Rs_TRUE;
+	return TRUE;
 }
 
 
@@ -371,7 +371,7 @@ Rs_boln readerRecover(BufferPointer const readerPointer) {
 Rs_boln readerRetract(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	/* TO_DO: Retract (return 1 pos read) */
-	return Rs_TRUE;
+	return TRUE;
 }
 
 
@@ -393,7 +393,7 @@ Rs_boln readerRestore(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	/* TO_DO: Restore positions (read/mark) */
 	readerPointer->position.read = readerPointer->position.mark;
-	return Rs_TRUE;
+	return TRUE;
 }
 
 
