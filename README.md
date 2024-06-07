@@ -1,4 +1,4 @@
-<p style="color: red; font-size: 20px;   text-align: center;
+<p style="color: green; font-size: 20px;   text-align: center;
 ;">RuanScript.</p>
                      
-A programming language built after JavaScript
+RuanScript is a programming language designed for high school, calculus, and basic college/university level math, built after JavaScript.
