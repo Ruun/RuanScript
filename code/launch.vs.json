@@ -9,7 +9,7 @@
       "name": "Compiler.exe",
       "args": [
         "r",
-        "input/README.txt"
+        "/README.txt"
       ]
     }
   ]
