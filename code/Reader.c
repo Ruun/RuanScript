@@ -600,9 +600,12 @@ Rs_intg readerGetMode(BufferPointer const readerPointer) {
 *************************************************************
 */
 Rs_byte readerGetFlags(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
-	/* TO_DO: Return flags */
-	return 0;
+	  /* Defensive programming */
+    if (!readerPointer) {
+        return READER_ERROR;
+    }
+    /* Return flags */
+    return readerPointer->flags;
 }
 
 
