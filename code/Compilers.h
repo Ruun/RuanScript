@@ -23,7 +23,7 @@
 # ECHO "    @@     @ @@   /@/   @@@ @      @@    �
 # ECHO "    @@     @@@@@@@@@@@@@@@         @@    �
 # ECHO "    @@                             @@    �
-# ECHO "    @@         S O F I A           @@    �
+# ECHO "    @@         RUANSCRIPT           @@    �
 # ECHO "    @@                             @@    �
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    �
 # ECHO "                                         "
@@ -61,7 +61,7 @@
 /* TO_DO: Adjust your language (cannot be "Rs") */
 
 /* Language name */
-#define STR_LANGNAME	"Rs"
+#define STR_LANGNAME	"RuanScript"
 
 /* Logical constants - adapt for your language */
 #define Rs_TRUE  1
@@ -78,8 +78,8 @@ NOTE: Some types may not be directly used by your language,
 
 /* TO_DO: Define your typedefs */
 typedef char			Rs_char;
-typedef char*			Rs
-typedef int				Rs_intg;
+typedef char*			Rs_string;
+typedef int				  Rs_intg;
 typedef float			Rs_real;
 typedef void			Rs_void;
 
