@@ -3,15 +3,24 @@
   "WorkspaceRootPath": "C:\\Mac\\Home\\Downloads\\RuanScript\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Compilers.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\launch.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|CMake Overview Pages||{B1CAA5B0-FEB1-4350-8AB9-F895876842F2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Reader.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Reader.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Compilers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Compilers.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,15 +35,52 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "launch.vs.json",
+              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json",
+              "RelativeDocumentMoniker": "code\\launch.vs.json",
+              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json",
+              "RelativeToolTip": "code\\launch.vs.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-07T20:01:44.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Reader.c",
+              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Reader.c",
+              "RelativeDocumentMoniker": "code\\Reader.c",
+              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Reader.c",
+              "RelativeToolTip": "code\\Reader.c",
+              "ViewState": "AQIAALoAAAAAZWZmZmYkwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-06-07T19:57:48.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Compilers.h",
+              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.h",
+              "RelativeDocumentMoniker": "code\\Compilers.h",
+              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.h",
+              "RelativeToolTip": "code\\Compilers.h",
+              "ViewState": "AQIAADEAAABA/////38pwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T19:41:19.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Compilers.c",
               "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.c",
               "RelativeDocumentMoniker": "code\\Compilers.c",
               "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.c",
               "RelativeToolTip": "code\\Compilers.c",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAC8AAAAAmZmZmRkmwDMAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-06-07T19:40:31.904Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-07T19:40:31.904Z"
             },
             {
               "$type": "Document",
@@ -44,19 +90,9 @@
               "RelativeDocumentMoniker": "code\\CMakeLists.txt",
               "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\CMakeLists.txt",
               "RelativeToolTip": "code\\CMakeLists.txt",
-              "ViewState": "AQIAABkAAAAAmJmZmRkWwAAAAAAAAAAA",
+              "ViewState": "AQIAABMAAABoMjMzM3MvwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2024-06-07T19:40:11.543Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CMake Overview Pages",
-              "DocumentMoniker": "CMake Overview Pages",
-              "ToolTip": "CMake Overview Pages",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-06-07T19:38:45.525Z",
               "EditorCaption": ""
             }
           ]
