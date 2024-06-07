@@ -92,6 +92,7 @@ BufferPointer readerCreate(Rs_intg size, Rs_intg increment, Rs_intg mode) {
 	if (!readerPointer)
 		return NULL;
 	readerPointer->content = (Rs_string)malloc(size);
+	
 	/* TO_DO: Defensive programming */
 	 if (!readerPointer->content) {
         free(readerPointer);
