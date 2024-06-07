@@ -1,11 +1,5 @@
 # ninja log v5
 15	185	7394924388314107	CMakeFiles/Compiler.dir/Compilers.c.obj	415acfa213439be1
-22	191	7394924388314569	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
+22	861	7394976581353249	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
 28	205	7394924388505498	CMakeFiles/Compiler.dir/MainReader.c.obj	a8187c3450edeeda
-207	1442	7394924400386683	Compiler.exe	60774a4753864fbb
-21	466	7394958063400011	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
-470	887	7394958066699345	Compiler.exe	60774a4753864fbb
-26	648	7394961342290634	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
-652	1130	7394961346255929	Compiler.exe	60774a4753864fbb
-21	170	7394966359392651	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
-176	567	7394966362540637	Compiler.exe	60774a4753864fbb
+865	1439	7394976586503191	Compiler.exe	60774a4753864fbb

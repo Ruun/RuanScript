@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-A12",
+      "appliesTo": "input/A12.bat",
+      "type": "launch"
+    }
+  ]
+}
