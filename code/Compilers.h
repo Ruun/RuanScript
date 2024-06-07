@@ -9,23 +9,23 @@
 # ECHO "=---------------------------------------="
 # ECHO "|  COMPILERS - ALGONQUIN COLLEGE (S24)  |"
 # ECHO "=---------------------------------------="
-# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
+# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@           %&@@@@@@@@@@@     @@    ï¿½
+# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ï¿½
+# ECHO "    @@      @& @   @ @       @     @@    ï¿½
+# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ï¿½
+# ECHO "    @@      & @ @  @@              @@    ï¿½
+# ECHO "    @@       @/ @*@ @ @   @        @@    ï¿½
+# ECHO "    @@           @@@@  @@ @ @      @@    ï¿½
+# ECHO "    @@            /@@    @@@ @     @@    ï¿½
+# ECHO "    @@     @      / /     @@ @     @@    ï¿½
+# ECHO "    @@     @ @@   /@/   @@@ @      @@    ï¿½
+# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@         S O F I A           @@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ï¿½
 # ECHO "                                         "
 # ECHO "[READER SCRIPT .........................]"
 # ECHO "                                         "
@@ -35,7 +35,7 @@
 ************************************************************
 * File name: Compilers.h
 * Compiler: MS Visual Studio 2022
-* Course: CST 8152 – Compilers, Lab Section: [011, 012]
+* Course: CST 8152 ï¿½ Compilers, Lab Section: [011, 012]
 * Assignment: A12, A22, A32.
 * Date: May 01 2024
 * Professor: Paulo Sousa
@@ -58,14 +58,14 @@
  * ............................................................................
  */
 
-/* TO_DO: Adjust your language (cannot be "Sofia") */
+/* TO_DO: Adjust your language (cannot be "Rs") */
 
 /* Language name */
-#define STR_LANGNAME	"Sofia"
+#define STR_LANGNAME	"Rs"
 
 /* Logical constants - adapt for your language */
-#define SOFIA_TRUE  1
-#define SOFIA_FALSE 0
+#define Rs_TRUE  1
+#define Rs_FALSE 0
 
 /*
 ------------------------------------------------------------
@@ -77,17 +77,17 @@ NOTE: Some types may not be directly used by your language,
 
 
 /* TO_DO: Define your typedefs */
-typedef char			sofia_char;
-typedef char*			sofia_string;
-typedef int				sofia_intg;
-typedef float			sofia_real;
-typedef void			sofia_void;
+typedef char			Rs_char;
+typedef char*			Rs
+typedef int				Rs_intg;
+typedef float			Rs_real;
+typedef void			Rs_void;
 
-typedef unsigned char	sofia_boln;
-typedef unsigned char	sofia_byte;
+typedef unsigned char	Rs_boln;
+typedef unsigned char	Rs_byte;
 
-typedef long			sofia_long;
-typedef double			sofia_doub;
+typedef long			Rs_long;
+typedef double			Rs_doub;
 
 /*
 ------------------------------------------------------------
@@ -109,11 +109,11 @@ Main functions signatures
 (Code will be updated during next assignments)
 ------------------------------------------------------------
 */
-sofia_intg mainReader(sofia_intg argc, sofia_string* argv);
+Rs_intg mainReader(Rs_intg argc, Rs_string* argv);
 
 /* 
 TO_DO: Include later mainScaner (A22) and mainParser (A32)
 */
-sofia_void printLogo();
+Rs_void printLogo();
 
 #endif

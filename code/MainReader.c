@@ -91,11 +91,11 @@
  *  Function declarations
  * -------------------------------------------------------------
  */
-sofia_void bErrorPrint(sofia_string fmt, ...);
-sofia_void displayBuffer(Buffer* ptr_Buffer);
-sofia_long getFileSize(sofia_string fname);
-sofia_intg isNumber(const sofia_string ns);
-sofia_void startReader(sofia_string, sofia_string, sofia_char, sofia_intg, sofia_intg);
+Rs_void bErrorPrint(Rs_string fmt, ...);
+Rs_void displayBuffer(Buffer* ptr_Buffer);
+Rs_long getFileSize(Rs_string fname);
+Rs_intg isNumber(const Rs_string ns);
+Rs_void startReader(Rs_string, Rs_string, Rs_char, Rs_intg, Rs_intg);
 
 /*
 ************************************************************
@@ -107,13 +107,13 @@ sofia_void startReader(sofia_string, sofia_string, sofia_char, sofia_intg, sofia
 ************************************************************
 */
 
-sofia_intg mainReader(sofia_intg argc, sofia_string* argv) {
+Rs_intg mainReader(Rs_intg argc, Rs_string* argv) {
 
 	/* Create source input buffer */
-	sofia_string program = argv[0];
-	sofia_string input = argv[2];
-	sofia_char mode = MODE_FIXED;
-	sofia_intg size = 0, increment = 0, wrongNumber = 0;
+	Rs_string program = argv[0];
+	Rs_string input = argv[2];
+	Rs_char mode = MODE_FIXED;
+	Rs_intg size = 0, increment = 0, wrongNumber = 0;
 
 	/* Missing file name or/and mode parameter */
 	if (argc <= 2) {
@@ -165,12 +165,12 @@ sofia_intg mainReader(sofia_intg argc, sofia_string* argv) {
 *	- Increment: buffer increment.
 ************************************************************
 */
-sofia_void startReader(sofia_string program, sofia_string input, sofia_char mode, sofia_intg size, sofia_intg increment) {
+Rs_void startReader(Rs_string program, Rs_string input, Rs_char mode, Rs_intg size, Rs_intg increment) {
 
 	BufferPointer bufferp;		/* pointer to Buffer structure */
 	FILE* fileHandler;			/* input file handle */
-	sofia_intg loadSize = 0;		/* the size of the file loaded in the buffer */
-	sofia_char symbol;			/* symbol read from input file */
+	Rs_intg loadSize = 0;		/* the size of the file loaded in the buffer */
+	Rs_char symbol;			/* symbol read from input file */
 
 	/* Create buffer */
 	bufferp = readerCreate(size, (char)increment, mode);
@@ -231,12 +231,12 @@ sofia_void startReader(sofia_string program, sofia_string input, sofia_char mode
 ************************************************************
 */
 
-sofia_void bErrorPrint(sofia_string fmt, ...) {
+Rs_void bErrorPrint(Rs_string fmt, ...) {
 	/* Initialize variable list */
 	va_list ap;
 	va_start(ap, fmt);
 
-	(sofia_void)vfprintf(stderr, fmt, ap);
+	(Rs_void)vfprintf(stderr, fmt, ap);
 	va_end(ap);
 
 	/* Move to new line */
@@ -252,9 +252,9 @@ sofia_void bErrorPrint(sofia_string fmt, ...) {
 ************************************************************
 */
 
-sofia_long getFileSize(sofia_string fname) {
+Rs_long getFileSize(Rs_string fname) {
 	FILE* input;
-	sofia_long flength;
+	Rs_long flength;
 	input = fopen(fname, "r");
 	if (input == NULL) {
 		bErrorPrint("%s%s", "Cannot open file: ", fname);
@@ -276,8 +276,8 @@ sofia_long getFileSize(sofia_string fname) {
 ************************************************************
 */
 
-sofia_intg isNumber(const sofia_string ns) {
-	sofia_char c; sofia_intg i = 0;
+Rs_intg isNumber(const Rs_string ns) {
+	Rs_char c; Rs_intg i = 0;
 	if (ns == NULL) return 0;
 	while ((c = ns[i++]) == 0) {
 		if (!isdigit(c)) return 0;
@@ -292,7 +292,7 @@ sofia_intg isNumber(const sofia_string ns) {
 ************************************************************
 */
 
-sofia_void displayBuffer(Buffer* ptr_Buffer) {
+Rs_void displayBuffer(Buffer* ptr_Buffer) {
 	printf("\nPrinting buffer parameters:\n\n");
 	printf("The capacity of the buffer is:  %d\n",
 		readerGetSize(ptr_Buffer));
