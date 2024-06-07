@@ -99,6 +99,8 @@ BufferPointer readerCreate(Rs_intg size, Rs_intg increment, Rs_intg mode) {
         return NULL;
     }
 	/* TO_DO: Initialize the histogram */
+	for(int i =0;  i < NCHAR; i++)
+	readerPointer->histogram[i] = 0;
 	
 	if (size != 0)
 		readerPointer->size = size;
@@ -113,7 +115,9 @@ BufferPointer readerCreate(Rs_intg size, Rs_intg increment, Rs_intg mode) {
 	else
 		readerPointer->increment = MODE_FIXED;
 	/* TO_DO: Initialize flags */
+	readerPointer->flags = READER_DEFAULT_FLAG;
 	/* TO_DO: The created flag must be signalized as EMP */
+	readerPointer->flags |= EMP_FLAG;
 	/* NEW: Cleaning the content */
 	if (readerPointer->content)
 		readerPointer->content[0] = READER_TERMINATOR;
