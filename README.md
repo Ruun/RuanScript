@@ -16,7 +16,7 @@ This project utilizes GitHub Actions for seamless continuous integration, ensuri
 
 1. **Clone the Repository**:
     ```sh
-    git clone https://github.com/ruun/ruanscript.git
+    git clone https://github.com/Ruun/RuanScript.git
     cd ruanscript
     ```
 
@@ -46,5 +46,5 @@ RuanScript is licensed under the MIT License. See the [LICENSE](LICENSE) file fo
 
 ## Connect with Us
 
-For more information or to get involved, visit our [GitHub repository](https://github.com/ruun/ruanscript).
+For more information or to get involved, visit our [GitHub repository](https://github.com/Ruun).
 
