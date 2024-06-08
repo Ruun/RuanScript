@@ -22,5 +22,11 @@ jobs:
         echo "Checking if the project compiles without errors..."
         make -C code all
     - name: make distcheck
-      run: make -C code distcheck
+      run: |
+        echo "Running distcheck..."
+        cd code
+        ./configure
+        make dist
+        make check
+
 
