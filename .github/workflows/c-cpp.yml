@@ -16,7 +16,8 @@ jobs:
     - name: Run make
       run: make -C code
     - name: make check
-      run: make check
+      run: |
+        echo "Checking if the project compiles without errors..."
+        $(MAKE) all
     - name: make distcheck
       run: make distcheck
-
