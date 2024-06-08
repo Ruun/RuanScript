@@ -13,11 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Makefile
-      run: ./code/Makefile
+    - name: Run make
+      run: make -C code
     - name: make
       run: make
     - name: make check
       run: make check
     - name: make distcheck
       run: make distcheck
+
