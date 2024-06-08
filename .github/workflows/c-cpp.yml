@@ -8,25 +8,18 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - name: Install build essentials
       run: sudo apt-get update && sudo apt-get install -y build-essential
-    - name: Run make
+    - name: Build project
       run: make -C code
-    - name: make check
-      run: |
-        echo "Checking if the project compiles without errors..."
-        make -C code all
-    - name: make distcheck
-      run: |
-        echo "Running distcheck..."
-        cd code
-        ./configure
-        make dist
-        make check
+    - name: Run checks
+      run: make -C code check
+    - name: Run distcheck
+      run: make -C code distcheck
+
 
 
