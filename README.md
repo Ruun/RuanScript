@@ -40,6 +40,11 @@ We welcome contributions from the community. Please follow these steps to contri
 4. Push to the branch: `git push origin feature-branch-name`
 5. Open a pull request.
 
+## Security Policy
+
+For information on reporting security vulnerabilities, please see our [Security Policy](./SECURITY.md).
+
+
 ## License
 
 RuanScript is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
