@@ -13,8 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: my_program
-      run: ./code/my_program
+    - name: Makefile
+      run: ./code/Makefile
     - name: make
       run: make
     - name: make check
