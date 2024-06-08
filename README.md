@@ -47,7 +47,7 @@ For information on reporting security vulnerabilities, please see our [Security 
 
 ## License
 
-RuanScript is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+RuanScript is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information..
 
 ## Connect with Us
 
