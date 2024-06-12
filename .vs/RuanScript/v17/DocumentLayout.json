@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "C:\\Mac\\Home\\Downloads\\RuanScript\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\compiler.exe||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\compiler.exe||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\launch.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Makefile||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Makefile||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\input\\A12.bat||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:input\\A12.bat||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\input\\INPUT0_Empty-A12.err||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:input\\INPUT0_Empty-A12.err||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,32 +19,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "compiler.exe",
-              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\compiler.exe",
-              "RelativeDocumentMoniker": "code\\compiler.exe",
-              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\compiler.exe",
-              "RelativeToolTip": "code\\compiler.exe",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000165|",
-              "WhenOpened": "2024-06-12T19:25:04.715Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "INPUT0_Empty-A12.err",
-              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\input\\INPUT0_Empty-A12.err",
-              "RelativeDocumentMoniker": "input\\INPUT0_Empty-A12.err",
-              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\input\\INPUT0_Empty-A12.err",
-              "RelativeToolTip": "input\\INPUT0_Empty-A12.err",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-06-12T19:23:47.357Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "A12.bat",
               "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\input\\A12.bat",
               "RelativeDocumentMoniker": "input\\A12.bat",
@@ -69,32 +27,6 @@
               "ViewState": "AQIAAD0AAAAAmpmZmZkewFMAAAAAAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMDSURBVFhH7ZVbSNNRHMe/C\u002BcNdOrU7OIlSc1LpeWltIt2EUyMokDKjMiHCMosi6UUJtEFgrKXHnrtyYeKqAwiC0pBXWYTN10asxQ056R20/X/b\u002Bv8j0eJcG5zpQ/5gbNz2e/w\u002B/x/5/w3LCh2u52NFlk4RFWy83dIXzE5nXfqlpCPf568sGjfjD2hQqiAvfbqdTafX2ouV0OowILitoCq7wuev2nBq\u002BZ2cDzPVueOSwI8SaQ3mul46JsOVqsVJpMZo2M/wHE8RnTf6XdzwSWBd/IuvG1ToLGpHUaTiQoIra1DiWeNTXjd1IaR0TEW7R5OBYa1YzCZzbCRhAby1FablY4FgYmfFlgsFtjIWnevhu1wD6cC0uBAhEmDwNOkPCJCpdibvxUZ6xNh5SdF/Hx8sDZxNdvhHk4FxF5eSIiNmn7qZUuldC0mcjmdCy0sNAghQRK2wz2cCpjME2iWK2giodSdqk\u002B03PKPXVRKaOq\u002BfijVvWyHezgXGB\u002BHwWiiyQUJvcFIkyvVn\u002Bl9mBLTzvFNcCoQLg1GcnwsfMk5ryJlp0dBXkuhD5IEIHJFBPx9fZFEYlo7FBgcGmY7XcOpgIBwwfYX5CE7IxWSwIDps9\u002B8cR3yc3NQcrAImq8DeFD/ELfv3ad7zOZx2jvDi/Uuk5ayBpqBQdhtdnIhw/H4xUu0vu8gQjx4joOFHFnNjVvQjmghO1eO6MiVbOfMuFSB34kmx5CbnYm8LVl03iL/AIPBAG\u002BxGEeLD2BTeho0/f3Q6/VQdffQmNlwW\u002BBPykqKyU81h6wNqcjOTEdZ6WEESySIj4tFQf4uFuUYjwXqHz2hpe/uUWNUp6NPPTw0hE5FJ542NLAox3gs4OMthpUIdClVOF0pQ\u002B21m\u002BQt4egfmL\u002BfP4tyjMcCx48cguxsOXbv2M4Sc7hyqRpVFyqxMy\u002BXRTnGY4FQaQgSE\u002BKwLSebtmOlJUhJTkJWZgaLmB2PBaaIiY7CqZMnUFS4h624xl8TmCuii7LKOhFEZ9h8XrFDdJcNF/lvAX4BFPtSJL7S3gcAAAAASUVORK5CYII=",
               "WhenOpened": "2024-06-12T19:10:43.661Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Makefile",
-              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Makefile",
-              "RelativeDocumentMoniker": "code\\Makefile",
-              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Makefile",
-              "RelativeToolTip": "code\\Makefile",
-              "ViewState": "AQIAAAEAAADi/////38pwAYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-06-12T19:04:37.541Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "launch.vs.json",
-              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json",
-              "RelativeDocumentMoniker": "code\\launch.vs.json",
-              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json",
-              "RelativeToolTip": "code\\launch.vs.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-07T20:01:44.986Z",
               "EditorCaption": ""
             }
           ]
