@@ -15,7 +15,7 @@ SET FILE6=INPUT5_General
 SET FILE7=INPUT6_Big
 
 SET ASSIGNMENT=A12
-SET EXTENSION=sof
+SET EXTENSION=.rs
 SET OUTPUT=out
 SET ERROR=err
 
@@ -44,7 +44,7 @@ ECHO "    @@     @      / /     @@ @     @@    ”
 ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
 ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
 ECHO "    @@                             @@    ”
-ECHO "    @@         S O F I A           @@    ”
+ECHO "    @@        RuanScript           @@    ”
 ECHO "    @@                             @@    ”
 ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 ECHO "                                         "

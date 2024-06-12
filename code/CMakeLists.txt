@@ -36,4 +36,7 @@ add_executable (Compiler
 	# TO_DO: Add A22 (Scanner) and A32 (Parser)
 )
 
+# Set the working directory for the project
+set_target_properties(Compiler PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/code")
+
 # TO_DO: Add tests and install targets if needed.

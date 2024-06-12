@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\code"
+    "\\code",
+    "\\input"
   ],
-  "SelectedNode": "\\code\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }
