@@ -1,4 +1,3 @@
-
 # Compiler
 CC = gcc
 
@@ -25,9 +24,24 @@ $(EXEC): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Check target to ensure the project builds correctly
+check: all
+	@echo "Checking if the project compiles without errors..."
+
+# Dist target to simulate creating a distribution package (for example purposes)
+dist:
+	@echo "Creating distribution package..."
+	# Add commands to create a distribution package here
+
+# Distcheck target to run dist and check targets
+distcheck: dist check
+	@echo "Running distcheck..."
+	# Add additional distribution checks here
+
 # Clean up the build
 clean:
 	rm -f $(OBJS) $(EXEC)
 
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean check dist distcheck
+
