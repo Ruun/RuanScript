@@ -150,7 +150,7 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, Rs_char ch) {
 	 /* Defensive programming: Check if readerPointer is NULL */
 	if (!readerPointer || ch < 0) {
 		return NULL;
-	}
+	};
 	/* TO_DO: Reset Realocation */
 
 	/* TO_DO: Test the inclusion of chars */
@@ -759,5 +759,5 @@ Rs_void readerChecksum(BufferPointer readerPointer) {
 		return;
 	}
 	/* TO_DO: Adjust the checksum to flags */
-	readerPointer->flags // |= CHECKSUM_FLAG;
+	readerPointer->flags; // |= CHECKSUM_FLAG;
 }
