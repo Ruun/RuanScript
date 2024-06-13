@@ -2,7 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\code",
+    "\\code\\.idea",
+    "\\code\\out",
     "\\input"
   ],
+  "SelectedNode": "\\code\\Reader.c",
   "PreviewInSolutionExplorer": false
 }
