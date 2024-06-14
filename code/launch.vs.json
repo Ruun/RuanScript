@@ -7,9 +7,9 @@
       "name": "Compiler.exe",
       "args": [
         "r",
-         "C:/Mac/Home/Downloads/RuanScript/input/test.rs",
+        // "C:/Mac/Home/Downloads/RuanScript/input/test.rs",
         // "C:/Mac/Home/Downloads/RuanScript/input/INPUT0_Empty.rs",
-        // "C:/Mac/Home/Downloads/RuanScript/input/INPUT1_Hello.rs",
+        "C:/Mac/Home/Downloads/RuanScript/input/INPUT1_Hello.rs",
         //  "C:/Mac/Home/Downloads/RuanScript/input/INPUT2_Volume.rs",
         //  "C:/Mac/Home/Downloads/RuanScript/input/INPUT3_Factorial.rs",
         //  "C:/Mac/Home/Downloads/RuanScript/input/INPUT4_Datatypes.rs",

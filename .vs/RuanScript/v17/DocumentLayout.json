@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Mac\\Home\\Downloads\\RuanScript\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Compilers.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Reader.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Reader.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -23,25 +27,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Compilers.c",
+              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.c",
+              "RelativeDocumentMoniker": "code\\Compilers.c",
+              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Compilers.c",
+              "RelativeToolTip": "code\\Compilers.c",
+              "ViewState": "AQIAAFkAAADAmZmZmdkswGQAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-06-14T00:55:57.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Reader.c",
               "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Reader.c",
               "RelativeDocumentMoniker": "code\\Reader.c",
               "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Reader.c",
               "RelativeToolTip": "code\\Reader.c",
-              "ViewState": "AQIAAO4CAAAAwMzMzMwXwPEAAAAAAAAA",
+              "ViewState": "AQIAADgBAAAAAAAAAAAswE4BAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-06-13T16:55:18.632Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "launch.vs.json",
               "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json",
               "RelativeDocumentMoniker": "code\\launch.vs.json",
               "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json",
               "RelativeToolTip": "code\\launch.vs.json",
-              "ViewState": "AQIAAAEAAACazMzMzIwjwAkAAAAIAAAA",
+              "ViewState": "AQIAAAEAAACazMzMzIwjwAsAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-06-12T20:34:20.187Z",
               "EditorCaption": ""
