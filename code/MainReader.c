@@ -23,7 +23,7 @@
 # ECHO "    @@     @ @@   /@/   @@@ @      @@    �
 # ECHO "    @@     @@@@@@@@@@@@@@@         @@    �
 # ECHO "    @@                             @@    �
-# ECHO "    @@         S O F I A           @@    �
+# ECHO "    @@         RuanScript          @@    �
 # ECHO "    @@                             @@    �
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    �
 # ECHO "                                         "
@@ -158,7 +158,7 @@ Rs_intg mainReader(Rs_intg argc, Rs_string* argv) {
 ************************************************************
 * Buffer starting method
 * Params:
-*	- Program: Name of the program
+*	- Program: RuanScript
 *	- Input: Filename
 *	- Mode: Operational mode
 *	- Size: Buffer capacity
