@@ -331,8 +331,8 @@ Rs_boln readerSetMark(BufferPointer const readerPointer, Rs_intg mark) {
 *************************************************************
 */
 Rs_intg readerPrint(BufferPointer const readerPointer) {
-	Rs_intg cont = 0;
-	Rs_char c;
+	//Rs_intg cont = 0;
+	//Rs_char c;
 	/* TO_DO: Defensive programming (including invalid chars) */
 	if (!readerPointer) {
         return -1;
