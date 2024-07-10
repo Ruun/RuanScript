@@ -6,7 +6,7 @@
       "projectTarget": "Compiler.exe",
       "name": "Compiler.exe",
       "args": [
-        "r",
+        "s",
         "C:/Mac/Home/Downloads/RuanScript/input/INPUT1_Hello.rs"
       ]
     }

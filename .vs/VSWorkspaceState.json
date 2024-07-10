@@ -3,7 +3,9 @@
     "",
     "\\code",
     "\\code\\out",
+    "\\code\\out\\build",
     "\\input"
   ],
+  "SelectedNode": "\\code\\Compilers.c",
   "PreviewInSolutionExplorer": false
 }
