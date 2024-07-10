@@ -2,30 +2,30 @@
 ************************************************************
 * COMPILERS COURSE - Algonquin College
 * Code version: Summer, 2024
-* Author: TO_DO
+* Author: Ruan Simo F.
 * Professors: Paulo Sousa
 ************************************************************
 #
 # ECHO "=---------------------------------------="
 # ECHO "|  COMPILERS - ALGONQUIN COLLEGE (S24)  |"
 # ECHO "=---------------------------------------="
-# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
+# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@           %&@@@@@@@@@@@     @@    ï¿½
+# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ï¿½
+# ECHO "    @@      @& @   @ @       @     @@    ï¿½
+# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ï¿½
+# ECHO "    @@      & @ @  @@              @@    ï¿½
+# ECHO "    @@       @/ @*@ @ @   @        @@    ï¿½
+# ECHO "    @@           @@@@  @@ @ @      @@    ï¿½
+# ECHO "    @@            /@@    @@@ @     @@    ï¿½
+# ECHO "    @@     @      / /     @@ @     @@    ï¿½
+# ECHO "    @@     @ @@   /@/   @@@ @      @@    ï¿½
+# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@         RUANSCRIPT          @@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ï¿½
 # ECHO "                                         "
 # ECHO "[READER SCRIPT .........................]"
 # ECHO "                                         "
@@ -35,7 +35,7 @@
 ************************************************************
 * File name: MainScanner.c
 * Compiler: MS Visual Studio 2022
-* Course: CST 8152 – Compilers, Lab Section: [011, 012]
+* Course: CST 8152 ï¿½ Compilers, Lab Section: [011, 012]
 * Assignment: A22, A32.
 * Date: May 01 2024
 * Purpose: This file is the main code for Scanner (A22)
@@ -91,21 +91,21 @@
 
  /* Global objects - variables (used in other codes as external) */
 BufferPointer stringLiteralTable;	/* This buffer implements String Literal Table */
-sofia_intg errorNumber;				/* Run-time error number = 0 by default (ANSI) */
+Rs_intg errorNumber;				/* Run-time error number = 0 by default (ANSI) */
 
 /* External objects */
-extern sofia_intg line; /* Source code line numbers - defined in scanner.c */
-extern Token tokenizer(sofia_void);
+extern Rs_intg line; /* Source code line numbers - defined in scanner.c */
+extern Token tokenizer(Rs_void);
 
 /*
  * -------------------------------------------------------------
  *  Function declarations
  * -------------------------------------------------------------
  */
-sofia_void printScannerError(sofia_string fmt, ...);
-sofia_void displayScanner(BufferPointer ptrBuffer);
-sofia_long getScannerFilesize(sofia_string fname);
-sofia_void printToken(Token t);
+Rs_void printScannerError(Rs_string fmt, ...);
+Rs_void displayScanner(BufferPointer ptrBuffer);
+Rs_long getScannerFilesize(Rs_string fname);
+Rs_void printToken(Token t);
 
 /*
 ************************************************************
@@ -117,12 +117,12 @@ sofia_void printToken(Token t);
  ***********************************************************
  */
 
-sofia_intg mainScanner(sofia_intg argc, sofia_string* argv) {
+Rs_intg mainScanner(Rs_intg argc, Rs_string* argv) {
 
 	BufferPointer sourceBuffer;		/* Pointer to input (source) buffer */
 	FILE* fileHandler;				/* Input file handle */
 	Token currentToken;				/* Token produced by the scanner */
-	sofia_intg loadSize = 0;			/* The size of the file loaded in the buffer */
+	Rs_intg loadSize = 0;			/* The size of the file loaded in the buffer */
 
 	/* Check for correct arrguments - source file name */
 	if (argc <= 2) {
@@ -220,7 +220,7 @@ sofia_intg mainScanner(sofia_intg argc, sofia_string* argv) {
 ***********************************************************
 */
 
-sofia_void printScannerError(sofia_string fmt, ...) {
+Rs_void printScannerError(Rs_string fmt, ...) {
 	va_list ap;
 	va_start(ap, fmt);
 	(void)vfprintf(stderr, fmt, ap);
@@ -238,7 +238,7 @@ sofia_void printScannerError(sofia_string fmt, ...) {
  ***********************************************************
  */
 
-sofia_void displayScanner(BufferPointer ptrBuffer) {
+Rs_void displayScanner(BufferPointer ptrBuffer) {
 	printf("\nPrinting buffer parameters:\n\n");
 	printf("The capacity of the buffer is:  %d\n", readerGetSize(ptrBuffer));
 	printf("The current size of the buffer is:  %d\n", readerGetPosWrte(ptrBuffer));
@@ -257,9 +257,9 @@ sofia_void displayScanner(BufferPointer ptrBuffer) {
  ***********************************************************
  */
 
-sofia_long getScannerFilesize(sofia_string fname) {
+Rs_long getScannerFilesize(Rs_string fname) {
 	FILE* fileInput;
-	sofia_long fileLength;
+	Rs_long fileLength;
 	fileInput = fopen(fname, "r");
 	if (fileInput == NULL) {
 		printScannerError("%s%s", "Cannot open file: ", fname);

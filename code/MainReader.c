@@ -2,7 +2,7 @@
 ************************************************************
 * COMPILERS COURSE - Algonquin College
 * Code version: Spring, 2024
-* Author: Ruan Simo
+* Author: Ruan Simo F.
 * Professors: Paulo Sousa
 ************************************************************
 #
