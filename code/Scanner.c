@@ -2,7 +2,7 @@
 ************************************************************
 * COMPILERS COURSE - Algonquin College
 * Code version: Summer, 2024
-* Author: TO_DO
+* Author: Ruan Simo F.
 * Professors: Paulo Sousa
 ************************************************************
 #
@@ -23,7 +23,7 @@
 # ECHO "    @@     @ @@   /@/   @@@ @      @@    �
 # ECHO "    @@     @@@@@@@@@@@@@@@         @@    �
 # ECHO "    @@                             @@    �
-# ECHO "    @@         S O F I A           @@    �
+# ECHO "    @@        RUANSCRIPT           @@    �
 # ECHO "    @@                             @@    �
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    �
 # ECHO "                                         "
@@ -85,13 +85,13 @@ TO_DO: Global vars definitions
 /* Global objects - variables */
 /* This buffer is used as a repository for string literals. */
 extern BufferPointer stringLiteralTable;	/* String literal table */
-sofia_intg line;								/* Current line number of the source code */
-extern sofia_intg errorNumber;				/* Defined in platy_st.c - run-time error number */
+Rs_intg line;								/* Current line number of the source code */
+extern Rs_intg errorNumber;				/* Defined in platy_st.c - run-time error number */
 
-extern sofia_intg stateType[NUM_STATES];
-extern sofia_string keywordTable[KWT_SIZE];
+extern Rs_intg stateType[NUM_STATES];
+extern Rs_string keywordTable[KWT_SIZE];
 extern PTR_ACCFUN finalStateTable[NUM_STATES];
-extern sofia_intg transitionTable[NUM_STATES][CHAR_CLASSES];
+extern Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES];
 
 /* Local(file) global objects - variables */
 static BufferPointer lexemeBuffer;			/* Pointer to temporary lexeme buffer */
@@ -105,9 +105,9 @@ static BufferPointer sourceBuffer;			/* Pointer to input source buffer */
  */
  /* TO_DO: Follow the standard and adjust datatypes */
 
-sofia_intg startScanner(BufferPointer psc_buf) {
+Rs_intg startScanner(BufferPointer psc_buf) {
 	/* TO_DO: Start histogram */
-	for (sofia_intg i=0; i<NUM_TOKENS;i++)
+	for (Rs_intg i=0; i<NUM_TOKENS;i++)
 		scData.scanHistogram[i] = 0;
 	/* Basic scanner initialization */
 	/* in case the buffer has been read previously  */
@@ -129,19 +129,19 @@ sofia_intg startScanner(BufferPointer psc_buf) {
  ***********************************************************
  */
 
-Token tokenizer(sofia_void) {
+Token tokenizer(Rs_void) {
 
 	/* TO_DO: Follow the standard and adjust datatypes */
 
 	Token currentToken = { 0 }; /* token to return after pattern recognition. Set all structure members to 0 */
-	sofia_char c;	/* input symbol */
-	sofia_intg state = 0;		/* initial state of the FSM */
-	sofia_intg lexStart;		/* start offset of a lexeme in the input char buffer (array) */
-	sofia_intg lexEnd;		/* end offset of a lexeme in the input char buffer (array)*/
+	Rs_char c;	/* input symbol */
+	Rs_intg state = 0;		/* initial state of the FSM */
+	Rs_intg lexStart;		/* start offset of a lexeme in the input char buffer (array) */
+	Rs_intg lexEnd;		/* end offset of a lexeme in the input char buffer (array)*/
 
-	sofia_intg lexLength;		/* token length */
-	sofia_intg i;				/* counter */
-	///sofia_char newc;			// new char
+	Rs_intg lexLength;		/* token length */
+	Rs_intg i;				/* counter */
+	///Rs_char newc;			// new char
 
 	while (1) { /* endless loop broken by token returns it will generate a warning */
 		c = readerGetChar(sourceBuffer);
@@ -166,25 +166,131 @@ Token tokenizer(sofia_void) {
 
 		/* Cases for symbols */
 		case ';':
-			currentToken.code = EOS_T;
-			scData.scanHistogram[currentToken.code]++;
-			return currentToken;
-		case '(':
-			currentToken.code = LPR_T;
-			scData.scanHistogram[currentToken.code]++;
-			return currentToken;
-		case ')':
-			currentToken.code = RPR_T;
-			scData.scanHistogram[currentToken.code]++;
-			return currentToken;
-		case '{':
-			currentToken.code = LBR_T;
-			scData.scanHistogram[currentToken.code]++;
-			return currentToken;
-		case '}':
-			currentToken.code = RBR_T;
-			scData.scanHistogram[currentToken.code]++;
-			return currentToken;
+            currentToken.code = EOS_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '(':
+            currentToken.code = LPR_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case ')':
+            currentToken.code = RPR_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '{':
+            currentToken.code = LBR_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '}':
+            currentToken.code = RBR_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '<':
+            currentToken.code = LT_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '=':
+            currentToken.code = EQ_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '>':
+            currentToken.code = GT_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '*':
+            currentToken.code = MUL_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '[':
+            currentToken.code = LBRACK_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case ']':
+            currentToken.code = RBRACK_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '-':
+            currentToken.code = MINUS_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '/':
+            currentToken.code = DIV_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '^':
+            currentToken.code = POW_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '!':
+            currentToken.code = NOT_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '+':
+            currentToken.code = PLUS_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '%':
+            currentToken.code = MOD_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '&':
+            currentToken.code = AND_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '|':
+            currentToken.code = OR_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '"':
+            currentToken.code = DQUOTE_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '\'':
+            currentToken.code = SQUOTE_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '?':
+            currentToken.code = QMARK_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case ':':
+            currentToken.code = COLON_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '.':
+            currentToken.code = DOT_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case ',':
+            currentToken.code = COMMA_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+        case '_':
+            currentToken.code = UNDERSCORE_T;
+            scData.scanHistogram[currentToken.code]++;
+            return currentToken;
+
+
+		// case ';':
+		// 	currentToken.code = EOS_T;
+		// 	scData.scanHistogram[currentToken.code]++;
+		// 	return currentToken;
+		// case '(':
+		// 	currentToken.code = LPR_T;
+		// 	scData.scanHistogram[currentToken.code]++;
+		// 	return currentToken;
+		// case ')':
+		// 	currentToken.code = RPR_T;
+		// 	scData.scanHistogram[currentToken.code]++;
+		// 	return currentToken;
+		// case '{':
+		// 	currentToken.code = LBR_T;
+		// 	scData.scanHistogram[currentToken.code]++;
+		// 	return currentToken;
+		// case '}':
+		// 	currentToken.code = RBR_T;
+		// 	scData.scanHistogram[currentToken.code]++;
+		// 	return currentToken;
 		/* Cases for END OF FILE */
 		case CHARSEOF0:
 			currentToken.code = SEOF_T;
@@ -219,7 +325,7 @@ Token tokenizer(sofia_void) {
 				readerRetract(sourceBuffer);
 			lexEnd = readerGetPosRead(sourceBuffer);
 			lexLength = lexEnd - lexStart;
-			lexemeBuffer = readerCreate((sofia_intg)lexLength + 2, 0, MODE_FIXED);
+			lexemeBuffer = readerCreate((Rs_intg)lexLength + 2, 0, MODE_FIXED);
 			if (!lexemeBuffer) {
 				fprintf(stderr, "Scanner error: Can not create buffer\n");
 				exit(1);
@@ -264,9 +370,9 @@ Token tokenizer(sofia_void) {
  */
  /* TO_DO: Just change the datatypes */
 
-sofia_intg nextState(sofia_intg state, sofia_char c) {
-	sofia_intg col;
-	sofia_intg next;
+Rs_intg nextState(Rs_intg state, Rs_char c) {
+	Rs_intg col;
+	Rs_intg next;
 	col = nextClass(c);
 	next = transitionTable[state][col];
 	if (DEBUG)
@@ -295,8 +401,8 @@ sofia_intg nextState(sofia_intg state, sofia_char c) {
 /*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
 
-sofia_intg nextClass(sofia_char c) {
-	sofia_intg val = -1;
+Rs_intg nextClass(Rs_char c) {
+	Rs_intg val = -1;
 	switch (c) {
 	case CHRCOL2:
 		val = 2;
@@ -333,9 +439,9 @@ sofia_intg nextClass(sofia_char c) {
  */
  /* TO_DO: Adjust the function for IL */
 
-Token funcCMT(sofia_string lexeme) {
+Token funcCMT(Rs_string lexeme) {
 	Token currentToken = { 0 };
-	sofia_intg i = 0, len = (sofia_intg)strlen(lexeme);
+	Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
 	currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
 	for (i = 1; i < len - 1; i++) {
 		if (lexeme[i] == '\n')
@@ -359,9 +465,9 @@ Token funcCMT(sofia_string lexeme) {
   */
   /* TO_DO: Adjust the function for IL */
 
-Token funcIL(sofia_string lexeme) {
+Token funcIL(Rs_string lexeme) {
 	Token currentToken = { 0 };
-	sofia_long tlong;
+	Rs_long tlong;
 	if (lexeme[0] != '\0' && strlen(lexeme) > NUM_LEN) {
 		currentToken = (*finalStateTable[ESNR])(lexeme);
 	}
@@ -370,7 +476,7 @@ Token funcIL(sofia_string lexeme) {
 		if (tlong >= 0 && tlong <= SHRT_MAX) {
 			currentToken.code = INL_T;
 			scData.scanHistogram[currentToken.code]++;
-			currentToken.attribute.intValue = (sofia_intg)tlong;
+			currentToken.attribute.intValue = (Rs_intg)tlong;
 		}
 		else {
 			currentToken = (*finalStateTable[ESNR])(lexeme);
@@ -394,16 +500,16 @@ Token funcIL(sofia_string lexeme) {
  */
  /* TO_DO: Adjust the function for ID */
 
-Token funcID(sofia_string lexeme) {
+Token funcID(Rs_string lexeme) {
 	Token currentToken = { 0 };
 	size_t length = strlen(lexeme);
-	sofia_char lastch = lexeme[length - 1];
-	sofia_intg isID = SOFIA_FALSE;
+	Rs_char lastch = lexeme[length - 1];
+	Rs_intg isID = FALSE;
 	switch (lastch) {
 		case MNID_SUF:
 			currentToken.code = MNID_T;
 			scData.scanHistogram[currentToken.code]++;
-			isID = SOFIA_TRUE;
+			isID = TRUE;
 			break;
 		default:
 			// Test Keyword
@@ -411,7 +517,7 @@ Token funcID(sofia_string lexeme) {
 			currentToken = funcKEY(lexeme);
 			break;
 	}
-	if (isID == SOFIA_TRUE) {
+	if (isID == TRUE) {
 		strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
 		currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
 	}
@@ -431,9 +537,9 @@ Token funcID(sofia_string lexeme) {
  */
 /* TO_DO: Adjust the function for SL */
 
-Token funcSL(sofia_string lexeme) {
+Token funcSL(Rs_string lexeme) {
 	Token currentToken = { 0 };
-	sofia_intg i = 0, len = (sofia_intg)strlen(lexeme);
+	Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
 	currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
 	for (i = 1; i < len - 1; i++) {
 		if (lexeme[i] == '\n')
@@ -467,10 +573,10 @@ Token funcSL(sofia_string lexeme) {
  */
  /* TO_DO: Adjust the function for Keywords */
 
-Token funcKEY(sofia_string lexeme) {
+Token funcKEY(Rs_string lexeme) {
 	Token currentToken = { 0 };
-	sofia_intg kwindex = -1, j = 0;
-	sofia_intg len = (sofia_intg)strlen(lexeme);
+	Rs_intg kwindex = -1, j = 0;
+	Rs_intg len = (Rs_intg)strlen(lexeme);
 	lexeme[len - 1] = '\0';
 	for (j = 0; j < KWT_SIZE; j++)
 		if (!strcmp(lexeme, &keywordTable[j][0]))
@@ -499,9 +605,9 @@ Token funcKEY(sofia_string lexeme) {
  */
  /* TO_DO: Adjust the function for Errors */
 
-Token funcErr(sofia_string lexeme) {
+Token funcErr(Rs_string lexeme) {
 	Token currentToken = { 0 };
-	sofia_intg i = 0, len = (sofia_intg)strlen(lexeme);
+	Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
 	if (len > ERR_LEN) {
 		strncpy(currentToken.attribute.errLexeme, lexeme, ERR_LEN - 3);
 		currentToken.attribute.errLexeme[ERR_LEN - 3] = CHARSEOF0;
@@ -525,8 +631,8 @@ Token funcErr(sofia_string lexeme) {
  ***********************************************************
  */
 
-sofia_void printToken(Token t) {
-	extern sofia_string keywordTable[]; /* link to keyword table in */
+Rs_void printToken(Token t) {
+	extern Rs_string keywordTable[]; /* link to keyword table in */
 	switch (t.code) {
 	case RTE_T:
 		printf("RTE_T\t\t%s", t.attribute.errLexeme);
@@ -547,8 +653,8 @@ sofia_void printToken(Token t) {
 		printf("MNID_T\t\t%s\n", t.attribute.idLexeme);
 		break;
 	case STR_T:
-		printf("STR_T\t\t%d\t ", (sofia_intg)t.attribute.codeType);
-		printf("%s\n", readerGetContent(stringLiteralTable, (sofia_intg)t.attribute.codeType));
+		printf("STR_T\t\t%d\t ", (Rs_intg)t.attribute.codeType);
+		printf("%s\n", readerGetContent(stringLiteralTable, (Rs_intg)t.attribute.codeType));
 		break;
 	case LPR_T:
 		printf("LPR_T\n");
@@ -585,7 +691,7 @@ sofia_void printToken(Token t) {
  *	- Void (procedure)
  ***********************************************************
  */
-sofia_void printScannerData(ScannerData scData) {
+Rs_void printScannerData(ScannerData scData) {
 	/* Print Scanner statistics */
 	printf("Statistics:\n");
 	printf("----------------------------------\n");

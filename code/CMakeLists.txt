@@ -32,7 +32,8 @@ project ("Compiler")
 # Add source to this project's executable: check name and dependences
 add_executable (Compiler
 	"Compilers.h"	"Compilers.c"
-	"Reader.h"		"Reader.c"		"MainReader.c"
+	"Reader.h"		"Reader.c"		"MainReader.c" 
+	"MainScanner.c" "Scanner.c" "Scanner.h"
 	# TO_DO: Add A22 (Scanner) and A32 (Parser)
 )
 

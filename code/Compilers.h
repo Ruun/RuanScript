@@ -2,7 +2,7 @@
 ************************************************************
 * COMPILERS COURSE - Algonquin College
 * Code version: Spring, 2024
-* Author: Ruan Simo
+* Author: Ruan Simo F.
 * Professors: Paulo Sousa
 ************************************************************
 #
@@ -58,7 +58,7 @@
  * ............................................................................
  */
 
-/* TO_DO: Adjust your language (cannot be "sofia") */
+/* TO_DO: Adjust your language (cannot be "Rs") */
 
 /* Language name */
 #define STR_LANGNAME	"RuanScript"
@@ -131,7 +131,7 @@ Rs_intg mainReader(Rs_intg argc, Rs_string* argv);
 /* 
 TO_DO: Include later mainScaner (A22) and mainParser (A32)
 */
-// Rs_intg mainScanner(Rs_intg argc, Rs_string* argv);
+Rs_intg mainScanner(Rs_intg argc, Rs_string* argv);
 // Rs_intg mainParser(Rs_intg argc, Rs_string* argv); 
 
 Rs_void printLogo();

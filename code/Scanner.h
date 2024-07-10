@@ -2,30 +2,30 @@
 ************************************************************
 * COMPILERS COURSE - Algonquin College
 * Code version: Summer, 2024
-* Author: TO_DO
+* Author: Ruan Simo F.
 * Professors: Paulo Sousa
 ************************************************************
 #
 # ECHO "=---------------------------------------="
 # ECHO "|  COMPILERS - ALGONQUIN COLLEGE (S24)  |"
 # ECHO "=---------------------------------------="
-# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
-# ECHO "    @@                             @@    ”
-# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
+# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@           %&@@@@@@@@@@@     @@    ï¿½
+# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ï¿½
+# ECHO "    @@      @& @   @ @       @     @@    ï¿½
+# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ï¿½
+# ECHO "    @@      & @ @  @@              @@    ï¿½
+# ECHO "    @@       @/ @*@ @ @   @        @@    ï¿½
+# ECHO "    @@           @@@@  @@ @ @      @@    ï¿½
+# ECHO "    @@            /@@    @@@ @     @@    ï¿½
+# ECHO "    @@     @      / /     @@ @     @@    ï¿½
+# ECHO "    @@     @ @@   /@/   @@@ @      @@    ï¿½
+# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@        RUANSCRIPT           @@    ï¿½
+# ECHO "    @@                             @@    ï¿½
+# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ï¿½
 # ECHO "                                         "
 # ECHO "[READER SCRIPT .........................]"
 # ECHO "                                         "
@@ -35,7 +35,7 @@
 ************************************************************
 * File name: Scanner.h
 * Compiler: MS Visual Studio 2022
-* Course: CST 8152 – Compilers, Lab Section: [011, 012]
+* Course: CST 8152 ï¿½ Compilers, Lab Section: [011, 012]
 * Assignment: A22, A32.
 * Date: May 01 2024
 * Purpose: This file is the main header for Scanner (.h)
@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 13
+#define NUM_TOKENS 34
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -85,11 +85,32 @@ enum TOKENS {
 	EOS_T,		/*  9: End of statement (semicolon) */
 	RTE_T,		/* 10: Run-time error token */
 	SEOF_T,		/* 11: Source end-of-file token */
-	CMT_T		/* 12: Comment token */
+	CMT_T,		/* 12: Comment token */
+	LT_T,       /* 13: Less than operator token */
+    EQ_T,       /* 14: Equal operator token */
+    GT_T,       /* 15: Greater than operator token */
+    MUL_T,      /* 16: Multiply operator token */
+    LBRACK_T,   /* 17: Left bracket token */
+    RBRACK_T,   /* 18: Right bracket token */
+    MINUS_T,    /* 19: Minus operator token */
+    DIV_T,      /* 20: Divide operator token */
+    POW_T,      /* 21: Power operator token */
+    NOT_T,      /* 22: Not operator token */
+    PLUS_T,     /* 23: Plus operator token */
+    MOD_T,      /* 24: Modulus operator token */
+    AND_T,      /* 25: And operator token */
+    OR_T,       /* 26: Or operator token */
+    DQUOTE_T,   /* 27: Double quote token */
+    SQUOTE_T,   /* 28: Single quote token */
+    QMARK_T,    /* 29: Question mark token */
+    COLON_T,    /* 30: Colon token */
+    DOT_T,      /* 31: Dot token */
+    COMMA_T,    /* 32: Comma token */
+    UNDERSCORE_T /* 33: Underscore token */
 };
 
 /* TO_DO: Define the list of keywords */
-static sofia_string tokenStrTable[NUM_TOKENS] = {
+static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"ERR_T",
 	"MNID_T",
 	"INL_T",
@@ -102,7 +123,28 @@ static sofia_string tokenStrTable[NUM_TOKENS] = {
 	"EOS_T",
 	"RTE_T",
 	"SEOF_T",
-	"CMT_T"
+	"CMT_T",
+	"LT_T",
+    "EQ_T",
+    "GT_T",
+    "MUL_T",
+    "LBRACK_T",
+    "RBRACK_T",
+    "MINUS_T",
+    "DIV_T",
+    "POW_T",
+    "NOT_T",
+    "PLUS_T",
+    "MOD_T",
+    "AND_T",
+    "OR_T",
+    "DQUOTE_T",
+    "SQUOTE_T",
+    "QMARK_T",
+    "COLON_T",
+    "DOT_T",
+    "COMMA_T",
+    "UNDERSCORE_T"
 };
 
 /* TO_DO: Operators token attributes */
@@ -113,39 +155,39 @@ typedef enum SourceEndOfFile { SEOF_0, SEOF_255 } EofOperator;
 
 /* TO_DO: Data structures for declaring the token and its attributes */
 typedef union TokenAttribute {
-	sofia_intg codeType;      /* integer attributes accessor */
+	Rs_intg codeType;      /* integer attributes accessor */
 	AriOperator arithmeticOperator;		/* arithmetic operator attribute code */
 	RelOperator relationalOperator;		/* relational operator attribute code */
 	LogOperator logicalOperator;		/* logical operator attribute code */
 	EofOperator seofType;				/* source-end-of-file attribute code */
-	sofia_intg intValue;				/* integer literal attribute (value) */
-	sofia_intg keywordIndex;			/* keyword index in the keyword table */
-	sofia_intg contentString;			/* string literal offset from the beginning of the string literal buffer (stringLiteralTable->content) */
-	sofia_real floatValue;				/* floating-point literal attribute (value) */
-	sofia_char idLexeme[VID_LEN + 1];	/* variable identifier token attribute */
-	sofia_char errLexeme[ERR_LEN + 1];	/* error token attribite */
+	Rs_intg intValue;				/* integer literal attribute (value) */
+	Rs_intg keywordIndex;			/* keyword index in the keyword table */
+	Rs_intg contentString;			/* string literal offset from the beginning of the string literal buffer (stringLiteralTable->content) */
+	Rs_float floatValue;				/* floating-point literal attribute (value) */
+	Rs_char idLexeme[VID_LEN + 1];	/* variable identifier token attribute */
+	Rs_char errLexeme[ERR_LEN + 1];	/* error token attribite */
 } TokenAttribute;
 
 /* TO_DO: Should be used if no symbol table is implemented */
 typedef struct idAttibutes {
-	sofia_byte flags;			/* Flags information */
+	Rs_byte flags;			/* Flags information */
 	union {
-		sofia_intg intValue;				/* Integer value */
-		sofia_real floatValue;			/* Float value */
-		sofia_string stringContent;		/* String value */
+		Rs_intg intValue;				/* Integer value */
+		Rs_float floatValue;			/* Float value */
+		Rs_string stringContent;		/* String value */
 	} values;
 } IdAttibutes;
 
 /* Token declaration */
 typedef struct Token {
-	sofia_intg code;				/* token code */
+	Rs_intg code;				/* token code */
 	TokenAttribute attribute;	/* token attribute */
 	IdAttibutes   idAttribute;	/* not used in this scanner implementation - for further use */
 } Token;
 
 /* Scanner */
 typedef struct scannerData {
-	sofia_intg scanHistogram[NUM_TOKENS];	/* Statistics of chars */
+	Rs_intg scanHistogram[NUM_TOKENS];	/* Statistics of chars */
 } ScannerData, * pScanData;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,7 +220,7 @@ typedef struct scannerData {
 #define CHAR_CLASSES	8
 
 /* TO_DO: Transition table - type of states defined in separate table */
-static sofia_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
+static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
 /*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
 	{     1, ESNR, ESNR, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOAS
@@ -199,7 +241,7 @@ static sofia_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
 #define FSWR	2		/* accepting state with retract */
 
 /* TO_DO: Define list of acceptable states */
-static sofia_intg stateType[NUM_STATES] = {
+static Rs_intg stateType[NUM_STATES] = {
 	NOFS, /* 00 */
 	NOFS, /* 01 */
 	FSNR, /* 02 (MID) - Methods */
@@ -219,11 +261,11 @@ TO_DO: Adjust your functions'definitions
 */
 
 /* Static (local) function  prototypes */
-sofia_intg			startScanner(BufferPointer psc_buf);
-static sofia_intg	nextClass(sofia_char c);					/* character class function */
-static sofia_intg	nextState(sofia_intg, sofia_char);		/* state machine function */
-sofia_void			printScannerData(ScannerData scData);
-Token				tokenizer(sofia_void);
+Rs_intg			startScanner(BufferPointer psc_buf);
+static Rs_intg	nextClass(Rs_char c);					/* character class function */
+static Rs_intg	nextState(Rs_intg, Rs_char);		/* state machine function */
+Rs_void			printScannerData(ScannerData scData);
+Token				tokenizer(Rs_void);
 
 /*
 -------------------------------------------------
@@ -232,15 +274,15 @@ Automata definitions
 */
 
 /* TO_DO: Pointer to function (of one char * argument) returning Token */
-typedef Token(*PTR_ACCFUN)(sofia_string lexeme);
+typedef Token(*PTR_ACCFUN)(Rs_string lexeme);
 
 /* Declare accepting states functions */
-Token funcSL	(sofia_string lexeme);
-Token funcIL	(sofia_string lexeme);
-Token funcID	(sofia_string lexeme);
-Token funcCMT   (sofia_string lexeme);
-Token funcKEY	(sofia_string lexeme);
-Token funcErr	(sofia_string lexeme);
+Token funcSL	(Rs_string lexeme);
+Token funcIL	(Rs_string lexeme);
+Token funcID	(Rs_string lexeme);
+Token funcCMT   (Rs_string lexeme);
+Token funcKEY	(Rs_string lexeme);
+Token funcErr	(Rs_string lexeme);
 
 /* 
  * Accepting function (action) callback table (array) definition 
@@ -271,7 +313,7 @@ Language keywords
 #define KWT_SIZE 10
 
 /* TO_DO: Define the list of keywords */
-static sofia_string keywordTable[KWT_SIZE] = {
+static Rs_string keywordTable[KWT_SIZE] = {
 	"data",		/* KW00 */
 	"code",		/* KW01 */
 	"int",		/* KW02 */
@@ -294,13 +336,14 @@ static sofia_string keywordTable[KWT_SIZE] = {
 
 /* TO_DO: Should be used if no symbol table is implemented */
 typedef struct languageAttributes {
-	sofia_char indentationCharType;
-	sofia_intg indentationCurrentPos;
+	Rs_char indentationCharType;
+	Rs_intg indentationCurrentPos;
 	/* TO_DO: Include any extra attribute to be used in your scanner (OPTIONAL and FREE) */
+	Rs_boln isIndentation;
 } LanguageAttributes;
 
 /* Number of errors */
-sofia_intg numScannerErrors;
+Rs_intg numScannerErrors;
 
 /* Scanner data */
 ScannerData scData;

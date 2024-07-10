@@ -2,10 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\code",
-    "\\code\\.idea",
     "\\code\\out",
+    "\\code\\out\\build",
     "\\input"
   ],
-  "SelectedNode": "\\input",
+  "SelectedNode": "\\code\\Compilers.c",
   "PreviewInSolutionExplorer": false
 }

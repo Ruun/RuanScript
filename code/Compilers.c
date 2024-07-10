@@ -2,7 +2,7 @@
 ************************************************************
 * COMPILERS COURSE - Algonquin College
 * Code version: Spring 2024
-* Author: Ruan Simo
+* Author: Ruan Simo F.
 * Professors: Paulo Sousa
 ************************************************************
 #
@@ -98,7 +98,7 @@ Rs_intg main(int argc, char** argv) {
 		/* TO_DO: Include later SCANNER (A22) and PARSER (A32) */
 		case PGM_SCANNER:
         printf("%s%c%s", "\n[Option '", PGM_SCANNER, "': Starting SCANNER .....]\n\n");
-		// mainScanner(argc, argv);
+		mainScanner(argc, argv);
         break;
     case PGM_PARSER:
         printf("%s%c%s", "\n[Option '", PGM_PARSER, "': Starting PARSER .....]\n\n");
