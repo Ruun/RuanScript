@@ -1,18 +1,9 @@
-#
-Rs Example
-The program is lexically correct about the Rs city 
-#
-main& {
-	data {
-		int FoundationYear$;
-		real Area%, HDI%;
-		string CountryName@;
-	}
-	code {
-		FoundationYear$ = -7000;
-		Area% = 492.0;
-		HDI%=0.871;
-		CountryName@ = 'Bulgary';
-		print&(CountryName$);
-	}
+# RuanScript Example: The program is lexically correct about the Rs city
+main() {
+    int FoundationYear = -7000;
+    float Area = 492.0;
+    float HDI = 0.871;
+    string CountryName = 'Bulgaria';
+
+    print(CountryName);
 }

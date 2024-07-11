@@ -1,10 +1,7 @@
-# Rs Example
+/* Rs Example
   The program is "lexically" correct
-  and should not generate any error #
-main& {
-	data {
-	}
-	code {
-		print&('Hello world!');
-	}
+  and should not generate any error */
+  
+main() {
+		print('Hello world!');
 }

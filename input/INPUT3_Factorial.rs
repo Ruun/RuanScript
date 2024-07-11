@@ -1,19 +1,16 @@
-# Rs Example 4:
-  Testing numbers (ex: factorial) #
-main& {
-    data {
-        int i$, n$, f$;
-    }
-    code {
-        f$=1;
-        i$=1;
-        print&('Write a number:');
-        input&(n$);
-        while (i$<n$) do {
-            f$ = f$ * i$;
-            i$ = i$ + 1;
-        };
-        print&('Factorial:');
-        print&(f$);
-    }
+# RuanScript Example: Testing numbers (factorial)
+main() {
+    int i = 1;
+    int n = 0;
+    int f = 1;
+
+    n = input('Write a number:');
+
+    while (i < n) {
+        f = f * i;
+        i = i + 1;
+    };
+
+    print('Factorial:');
+    print(f);
 }

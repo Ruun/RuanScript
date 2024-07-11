@@ -158,6 +158,7 @@ Rs_intg mainScanner(Rs_intg argc, Rs_string* argv) {
 
 	/* Close source file */
 	fclose(fileHandler);
+
 	/* Find the size of the file */
 	if (loadSize == READER_ERROR) {
 		printf("The input file %s %s\n", argv[2], "is not completely loaded.");
@@ -179,6 +180,7 @@ Rs_intg mainScanner(Rs_intg argc, Rs_string* argv) {
 	}
 
 	/* Testbed for the scanner and add SEOF to input program buffer*/
+	 
 	/* Initialize scanner input buffer */
 	if (startScanner(sourceBuffer)) {
 		printScannerError("%s%s", argv[0], ": Empty program buffer - scanning canceled");
@@ -188,6 +190,8 @@ Rs_intg mainScanner(Rs_intg argc, Rs_string* argv) {
 	printf("\nScanning source file...\n\n");
 	printf("Token\t\tAttribute\n");
 	printf("----------------------------------\n");
+
+	/* Tokenize and print tokens */
 	do {
 		currentToken = tokenizer();
 		printToken(currentToken);
@@ -199,11 +203,14 @@ Rs_intg mainScanner(Rs_intg argc, Rs_string* argv) {
 	if (readerGetPosWrte(stringLiteralTable)) {
 		readerPrint(stringLiteralTable);
 	}
+
+	/* Restore buffers and print scanner data */
 	printf("\n----------------------------------\n");
 	readerRestore(sourceBuffer);
 	readerRestore(stringLiteralTable);
 	sourceBuffer = stringLiteralTable = NULL;
 	printScannerData(scData);
+
 	/* Ass2 evaluation only */
 	if (argv[3] != NULL && *argv[3] == 'l')
 		printf("The number of lines is: %d\n", line);
@@ -260,6 +267,7 @@ Rs_void displayScanner(BufferPointer ptrBuffer) {
 Rs_long getScannerFilesize(Rs_string fname) {
 	FILE* fileInput;
 	Rs_long fileLength;
+	
 	fileInput = fopen(fname, "r");
 	if (fileInput == NULL) {
 		printScannerError("%s%s", "Cannot open file: ", fname);

@@ -1,13 +1,10 @@
-# Rs Example 3:
-  Volume of a sphere #
-main& {
-	data {
-		real PI%, r%, Vol%;
-	}
-	code {
-		PI% = 3.14;
-		input&(r%);
-		Vol% = 4.0 / 3.0 * PI% * (r% * r% * r%);
-		print&(Vol%);
-	}
+# RuanScript Example: Volume of a sphere
+main() {
+    float PI = 3.14;
+    float r = 0.0;
+    float Vol = 0.0;
+
+    r = input("Enter the radius: ");
+    Vol = 4.0 / 3.0 * PI * (r * r * r);
+    print(Vol);
 }

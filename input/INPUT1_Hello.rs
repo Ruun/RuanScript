@@ -1,8 +1,6 @@
-# Rs Example 2: The program is "lexically" correct and should not generate any error #
-main& {
-	data {
-	}
-	code {
-		print&('Hello world!');
-	}
+# RuanScript Example: The program is "lexically" correct and should not generate any error
+# The program is a simple "Hello world!" program
+
+int main(){
+        print("Hello world!");
 }

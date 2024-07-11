@@ -107,8 +107,9 @@ static BufferPointer sourceBuffer;			/* Pointer to input source buffer */
 
 Rs_intg startScanner(BufferPointer psc_buf) {
 	/* TO_DO: Start histogram */
-	for (Rs_intg i=0; i<NUM_TOKENS;i++)
+	for (Rs_intg i=0; i<NUM_TOKENS;i++){
 		scData.scanHistogram[i] = 0;
+	}
 	/* Basic scanner initialization */
 	/* in case the buffer has been read previously  */
 	readerRecover(psc_buf);
@@ -166,7 +167,7 @@ Token tokenizer(Rs_void) {
 
 		/* Cases for symbols */
 		case ';':
-            currentToken.code = EOS_T;
+            currentToken.code = SEMI_T;
             scData.scanHistogram[currentToken.code]++;
             return currentToken;
         case '(':
@@ -201,32 +202,37 @@ Token tokenizer(Rs_void) {
             currentToken.code = MUL_T;
             scData.scanHistogram[currentToken.code]++;
             return currentToken;
-        case '[':
-            currentToken.code = LBRACK_T;
-            scData.scanHistogram[currentToken.code]++;
-            return currentToken;
-        case ']':
-            currentToken.code = RBRACK_T;
-            scData.scanHistogram[currentToken.code]++;
-            return currentToken;
         case '-':
-            currentToken.code = MINUS_T;
+            currentToken.code = SUB_T;
             scData.scanHistogram[currentToken.code]++;
             return currentToken;
         case '/':
-            currentToken.code = DIV_T;
-            scData.scanHistogram[currentToken.code]++;
-            return currentToken;
-        case '^':
-            currentToken.code = POW_T;
-            scData.scanHistogram[currentToken.code]++;
-            return currentToken;
+			 c = readerGetChar(sourceBuffer);
+            if (c == '*') {
+             currentToken.code = MLC_T;
+             scData.scanHistogram[currentToken.code]++;
+            while (1) {
+               c = readerGetChar(sourceBuffer);
+              if (c == '*' && readerGetChar(sourceBuffer) == '/') {
+             break;
+             }
+            if (c == '\n') {
+             line++;
+            }
+     }
+     return currentToken;
+ } else {
+     readerRetract(sourceBuffer);
+     currentToken.code = DIV_T;
+     scData.scanHistogram[currentToken.code]++;
+     return currentToken;
+ }
         case '!':
             currentToken.code = NOT_T;
             scData.scanHistogram[currentToken.code]++;
             return currentToken;
         case '+':
-            currentToken.code = PLUS_T;
+            currentToken.code = ADD_T;
             scData.scanHistogram[currentToken.code]++;
             return currentToken;
         case '%':
@@ -241,24 +247,8 @@ Token tokenizer(Rs_void) {
             currentToken.code = OR_T;
             scData.scanHistogram[currentToken.code]++;
             return currentToken;
-        case '"':
-            currentToken.code = DQUOTE_T;
-            scData.scanHistogram[currentToken.code]++;
-            return currentToken;
-        case '\'':
-            currentToken.code = SQUOTE_T;
-            scData.scanHistogram[currentToken.code]++;
-            return currentToken;
-        case '?':
-            currentToken.code = QMARK_T;
-            scData.scanHistogram[currentToken.code]++;
-            return currentToken;
         case ':':
             currentToken.code = COLON_T;
-            scData.scanHistogram[currentToken.code]++;
-            return currentToken;
-        case '.':
-            currentToken.code = DOT_T;
             scData.scanHistogram[currentToken.code]++;
             return currentToken;
         case ',':
@@ -269,7 +259,13 @@ Token tokenizer(Rs_void) {
             currentToken.code = UNDERSCORE_T;
             scData.scanHistogram[currentToken.code]++;
             return currentToken;
-
+		case '#': 
+            currentToken.code = CMT_T;
+			scData.scanHistogram[currentToken.code]++;
+			while ((c= readerGetChar(sourceBuffer)) != '\n' && c != CHARSEOF0 && c != CHARSEOF255);
+			readerRetract(sourceBuffer);
+			return currentToken;
+            continue;
 
 		// case ';':
 		// 	currentToken.code = EOS_T;
@@ -446,6 +442,8 @@ Token funcCMT(Rs_string lexeme) {
 	for (i = 1; i < len - 1; i++) {
 		if (lexeme[i] == '\n')
 			line++;
+		else
+            readerAddChar(stringLiteralTable, lexeme[i]);
 	}
 	currentToken.code = CMT_T;
 	scData.scanHistogram[currentToken.code]++;
@@ -500,29 +498,106 @@ Token funcIL(Rs_string lexeme) {
  */
  /* TO_DO: Adjust the function for ID */
 
+// Token funcID(Rs_string lexeme) {
+//     Token currentToken = { 0 };
+//     size_t length = strlen(lexeme);
+
+//     // Check if the lexeme ends with ()
+//     if (length >= 2 && lexeme[length - 2] == '(' && lexeme[length - 1] == ')') {
+//         currentToken.code = MNID_T; // Method name identifier
+//         scData.scanHistogram[currentToken.code]++;
+//         strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+//         currentToken.attribute.idLexeme[VID_LEN - 1] = CHARSEOF0; // Ensure null termination
+//     } else {
+//         // Test Keyword or Identifier
+//         currentToken = funcKEY(lexeme);
+//         if (currentToken.code == ERR_T) {
+//             // If it's still ERR_T, treat it as an identifier (MNID_T)
+//             currentToken.code = MNID_T; 
+//             scData.scanHistogram[currentToken.code]++;
+//             strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+//             currentToken.attribute.idLexeme[VID_LEN - 1] = CHARSEOF0; // Ensure null termination
+//         }
+//     }
+
+//     return currentToken;
+// }
+
+
 Token funcID(Rs_string lexeme) {
-	Token currentToken = { 0 };
-	size_t length = strlen(lexeme);
-	Rs_char lastch = lexeme[length - 1];
-	Rs_intg isID = FALSE;
-	switch (lastch) {
-		case MNID_SUF:
-			currentToken.code = MNID_T;
-			scData.scanHistogram[currentToken.code]++;
-			isID = TRUE;
-			break;
-		default:
-			// Test Keyword
-			lexeme[length - 1] = '\0';
-			currentToken = funcKEY(lexeme);
-			break;
-	}
-	if (isID == TRUE) {
-		strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-		currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
-	}
-	return currentToken;
+    Token currentToken = { 0 };
+    size_t length = strlen(lexeme);
+    Rs_char lastch = lexeme[length - 1];
+    Rs_intg isID = FALSE;
+
+    switch (lastch) {
+        case LPR_SUF:
+		case RPR_SUF:
+            currentToken.code = MNID_T; // Method name identifier
+            scData.scanHistogram[currentToken.code]++;
+            isID = TRUE;
+            break;
+        default:
+            // Test Keyword or Identifier
+            currentToken = funcKEY(lexeme);
+            if (currentToken.code == ERR_T) {
+                // If it's still ERR_T, treat it as an identifier (MNID_T)
+                currentToken.code = MNID_T; 
+                scData.scanHistogram[currentToken.code]++;
+                isID = TRUE;
+            } else if (currentToken.code == KW_T) {
+                // If it's a keyword, adjust accordingly
+                scData.scanHistogram[currentToken.code]++;
+            }
+            break;
+    }
+
+    if (isID == TRUE) {
+        strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+        currentToken.attribute.idLexeme[VID_LEN - 1] = CHARSEOF0; // Ensure null termination
+    }
+
+    return currentToken;
 }
+
+
+
+// Token funcID(Rs_string lexeme) {
+//     Token currentToken = { 0 };
+//     size_t length = strlen(lexeme);
+//     Rs_char lastch = lexeme[length - 1];
+//     Rs_intg isID = FALSE;
+
+//     switch (lastch) {
+//         case LPR_SUF:
+//             currentToken.code = MNID_T; // Method name identifier
+//             scData.scanHistogram[currentToken.code]++;
+//             isID = TRUE;
+//             break;
+//         case RPR_SUF:
+//             currentToken.code = MNID_T; // Method name identifier
+//             scData.scanHistogram[currentToken.code]++;
+//             isID = TRUE;
+//             break;
+//         default:
+//             // Test Keyword or Identifier
+//             currentToken = funcKEY(lexeme);
+//             if (currentToken.code == ERR_T) {
+//                 // If it's still ERR_T, treat it as an identifier
+//                 currentToken.code = MNID_T; 
+//                 scData.scanHistogram[currentToken.code]++;
+//                 isID = TRUE;
+//             }
+//             break;
+//     }
+
+//     if (isID == TRUE) {
+//         strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+//         currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
+//     }
+
+//     return currentToken;
+// }
 
 
 /*
@@ -576,21 +651,83 @@ Token funcSL(Rs_string lexeme) {
 Token funcKEY(Rs_string lexeme) {
 	Token currentToken = { 0 };
 	Rs_intg kwindex = -1, j = 0;
+	
+	 
+	//  // Check if lexeme is NULL
+	// if (lexeme == NULL || strlen(lexeme) == 0) {
+	// 	return funcErr("NULL lexeme");
+	// }
+
 	Rs_intg len = (Rs_intg)strlen(lexeme);
-	lexeme[len - 1] = '\0';
-	for (j = 0; j < KWT_SIZE; j++)
-		if (!strcmp(lexeme, &keywordTable[j][0]))
+	//lexeme[len - 1] = '\0';
+	if (len > 0) {
+		lexeme[len - 1] = '\0';
+	}
+
+    // Search for the lexeme in the keyword table
+	for (j = 0; j < KWT_SIZE; j++){
+		if (!strcmp(lexeme, &keywordTable[j][0])){
 			kwindex = j;
+			break;
+		}
+	}
+
+	// If found, set the token as a keyword
 	if (kwindex != -1) {
 		currentToken.code = KW_T;
 		scData.scanHistogram[currentToken.code]++;
 		currentToken.attribute.codeType = kwindex;
 	}
 	else {
-		currentToken = funcErr(lexeme);
+		//currentToken = funcErr(lexeme);
+		   // If not found, set the token as an identifier
+        currentToken.code = MNID_T;
+        scData.scanHistogram[currentToken.code]++;
+        strcpy(currentToken.attribute.idLexeme, lexeme);
 	}
 	return currentToken;
 }
+
+
+typedef char* Rs_string;
+
+// Function to handle string literals
+Token funcStringLiteral(Rs_string lexeme) {
+    Token currentToken = { 0 };
+
+    // Set the token code to string literal type and update the scan histogram
+    currentToken.code = STR_T;
+    scData.scanHistogram[currentToken.code]++;
+    strncpy(currentToken.attribute.strLexeme, lexeme, STR_LEN);
+    currentToken.attribute.strLexeme[STR_LEN] = '\0';  // Ensure null-termination
+
+    return currentToken;
+}
+
+
+
+// Token funcKEY(Rs_string lexeme) {
+//     Token currentToken = { 0 };
+//     Rs_intg kwindex = -1;
+
+//     // Check if the lexeme matches any keyword in keywordTable
+//     for (Rs_intg j = 0; j < KWT_SIZE; j++) {
+//         if (strcmp(lexeme, keywordTable[j]) == 0) {
+//             kwindex = j;
+//             break;
+//         }
+//     }
+
+//     if (kwindex != -1) {
+//         currentToken.code = KW_T;
+//         scData.scanHistogram[currentToken.code]++;
+//         currentToken.attribute.codeType = kwindex;
+//     } else {
+//         currentToken = funcErr(lexeme);  // Handle as an error if not a keyword
+//     }
+
+//     return currentToken;
+// }
 
 
 /*
@@ -622,6 +759,17 @@ Token funcErr(Rs_string lexeme) {
 	currentToken.code = ERR_T;
 	scData.scanHistogram[currentToken.code]++;
 	return currentToken;
+}
+
+// Function to handle comments
+Token funcCMT(Rs_string lexeme) {
+    Token currentToken = { 0 };
+
+    // Set the token code to comment type and update the scan histogram
+    currentToken.code = CMT_T;
+    scData.scanHistogram[currentToken.code]++;
+
+    return currentToken;
 }
 
 
@@ -703,6 +851,32 @@ Rs_void printScannerData(ScannerData scData) {
 	printf("----------------------------------\n");
 }
 
+
 /*
 TO_DO: (If necessary): HERE YOU WRITE YOUR ADDITIONAL FUNCTIONS (IF ANY).
 */
+
+// Add other token functions as necessary
+Token funcMNID(Rs_string lexeme) {
+    Token currentToken = { 0 };
+    strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+    currentToken.code = MNID_T;
+    scData.scanHistogram[currentToken.code]++;
+    return currentToken;
+}
+
+Token funcKW(Rs_string lexeme) {
+    Token currentToken = { 0 };
+    strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+    currentToken.code = KW_T;
+    scData.scanHistogram[currentToken.code]++;
+    return currentToken;
+}
+
+Token funcSTR(Rs_string lexeme) {
+    Token currentToken = { 0 };
+    strncpy(currentToken.attribute.strLexeme, lexeme, STR_LEN);
+    currentToken.code = STR_T;
+    scData.scanHistogram[currentToken.code]++;
+    return currentToken;
+}
