@@ -1,8 +1,13 @@
-// RuanScript Example: Testing numbers (factorial) - single line comment
+/* RuanScript Example: Testing numbers (factorial) - single line comment*/
+/ another comment/
+
 main() {
+
     int i = 1;
     int n = 0;
     int f = 1;
+
+  
 
     n = input('Write a number:');
 

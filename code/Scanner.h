@@ -85,7 +85,8 @@ enum TOKENS {
 	EOS_T,		/*  9: End of statement (semicolon) */
 	RTE_T,		/* 10: Run-time error token */
 	SEOF_T,		/* 11: Source end-of-file token */
-	CMT_T		/* 12: Comment token */
+	CMT_T,		/* 12: Comment token */
+	
 };
 
 /* TO_DO: Define the list of keywords */
@@ -160,13 +161,13 @@ typedef struct scannerData {
 /* TO_DO: Define lexeme FIXED classes */
 /* These constants will be used on nextClass */
 #define CHRCOL2 '_'
-#define CHRCOL3 '&'
+#define CHRCOL3 '('
 #define CHRCOL4 '\''
-#define CHRCOL6 '/' //was # put back
+#define CHRCOL6 '/' //was # might need to remove
 
 /* These constants will be used on VID / MID function */
-#define MNID_SUF '&'
-//#define COMM_SYM '/' //was # put back
+#define MNID_SUF '('
+#define COMM_SYM '/' //was # put back
 
 /* TO_DO: Error states and illegal state */
 #define ESNR	8		/* Error state with no retract */
@@ -174,8 +175,8 @@ typedef struct scannerData {
 #define FS		10		/* Illegal state */
 
  /* TO_DO: State transition table definition */
-#define NUM_STATES		10 // was 10
-#define CHAR_CLASSES	8
+//#define NUM_STATES		10 // was 10
+//#define CHAR_CLASSES	8
 
 
 /*might delete latter*/
@@ -208,22 +209,6 @@ static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
 };
 
 
-// /* TO_DO: Transition table - type of states defined in separate table */
-// static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
-// /*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
-// 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-// 	{     1, ESNR, ESNR, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOAS
-// 	{     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID)
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)
-// 	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)
-// 	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S8: ASNR (ES)
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS}  // S9: ASWR (ER)
-//  };
-
 /* Define accepting states types */
 #define NOFS	0		/* not accepting state */
 #define FSNR	1		/* accepting state with no retract */
@@ -245,22 +230,6 @@ static Rs_intg stateType[NUM_STATES] = {
 	FSNR, /* 11 (Multi-line comment end) */
 };
 
-
-
-// /* TO_DO: Define list of acceptable states */
-// /* TO_DO: Define list of acceptable states */
-// static Rs_intg stateType[NUM_STATES] = {
-// 	NOFS, /* 00 */
-// 	NOFS, /* 01 */
-// 	FSNR, /* 02 (MID) - Methods */
-// 	FSWR, /* 03 (KEY) */
-// 	NOFS, /* 04 */
-// 	FSNR, /* 05 (SL) */
-// 	NOFS, /* 06 */
-// 	FSNR, /* 07 (COM) */
-// 	FSNR, /* 08 (Err1 - no retract) */
-// 	FSWR  /* 09 (Err2 - retract) */
-// };
 
 
 /*
@@ -319,29 +288,6 @@ static PTR_ACCFUN finalStateTable[NUM_STATES] = {
 
 /* TO_DO: Define the functions for the new comment states */
 
-// Token funcSL(Rs_string lexeme) {
-// 	Token t;
-// 	t.code = STR_T;
-// 	t.attribute.intValue = 0; // Adjust as necessary
-// 	return t;
-// }
-
-// Token funcCMT(Rs_string lexeme) {
-// 	Token t;
-// 	t.code = CMT_T;
-// 	t.attribute.intValue = 0; // Adjust as necessary
-// 	return t;
-// }
-
-// Token funcErr(Rs_string lexeme) {
-// 	Token t;
-// 	t.code = ERR_T;
-// 	strncpy(t.attribute.errLexeme, lexeme, ERR_LEN);
-// 	t.attribute.errLexeme[ERR_LEN] = '\0';  // Ensure null-terminated string
-// 	return t;
-// }
-
-
 // static PTR_ACCFUN finalStateTable[NUM_STATES] = {
 // 	NULL,		/* -    [00] */
 // 	NULL,		/* -    [01] */
@@ -362,21 +308,32 @@ Language keywords
 */
 
 /* TO_DO: Define the number of Keywords from the language */
-#define KWT_SIZE 10
+#define KWT_SIZE 21
 
-/* TO_DO: Define the list of keywords */
 static Rs_string keywordTable[KWT_SIZE] = {
-	"data",		/* KW00 */
-	"code",		/* KW01 */
-	"int",		/* KW02 */
-	"real",		/* KW03 */
-	"string",	/* KW04 */
-	"if",		/* KW05 */
-	"then",		/* KW06 */
-	"else",		/* KW07 */
-	"while",	/* KW08 */
-	"do"		/* KW09 */
+    "data",     /* KW00 */
+    "code",     /* KW01 */
+    "int",      /* KW02 */
+    "float",    /* KW03 */
+    "string",   /* KW04 */
+    "if",       /* KW05 */
+    "then",     /* KW06 */
+    "else",     /* KW07 */
+    "while",    /* KW08 */
+    "do",       /* KW09 */
+    "return",   /* KW10 */
+    "function", /* KW11 */
+    "add",      /* KW12 */
+    "sub",      /* KW13 */
+    "mul",      /* KW14 */
+    "div",      /* KW15 */
+    "and",      /* KW16 */
+    "or",       /* KW17 */
+    "not",      /* KW18 */
+    "true",     /* KW19 */
+    "false"     /* KW20 */
 };
+
 
 /* NEW SECTION: About indentation */
 

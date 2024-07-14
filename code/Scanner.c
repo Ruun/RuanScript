@@ -354,20 +354,6 @@ Rs_intg nextClass(Rs_char c) {
 }
 
 
-// Token funcCMT(Rs_string lexeme) {
-// 	Token currentToken = { 0 };
-// 	Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
-// 	currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
-// 	for (i = 1; i < len - 1; i++) {
-// 		if (lexeme[i] == '\n')
-// 			line++;
-// 	}
-// 	currentToken.code = CMT_T;
-// 	scData.scanHistogram[currentToken.code]++;
-// 	return currentToken;
-// }
-
-
  /*
   ************************************************************
   * Acceptance State Function IL
@@ -491,34 +477,6 @@ Token funcSL(Rs_string lexeme) {
 }
 
 
-// Token funcSL(Rs_string lexeme) {
-// 	Token currentToken = { 0 };
-// 	Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
-// 	currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
-// 	for (i = 1; i < len - 1; i++) {
-// 		if (lexeme[i] == '\n')
-// 			line++;
-// 		if (!readerAddChar(stringLiteralTable, lexeme[i])) {
-// 			currentToken.code = RTE_T;
-// 			scData.scanHistogram[currentToken.code]++;
-// 			strcpy(currentToken.attribute.errLexeme, "Run Time Error:");
-// 			errorNumber = RTE_CODE;
-// 			return currentToken;
-// 		}
-// 	}
-// 	if (!readerAddChar(stringLiteralTable, CHARSEOF0)) {
-// 		currentToken.code = RTE_T;
-// 		scData.scanHistogram[currentToken.code]++;
-// 		strcpy(currentToken.attribute.errLexeme, "Run Time Error:");
-// 		errorNumber = RTE_CODE;
-// 		return currentToken;
-// 	}
-// 	currentToken.code = STR_T;
-// 	scData.scanHistogram[currentToken.code]++;
-// 	return currentToken;
-// }
-
-
 /*
 ************************************************************
  * This function checks if one specific lexeme is a keyword.
@@ -528,23 +486,37 @@ Token funcSL(Rs_string lexeme) {
  /* TO_DO: Adjust the function for Keywords */
 
 Token funcKEY(Rs_string lexeme) {
-	Token currentToken = { 0 };
-	Rs_intg kwindex = -1, j = 0;
-	Rs_intg len = (Rs_intg)strlen(lexeme);
-	lexeme[len - 1] = '\0';
-	for (j = 0; j < KWT_SIZE; j++)
-		if (!strcmp(lexeme, &keywordTable[j][0]))
-			kwindex = j;
-	if (kwindex != -1) {
-		currentToken.code = KW_T;
-		scData.scanHistogram[currentToken.code]++;
-		currentToken.attribute.codeType = kwindex;
-	}
-	else {
-		currentToken = funcErr(lexeme);
-	}
-	return currentToken;
+    Token currentToken = { 0 };
+    Rs_intg kwindex = -1, j = 0;
+    Rs_intg len = (Rs_intg)strlen(lexeme);
+
+    // Ensure the lexeme is null-terminated properly
+	 if (lexeme[len] != '\0') {
+        lexeme[len] = '\0';
+    }
+    // lexeme[len - 1] = '\0';
+
+    // Search for the keyword in the keyword table
+    for (j = 0; j < KWT_SIZE; j++) {
+        if (!strcmp(lexeme, keywordTable[j])) {
+            kwindex = j;
+            break;
+        }
+    }
+
+    if (kwindex != -1) {
+        // Keyword found
+        currentToken.code = KW_T;
+        scData.scanHistogram[currentToken.code]++;
+        currentToken.attribute.codeType = kwindex;
+    } else {
+        // Keyword not found, treat as an error
+        currentToken = funcErr(lexeme);
+    }
+
+    return currentToken;
 }
+
 
 
 /*

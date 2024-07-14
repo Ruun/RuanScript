@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Scanner.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Scanner.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Scanner.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\launch.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Scanner.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:code\\Scanner.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Mac\\Home\\Downloads\\RuanScript\\code\\MainScanner.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -30,25 +30,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CMakeLists.txt",
-              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\CMakeLists.txt",
-              "RelativeDocumentMoniker": "code\\CMakeLists.txt",
-              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\CMakeLists.txt",
-              "RelativeToolTip": "code\\CMakeLists.txt",
-              "ViewState": "AQIAAA4AAABAmpmZmRkmwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-07-14T20:28:16.936Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -57,20 +40,33 @@
               "RelativeDocumentMoniker": "input\\INPUT1_Hello.rs",
               "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\input\\INPUT1_Hello.rs",
               "RelativeToolTip": "input\\INPUT1_Hello.rs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAqAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-07-11T02:45:41.214Z",
+              "WhenOpened": "2024-07-14T23:27:49.611Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "launch.vs.json",
+              "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json",
+              "RelativeDocumentMoniker": "code\\launch.vs.json",
+              "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\launch.vs.json",
+              "RelativeToolTip": "code\\launch.vs.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-14T23:05:01.071Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Scanner.c",
               "DocumentMoniker": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Scanner.c",
               "RelativeDocumentMoniker": "code\\Scanner.c",
               "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Scanner.c",
               "RelativeToolTip": "code\\Scanner.c",
-              "ViewState": "AQIAAF0AAABgZmZmZuYmwF0AAAArAAAA",
+              "ViewState": "AQIAACkBAAAAAAAAAAAWwDUBAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-07-11T00:32:22.071Z",
               "EditorCaption": ""
@@ -83,7 +79,7 @@
               "RelativeDocumentMoniker": "code\\Scanner.h",
               "ToolTip": "C:\\Mac\\Home\\Downloads\\RuanScript\\code\\Scanner.h",
               "RelativeToolTip": "code\\Scanner.h",
-              "ViewState": "AQIAAJsAAAAAQjMzM7MXwC4BAAAAAAAA",
+              "ViewState": "AQIAADQBAACgZmZmZmYZwDYBAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-07-10T02:29:02.968Z",
               "EditorCaption": ""
