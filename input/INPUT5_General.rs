@@ -1,4 +1,4 @@
-# Rs Example: Lexically Correct Program
+/* Rs Example: Lexically Correct Program */
 main() {
     int i = 0;
     float a = 0.0, sum008 = 0.0;

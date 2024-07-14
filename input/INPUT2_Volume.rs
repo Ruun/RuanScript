@@ -1,4 +1,5 @@
-# RuanScript Example: Volume of a sphere
+/* RuanScript Example: Volume of a sphere*/
+//single line comment
 main() {
     float PI = 3.14;
     float r = 0.0;

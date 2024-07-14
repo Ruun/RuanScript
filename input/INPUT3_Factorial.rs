@@ -1,4 +1,4 @@
-# RuanScript Example: Testing numbers (factorial)
+// RuanScript Example: Testing numbers (factorial) - single line comment
 main() {
     int i = 1;
     int n = 0;

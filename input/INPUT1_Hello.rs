@@ -1,6 +1,7 @@
-# RuanScript Example: The program is "lexically" correct and should not generate any error
-# The program is a simple "Hello world!" program
+/*Julius Example The program is "lexically"  
+correct and should not generate any error*/
 
-int main(){
-        print("Hello world!");
+main&{
+
+	print&('Hello world!');
 }

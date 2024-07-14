@@ -80,7 +80,7 @@ NOTE: Some types may not be directly used by your language,
 // typedef char			Rs_char;
 // typedef char*			Rs_string;
 // typedef int				  Rs_intg;
-// typedef float			Rs_real;
+// typedef float			Rs_float;
 // typedef void			Rs_void;
 
 // typedef unsigned char	Rs_boln;
