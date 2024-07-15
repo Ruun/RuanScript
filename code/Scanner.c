@@ -2,7 +2,7 @@
 ************************************************************
 * COMPILERS COURSE - Algonquin College
 * Code version: Summer, 2024
-* Author: TO_DO
+* Author: Ruan Simo F.
 * Professors: Paulo Sousa
 ************************************************************
 #
@@ -81,6 +81,7 @@
 TO_DO: Global vars definitions
 ----------------------------------------------------------------
 */
+
 
 /* Global objects - variables */
 /* This buffer is used as a repository for string literals. */
@@ -185,6 +186,92 @@ Token tokenizer(Rs_void) {
 			currentToken.code = RBR_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
+		case '+':
+			currentToken.code = ADD_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case '-':
+			currentToken.code = SUB_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case '*':
+			currentToken.code = MUL_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case '/':
+			c = readerGetChar(sourceBuffer);
+			if (c == '/') {
+				// Single-line comment
+				while ((c = readerGetChar(sourceBuffer)) != '\n' && c != EOF);
+				currentToken.code = CMT_T;
+				scData.scanHistogram[currentToken.code]++;
+				return currentToken;
+			} else if (c == '*') {
+				// Multi-line comment
+				while (1) {
+					c = readerGetChar(sourceBuffer);
+					if (c == '*' && (c = readerGetChar(sourceBuffer)) == '/') {
+						currentToken.code = CMT_T;
+						scData.scanHistogram[currentToken.code]++;
+						return currentToken;
+						break; // End of multi-line comment
+					}
+					if (c == EOF) {
+						// Handle unterminated comment error
+						currentToken.code = ERR_T;
+						return currentToken;
+					}
+				}
+			} else {
+				readerRetract(sourceBuffer);
+				currentToken.code = DIV_T;
+				scData.scanHistogram[currentToken.code]++;
+				return currentToken;
+			}
+		case '=':
+			currentToken.code = EQ_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case '!':
+			c = readerGetChar(sourceBuffer);
+			if (c == '=') {
+				currentToken.code = NE_T;
+				scData.scanHistogram[currentToken.code]++;
+				return currentToken;
+			} else {
+				readerRetract(sourceBuffer);
+				currentToken.code = NOT_T;
+				scData.scanHistogram[currentToken.code]++;
+				return currentToken;
+			}
+		case '>':
+			currentToken.code = GT_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case '<':
+			currentToken.code = LT_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case '&':
+			c = readerGetChar(sourceBuffer);
+			if (c == '&') {
+				currentToken.code = AND_T;
+				scData.scanHistogram[currentToken.code]++;
+				return currentToken;
+			} else {
+				readerRetract(sourceBuffer);
+				// handle error
+			}
+		case '|':
+			c = readerGetChar(sourceBuffer);
+			if (c == '|') {
+				currentToken.code = OR_T;
+				scData.scanHistogram[currentToken.code]++;
+				return currentToken;
+			} else {
+				readerRetract(sourceBuffer);
+				// handle error
+			}
 		/* Cases for END OF FILE */
 		case CHARSEOF0:
 			currentToken.code = SEOF_T;
@@ -307,9 +394,9 @@ Rs_intg nextClass(Rs_char c) {
 	case CHRCOL4:
 		val = 4;
 		break;
-	case CHRCOL6:
-		val = 6;
-		break;
+//	case CHRCOL6:
+	//	val = 6;
+	//	break;
 	case CHARSEOF0:
 	case CHARSEOF255:
 		val = 5;
@@ -333,25 +420,26 @@ Rs_intg nextClass(Rs_char c) {
  */
  /* TO_DO: Adjust the function for IL */
 
- Token funcCMT(Rs_string lexeme) {
-    Token currentToken = { 0 };
-    Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
+//come back to this please
+//  Token funcCMT(Rs_string lexeme) {
+//     Token currentToken = { 0 };
+//     Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
     
-    // Adjust initialization and usage of currentToken
-    currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
+//     // Adjust initialization and usage of currentToken
+//     currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
 
-    for (i = 1; i < len - 1; i++) {
-        if (lexeme[i] == '\n') {
-            line++;
-        }
-    }
+//     for (i = 1; i < len - 1; i++) {
+//         if (lexeme[i] == '\n') {
+//             line++;
+//         }
+//     }
 
-    // Set code for comment token and update scanHistogram
-    currentToken.code = CMT_T;
-    scData.scanHistogram[currentToken.code]++;
+//     // Set code for comment token and update scanHistogram
+//     currentToken.code = CMT_T;
+//     scData.scanHistogram[currentToken.code]++;
 
-    return currentToken;
-}
+//     return currentToken;
+// }
 
 
  /*

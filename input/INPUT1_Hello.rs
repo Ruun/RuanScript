@@ -1,9 +1,11 @@
 /*Julius Example The program is "lexically"  
 correct and should not generate any error*/
-/ hello world /
+
+//single line comment
 
 main(){
-	int a;
+	
+	float;
 
 	print('Hello world!');
 }

@@ -2,7 +2,7 @@
 ************************************************************
 * COMPILERS COURSE - Algonquin College
 * Code version: Summer, 2024
-* Author: TO_DO
+* Author: Ruan Simo F.
 * Professors: Paulo Sousa
 ************************************************************
 #
@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 13
+#define NUM_TOKENS 24
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -86,6 +86,18 @@ enum TOKENS {
 	RTE_T,		/* 10: Run-time error token */
 	SEOF_T,		/* 11: Source end-of-file token */
 	CMT_T,		/* 12: Comment token */
+
+	ADD_T,		/* 13: Addition operator token */
+	SUB_T,		/* 14: Subtraction operator token */
+	MUL_T,		/* 15: Multiplication operator token */
+	DIV_T,		/* 16: Division operator token */
+	EQ_T,		/* 17: Equality operator token */
+	NE_T,		/* 18: Inequality operator token */
+	GT_T,		/* 19: Greater than operator token */
+	LT_T,		/* 20: Less than operator token */
+	AND_T,		/* 21: Logical AND operator token */
+	OR_T,		/* 22: Logical OR operator token */
+	NOT_T		/* 23: Logical NOT operator token */
 	
 };
 
@@ -103,7 +115,19 @@ static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"EOS_T",
 	"RTE_T",
 	"SEOF_T",
-	"CMT_T"
+	"CMT_T",
+
+	"ADD_T",
+	"SUB_T",
+	"MUL_T",
+	"DIV_T",
+	"EQ_T",
+	"NE_T",
+	"GT_T",
+	"LT_T",
+	"AND_T",
+	"OR_T",
+	"NOT_T"
 };
 
 /* TO_DO: Operators token attributes */
@@ -156,34 +180,30 @@ typedef struct scannerData {
 #define CHARSEOF255 0xFF
 
 /*  Special case tokens processed separately one by one in the token-driven part of the scanner:
- *  LPR_T, RPR_T, LBR_T, RBR_T, EOS_T, SEOF_T and special chars used for tokenis include _, & and ' */
+ *  LPR_T, RPR_T, LBR_T, RBR_T, EOS_T, SEOF_T and special chars used for tokenis include _, ( and ' */
 
 /* TO_DO: Define lexeme FIXED classes */
 /* These constants will be used on nextClass */
 #define CHRCOL2 '_'
 #define CHRCOL3 '('
 #define CHRCOL4 '\''
-#define CHRCOL6 '/' //was # might need to remove
+//#define CHRCOL6 '/' //was # might need to remove
 
 /* These constants will be used on VID / MID function */
 #define MNID_SUF '('
-#define COMM_SYM '/' //was # put back
+//#define COMM_SYM '/' //was # put back
 
 /* TO_DO: Error states and illegal state */
 #define ESNR	8		/* Error state with no retract */
 #define ESWR	9		/* Error state with retract */
 #define FS		10		/* Illegal state */
 
- /* TO_DO: State transition table definition */
-//#define NUM_STATES		10 // was 10
-//#define CHAR_CLASSES	8
-
 
 /*might delete latter*/
 
 /* Constants for the comment symbols */
-#define COMM_SYM1 '/'
-#define COMM_SYM2 '*'
+//#define COMM_SYM1 '/'
+//#define COMM_SYM2 '*'
 
 /* TO_DO: State transition table definition */
 #define NUM_STATES		12
@@ -258,9 +278,10 @@ typedef Token(*PTR_ACCFUN)(Rs_string lexeme);
 Token funcSL	(Rs_string lexeme);
 Token funcIL	(Rs_string lexeme);
 Token funcID	(Rs_string lexeme);
-Token funcCMT   (Rs_string lexeme);
+//Token funcCMT   (Rs_string lexeme); //might delete later
 Token funcKEY	(Rs_string lexeme);
 Token funcErr	(Rs_string lexeme);
+
 
 /* 
  * Accepting function (action) callback table (array) definition 
@@ -279,11 +300,11 @@ static PTR_ACCFUN finalStateTable[NUM_STATES] = {
 	NULL,		/* -    [04] */
 	funcSL,		/* SL   [05] */
 	NULL,		/* -    [06] */
-	funcCMT,	/* COM  [07] */
+	//funcCMT,	/* COM  [07] */
 	NULL,		/* -    [08] */
-	funcCMT,	/* COM  [09] */
-	funcCMT,	/* COM  [10] */
-	funcCMT		/* COM  [11] */
+	//funcCMT,	/* COM  [09] */
+	//funcCMT,	/* COM  [10] */
+	//funcCMT		/* COM  [11] */
 };
 
 /* TO_DO: Define the functions for the new comment states */
