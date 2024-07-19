@@ -1,5 +1,5 @@
 /* RuanScript Example: Testing numbers (factorial) - single line comment*/
-/ another comment/
+// another comment
 
 main() {
 

@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 24
+#define NUM_TOKENS 28
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -97,8 +97,14 @@ enum TOKENS {
 	LT_T,		/* 20: Less than operator token */
 	AND_T,		/* 21: Logical AND operator token */
 	OR_T,		/* 22: Logical OR operator token */
-	NOT_T		/* 23: Logical NOT operator token */
-	
+	NOT_T,		/* 23: Logical NOT operator token */
+
+	ID_T,       /* 24: Identifier token */
+	INT_T,   /* 26: Integer token */
+	FLT_T,  /* 27: Float token */
+	NUM_T  /* 28: Number token */
+
+
 };
 
 /* TO_DO: Define the list of keywords */
@@ -127,7 +133,12 @@ static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"LT_T",
 	"AND_T",
 	"OR_T",
-	"NOT_T"
+	"NOT_T",
+
+	"ID_T",
+	"INT_T",
+	"FLT_T",
+	"NUM_T"
 };
 
 /* TO_DO: Operators token attributes */
@@ -187,7 +198,7 @@ typedef struct scannerData {
 #define CHRCOL2 '_'
 #define CHRCOL3 '('
 #define CHRCOL4 '\''
-//#define CHRCOL6 '/' //was # might need to remove
+#define CHRCOL6 '/' //was #
 
 /* These constants will be used on VID / MID function */
 #define MNID_SUF '('
@@ -198,35 +209,66 @@ typedef struct scannerData {
 #define ESWR	9		/* Error state with retract */
 #define FS		10		/* Illegal state */
 
-
-/*might delete latter*/
-
-/* Constants for the comment symbols */
-//#define COMM_SYM1 '/'
-//#define COMM_SYM2 '*'
-
 /* TO_DO: State transition table definition */
-#define NUM_STATES		12
+#define NUM_STATES		13
 #define CHAR_CLASSES	8
 /*might delete later*/
 
-/* TO_DO: Transition table - type of states defined in separate table */
+/* Transition table - type of states defined in separate table */
 static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
 /*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other
-	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-	{     1, ESNR, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
-	{     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)
-	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)
-	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
-	{     8,    8,    8,    8,    8,    8,	  9,    8},	// S8: NOAS (Single-line comment start)
-	{     9,    9,    9,    9,    9,   10,    9,    9},	// S9: NOAS (Inside single-line comment)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S10: ASNR (Single-line comment end)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S11: ASNR (Multi-line comment end)
+       L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
+    {     1,    6, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
+    {     1,    1,    1,    2,    3,    3,    3,    3},	// S1: NOAS
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S2: ASNR (MVID)
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S3: ASWR (KEY)
+    {     4,    4,    4,    4,    5, ESWR,    4,    4},	// S4: NOAS
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S5: ASNR (SL)
+    {     6,    6,    6,    6,    6, ESWR,    7,    6},	// S6: NOAS (Number state)
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S7: ASNR (COM)
+    {     8,    8,    8,    8,    8,    8,    9,    8},	// S8: NOAS (Single-line comment start)
+    {     9,    9,    9,    9,    9,   10,    9,    9},	// S9: NOAS (Inside single-line comment)
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S10: ASNR (Single-line comment end)
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S11: ASNR (Multi-line comment end)
 };
+
+
+// /* Transition table - type of states defined in separate table */
+// static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
+// /*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other
+//        L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
+//     {     1, ESNR, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
+//     {     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
+//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID)
+//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)
+//     {     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
+//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)
+//     {     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
+//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
+//     {     8,    8,    8,    8,    8,    8,	  9,    8},	// S8: NOAS (Single-line comment start)
+//     {     9,    9,    9,    9,    9,   10,    9,    9},	// S9: NOAS (Inside single-line comment)
+//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S10: ASNR (Single-line comment end)
+//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S11: ASNR (Multi-line comment end)
+// };
+
+
+/* TO_DO: Transition table - type of states defined in separate table */
+// static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
+// /*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other
+// 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
+// 	{     1, ESNR, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
+// 	{     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
+// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID)
+// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)
+// 	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
+// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)
+// 	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
+// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
+// 	{     8,    8,    8,    8,    8,    8,	  9,    8},	// S8: NOAS (Single-line comment start)
+// 	{     9,    9,    9,    9,    9,   10,    9,    9},	// S9: NOAS (Inside single-line comment)
+// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S10: ASNR (Single-line comment end)
+// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S11: ASNR (Multi-line comment end)
+// };
 
 
 /* Define accepting states types */
@@ -278,7 +320,7 @@ typedef Token(*PTR_ACCFUN)(Rs_string lexeme);
 Token funcSL	(Rs_string lexeme);
 Token funcIL	(Rs_string lexeme);
 Token funcID	(Rs_string lexeme);
-//Token funcCMT   (Rs_string lexeme); //might delete later
+Token funcCMT   (Rs_string lexeme);
 Token funcKEY	(Rs_string lexeme);
 Token funcErr	(Rs_string lexeme);
 
@@ -290,22 +332,38 @@ Token funcErr	(Rs_string lexeme);
 
 /* Define accepting function (action) callback table (array) definition */
 /* TO_DO: Define final state table */
+/* Define accepting function (action) callback table (array) definition */
+static PTR_ACCFUN finalStateTable[NUM_STATES] = {
+    NULL,		/* -    [00] */
+    NULL,		/* -    [01] */
+    funcID,		/* MNID	[02] */
+    funcKEY,	/* KEY  [03] */
+    NULL,		/* -    [04] */
+    funcSL,		/* SL   [05] */
+    NULL,		/* -    [06] */
+    funcCMT,	/* COM  [07] */
+    NULL,		/* -    [08] */
+    funcCMT,	/* COM  [09] */
+    funcCMT,	/* COM  [10] */
+    funcCMT		/* COM  [11] */
+};
+
 
 /* TO_DO: Define final state table */
-static PTR_ACCFUN finalStateTable[NUM_STATES] = {
-	NULL,		/* -    [00] */
-	NULL,		/* -    [01] */
-	funcID,		/* MNID	[02] */
-	funcKEY,	/* KEY  [03] */
-	NULL,		/* -    [04] */
-	funcSL,		/* SL   [05] */
-	NULL,		/* -    [06] */
-	//funcCMT,	/* COM  [07] */
-	NULL,		/* -    [08] */
-	//funcCMT,	/* COM  [09] */
-	//funcCMT,	/* COM  [10] */
-	//funcCMT		/* COM  [11] */
-};
+// static PTR_ACCFUN finalStateTable[NUM_STATES] = {
+// 	NULL,		/* -    [00] */
+// 	NULL,		/* -    [01] */
+// 	funcID,		/* MNID	[02] */
+// 	funcKEY,	/* KEY  [03] */
+// 	NULL,		/* -    [04] */
+// 	funcSL,		/* SL   [05] */
+// 	NULL,		/* -    [06] */
+// 	funcCMT,	/* COM  [07] */
+// 	NULL,		/* -    [08] */
+// 	funcCMT,	/* COM  [09] */
+// 	funcCMT,	/* COM  [10] */
+// 	funcCMT		/* COM  [11] */
+// };
 
 /* TO_DO: Define the functions for the new comment states */
 
@@ -369,6 +427,9 @@ typedef struct languageAttributes {
 	Rs_char indentationCharType;
 	Rs_intg indentationCurrentPos;
 	/* TO_DO: Include any extra attribute to be used in your scanner (OPTIONAL and FREE) */
+	Rs_intg numKeywords;
+	Rs_intg numOperators;
+	Rs_intg numLiterals;
 } LanguageAttributes;
 
 /* Number of errors */

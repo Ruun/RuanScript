@@ -1,7 +1,8 @@
+#wrrong comment#
 main() {
    
-        Rs_intg number;  // Define a variable without initialization
+        int number;
         
         number = 10;
-        print&('The number is: ' + number);
+        print&('The number is: ' + number); //wrong print function
 }

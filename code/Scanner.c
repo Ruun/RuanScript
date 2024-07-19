@@ -59,6 +59,11 @@
 #include <limits.h>  /* integer types constants */
 #include <float.h>   /* floating-point types constants */
 
+#include <ctype.h>  /* conversion functions */
+#include <limits.h>
+#include <stdlib.h>
+#include <string.h>
+
 /* #define NDEBUG to suppress assert() call */
 #include <assert.h>  /* assert() prototype */
 
@@ -142,7 +147,7 @@ Token tokenizer(Rs_void) {
 
 	Rs_intg lexLength;		/* token length */
 	Rs_intg i;				/* counter */
-	///Rs_char newc;			// new char
+	//Rs_char newc;			// new char
 
 	while (1) { /* endless loop broken by token returns it will generate a warning */
 		c = readerGetChar(sourceBuffer);
@@ -296,11 +301,11 @@ Token tokenizer(Rs_void) {
 			state = nextState(state, c);
 			lexStart = readerGetPosRead(sourceBuffer) - 1;
 			readerSetMark(sourceBuffer, lexStart);
-			int pos = 0;
+			//int pos = 0; - might not be necessary
 			while (stateType[state] == NOFS) {
 				c = readerGetChar(sourceBuffer);
 				state = nextState(state, c);
-				pos++;
+				//pos++;
 			}
 			if (stateType[state] == FSWR)
 				readerRetract(sourceBuffer);
@@ -384,6 +389,13 @@ Rs_intg nextState(Rs_intg state, Rs_char c) {
 
 Rs_intg nextClass(Rs_char c) {
 	Rs_intg val = -1;
+	 if (isalpha(c))
+        val = 0;
+    else if (isdigit(c))
+        val = 1;
+	//else if (c == '.')
+        //val = 1;
+    else {
 	switch (c) {
 	case CHRCOL2:
 		val = 2;
@@ -394,20 +406,19 @@ Rs_intg nextClass(Rs_char c) {
 	case CHRCOL4:
 		val = 4;
 		break;
-//	case CHRCOL6:
-	//	val = 6;
-	//	break;
+	//case CHRCOL6:
+		//val = 6;
+		//break;
 	case CHARSEOF0:
 	case CHARSEOF255:
 		val = 5;
 		break;
+	case '/':
+		val = 6;
+		break;
 	default:
-		if (isalpha(c))
-			val = 0;
-		else if (isdigit(c))
-			val = 1;
-		else
 			val = 7;
+	}
 	}
 	return val;
 }
@@ -421,25 +432,27 @@ Rs_intg nextClass(Rs_char c) {
  /* TO_DO: Adjust the function for IL */
 
 //come back to this please
-//  Token funcCMT(Rs_string lexeme) {
-//     Token currentToken = { 0 };
-//     Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
+ Token funcCMT(Rs_string lexeme) {
+    Token currentToken = { 0 };
+    Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
     
-//     // Adjust initialization and usage of currentToken
-//     currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
+    // Adjust initialization and usage of currentToken
+    currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
 
-//     for (i = 1; i < len - 1; i++) {
-//         if (lexeme[i] == '\n') {
-//             line++;
-//         }
-//     }
+    for (i = 1; i < len - 1; i++) {
+        if (lexeme[i] == '\n') {
+            line++;
+        }
+    }
 
-//     // Set code for comment token and update scanHistogram
-//     currentToken.code = CMT_T;
-//     scData.scanHistogram[currentToken.code]++;
 
-//     return currentToken;
-// }
+    // Set code for comment token and update scanHistogram
+    
+    scData.scanHistogram[currentToken.code]++;
+    currentToken.code = CMT_T;
+
+    return currentToken;
+}
 
 
  /*
@@ -457,9 +470,12 @@ Rs_intg nextClass(Rs_char c) {
 Token funcIL(Rs_string lexeme) {
 	Token currentToken = { 0 };
 	Rs_long tlong;
-	if (lexeme[0] != '\0' && strlen(lexeme) > NUM_LEN) {
-		currentToken = (*finalStateTable[ESNR])(lexeme);
-	}
+	// if (lexeme[0] != '\0' && strlen(lexeme) > NUM_LEN) {
+	// 	currentToken = (*finalStateTable[ESNR])(lexeme);
+	// }
+	if (strlen(lexeme) > NUM_LEN) {
+        currentToken = (*finalStateTable[ESNR])(lexeme);
+    }
 	else {
 		tlong = atol(lexeme);
 		if (tlong >= 0 && tlong <= SHRT_MAX) {
@@ -501,10 +517,23 @@ Token funcID(Rs_string lexeme) {
 			isID = TRUE;
 			break;
 		default:
-			// Test Keyword
+            // Test if the lexeme is a keyword
 			lexeme[length - 1] = '\0';
-			currentToken = funcKEY(lexeme);
-			break;
+            currentToken = funcKEY(lexeme);
+            if (currentToken.code == ERR_T) {
+                currentToken.code = ID_T;
+                scData.scanHistogram[currentToken.code]++;
+				//added
+				 strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN); // Store identifier lexeme
+                currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0; // Null-terminate
+            
+                isID = TRUE;
+            }
+            break;
+			// Test Keyword
+			//lexeme[length - 1] = '\0'; - maybe not necessary
+			// currentToken = funcKEY(lexeme);
+			// break;
 	}
 	if (isID == TRUE) {
 		strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
@@ -597,6 +626,20 @@ Token funcKEY(Rs_string lexeme) {
         currentToken.code = KW_T;
         scData.scanHistogram[currentToken.code]++;
         currentToken.attribute.codeType = kwindex;
+
+    } else if (isInteger(lexeme)) {
+        // Lexeme is an integer
+        currentToken.code = INT_T;
+        currentToken.attribute.intValue = atoi(lexeme);
+    } else if (isFloat(lexeme)) {
+        // Lexeme is a float
+        currentToken.code = FLT_T;
+        currentToken.attribute.floatValue = atof(lexeme);
+    }else if (isIdentifier(lexeme)) {
+        // Lexeme is an identifier
+        currentToken.code = ID_T;
+        strncpy(currentToken.attribute.idLexeme, lexeme, sizeof(currentToken.attribute.idLexeme) - 1);
+        currentToken.attribute.idLexeme[sizeof(currentToken.attribute.idLexeme) - 1] = '\0';
     } else {
         // Keyword not found, treat as an error
         currentToken = funcErr(lexeme);
@@ -644,29 +687,6 @@ Token funcErr(Rs_string lexeme) {
     
     return currentToken;
 }
-
-
-
-
-
-// Token funcErr(Rs_string lexeme) {
-// 	Token currentToken = { 0 };
-// 	Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
-// 	if (len > ERR_LEN) {
-// 		strncpy(currentToken.attribute.errLexeme, lexeme, ERR_LEN - 3);
-// 		currentToken.attribute.errLexeme[ERR_LEN - 3] = CHARSEOF0;
-// 		strcat(currentToken.attribute.errLexeme, "...");
-// 	}
-// 	else {
-// 		strcpy(currentToken.attribute.errLexeme, lexeme);
-// 	}
-// 	for (i = 0; i < len; i++)
-// 		if (lexeme[i] == '\n')
-// 			line++;
-// 	currentToken.code = ERR_T;
-// 	scData.scanHistogram[currentToken.code]++;
-// 	return currentToken;
-// }
 
 
 /*
@@ -721,6 +741,54 @@ Rs_void printToken(Token t) {
 	case EOS_T:
 		printf("EOS_T\n");
 		break;
+	case ADD_T:
+		printf("ADD_T\n");
+		break;
+	case SUB_T:
+		printf("SUB_T\n");
+		break;
+	case MUL_T:
+		printf("MUL_T\n");
+		break;
+	case DIV_T:
+		printf("DIV_T\n");
+		break;
+	case EQ_T:
+		printf("EQ_T\n");
+		break;
+	case NE_T:
+		printf("NE_T\n");
+		break;
+	case GT_T:
+		printf("GT_T\n");
+		break;
+	case LT_T:
+		printf("LT_T\n");
+		break;
+	case AND_T:
+		printf("AND_T\n");
+		break;
+	case OR_T:
+		printf("OR_T\n");
+		break;
+	case NOT_T:
+		printf("NOT_T\n");
+		break;
+	case INL_T:
+		printf("INL_T\t\t%d\n", t.attribute.intValue);
+		break;
+	case ID_T:
+		printf("ID_T\t\t%s\n", t.attribute.idLexeme);
+		break;
+	case FLT_T:
+		printf("FLT_T\t\t%f\n", t.attribute.floatValue);
+		break;
+	case INT_T:
+		printf("INT_T\t\t%d\n", t.attribute.intValue);
+		break;
+	case NUM_T:
+		printf("NUM_T\t\t%d\n", t.attribute.intValue);
+		break;
 	default:
 		printf("Scanner error: invalid token code: %d\n", t.code);
 	}
@@ -750,3 +818,64 @@ Rs_void printScannerData(ScannerData scData) {
 /*
 TO_DO: (If necessary): HERE YOU WRITE YOUR ADDITIONAL FUNCTIONS (IF ANY).
 */
+
+//Function to check if a lexeme is an integer
+int isInteger(const char *lexeme) {
+    for (int i = 0; lexeme[i] != '\0'; i++) {
+        if (!isdigit(lexeme[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+// Function to check if a lexeme is a float
+int isFloat(const char *lexeme) {
+    int dotCount = 0;
+    for (int i = 0; lexeme[i] != '\0'; i++) {
+        if (lexeme[i] == '.') {
+            dotCount++;
+        } else if (!isdigit(lexeme[i])) {
+            return 0;
+        }
+    }
+    return dotCount == 1;
+}
+
+// Function to check if a lexeme is a valid identifier
+int isIdentifier(const char *lexeme) {
+    if (!isalpha(lexeme[0]) && lexeme[0] != '_') {
+        return 0;
+    }
+    for (int i = 1; lexeme[i] != '\0'; i++) {
+        if (!isalnum(lexeme[i]) && lexeme[i] != '_') {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int isNumberAfterEqual(const char *str) {
+    // Find the '=' sign
+    while (*str && *str != '=') {
+        str++;
+    }
+
+    // If '=' is not found, return 0
+    if (*str != '=') {
+        return 0;
+    }
+
+    // Move to the character after '='
+    str++;
+
+    // Skip any whitespace
+    while (*str && isspace(*str)) {
+        str++;
+    }
+
+    // Check if the remaining string is a number using strtol
+    char *endptr;
+    strtol(str, &endptr, 10);
+    return *endptr == '\0';
+}

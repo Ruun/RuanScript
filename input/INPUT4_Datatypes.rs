@@ -1,4 +1,4 @@
-# RuanScript Example: The program is lexically correct about the Rs city
+//RuanScript Example: The program is lexically correct about the Rs city
 main() {
     int FoundationYear = -7000;
     float Area = 492.0;
