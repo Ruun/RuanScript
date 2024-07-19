@@ -7,9 +7,9 @@
       "name": "Compiler.exe",
       "args": [
         "s",
-        //"C:/Mac/Home/Downloads/RuanScript/input/INPUT2_Volume.rs",
+        "C:/Mac/Home/Downloads/RuanScript/input/INPUT2_Volume.rs",
         //"C:/Mac/Home/Downloads/RuanScript/input/INPUT1_Hello.rs"
-        "C:/Mac/Home/Downloads/RuanScript/input/INPUT_Linear.rs"
+        //"C:/Mac/Home/Downloads/RuanScript/input/INPUT_Linear.rs"
 
       ]
     }
