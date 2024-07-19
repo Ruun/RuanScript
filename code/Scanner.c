@@ -59,6 +59,12 @@
 #include <limits.h>  /* integer types constants */
 #include <float.h>   /* floating-point types constants */
 
+
+
+#include <stdbool.h>
+
+
+
 #include <ctype.h>  /* conversion functions */
 #include <limits.h>
 #include <stdlib.h>
@@ -80,6 +86,7 @@
 #ifndef SCANNER_H_
 #include "Scanner.h"
 #endif
+#include <stdbool.h>
 
 /*
 ----------------------------------------------------------------
@@ -219,7 +226,7 @@ Token tokenizer(Rs_void) {
 						currentToken.code = CMT_T;
 						scData.scanHistogram[currentToken.code]++;
 						return currentToken;
-						break; // End of multi-line comment
+						//break; // End of multi-line comment
 					}
 					if (c == EOF) {
 						// Handle unterminated comment error
@@ -397,6 +404,9 @@ Rs_intg nextClass(Rs_char c) {
         //val = 1;
     else {
 	switch (c) {
+	 case '.':
+            val = 2;
+            break;
 	case CHRCOL2:
 		val = 2;
 		break;
@@ -435,6 +445,13 @@ Rs_intg nextClass(Rs_char c) {
  Token funcCMT(Rs_string lexeme) {
     Token currentToken = { 0 };
     Rs_intg i = 0, len = (Rs_intg)strlen(lexeme);
+
+	    // Validate if the lexeme is a comment
+    if (lexeme[0] != '/' || lexeme[1] != '/') {
+        // If not a comment, return an error token or handle appropriately
+        currentToken.code = ERR_T;
+        return currentToken;
+    }
     
     // Adjust initialization and usage of currentToken
     currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
@@ -447,10 +464,9 @@ Rs_intg nextClass(Rs_char c) {
 
 
     // Set code for comment token and update scanHistogram
-    
-    scData.scanHistogram[currentToken.code]++;
     currentToken.code = CMT_T;
-
+    scData.scanHistogram[currentToken.code]++;
+    
     return currentToken;
 }
 
@@ -829,6 +845,8 @@ int isInteger(const char *lexeme) {
     return 1;
 }
 
+
+
 // Function to check if a lexeme is a float
 int isFloat(const char *lexeme) {
     int dotCount = 0;
@@ -855,27 +873,4 @@ int isIdentifier(const char *lexeme) {
     return 1;
 }
 
-int isNumberAfterEqual(const char *str) {
-    // Find the '=' sign
-    while (*str && *str != '=') {
-        str++;
-    }
 
-    // If '=' is not found, return 0
-    if (*str != '=') {
-        return 0;
-    }
-
-    // Move to the character after '='
-    str++;
-
-    // Skip any whitespace
-    while (*str && isspace(*str)) {
-        str++;
-    }
-
-    // Check if the remaining string is a number using strtol
-    char *endptr;
-    strtol(str, &endptr, 10);
-    return *endptr == '\0';
-}

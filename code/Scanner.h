@@ -210,9 +210,31 @@ typedef struct scannerData {
 #define FS		10		/* Illegal state */
 
 /* TO_DO: State transition table definition */
-#define NUM_STATES		13
+#define NUM_STATES		15
 #define CHAR_CLASSES	8
 /*might delete later*/
+/* Transition table - type of states defined in separate table */
+// static int transitionTable[NUM_STATES][CHAR_CLASSES] = {
+// /*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other
+//        L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
+//     {     1,    6, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
+//     {     1,    1,    1,    2,    3,    3,    3,    3},	// S1: NOAS
+//     {     2,    2,    2,    2,    2,    2,    2,    2},	// S2: NOAS
+//     {     3,    3,    3,    3,    3,    3,    3,    3},	// S3: NOAS
+//     {     4,    4,    4,    4,    4,    4,    4,    4},	// S4: NOAS
+//     {     5,    5,    5,    5,    5,    5,    5,    5},	// S5: NOAS
+//     {     6,    6,    6,    6,    6,    6,    6,    6},	// S6: NOAS
+//     {     7,    7,    7,    7,    7,    7,    7,    7},	// S7: NOAS
+//     {     8,    8,    8,    8,    8,    8,    8,    8},	// S8: NOAS
+//     {     9,    9,    9,    9,    9,    9,    9,    9},	// S9: NOAS
+//     {    10,   10,   10,   10,   10,   10,   10,   10},	// S10: NOAS
+//     {    11,   11,   11,   11,   11,   11,   11,   11},	// S11: NOAS
+//     {    12,   12,   12,   12,   12,   12,   12,   12},	// S12: NOAS
+//     {    13,   13,   13,   13,   13,   13,   13,   13},	// S13: NOAS
+//     {    14,   14,   14,   14,   14,   14,   14,   14},	// S14: NOAS
+// };
+
+
 
 /* Transition table - type of states defined in separate table */
 static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
@@ -249,25 +271,6 @@ static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
 //     {     9,    9,    9,    9,    9,   10,    9,    9},	// S9: NOAS (Inside single-line comment)
 //     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S10: ASNR (Single-line comment end)
 //     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S11: ASNR (Multi-line comment end)
-// };
-
-
-/* TO_DO: Transition table - type of states defined in separate table */
-// static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
-// /*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other
-// 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-// 	{     1, ESNR, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
-// 	{     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID)
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)
-// 	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)
-// 	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
-// 	{     8,    8,    8,    8,    8,    8,	  9,    8},	// S8: NOAS (Single-line comment start)
-// 	{     9,    9,    9,    9,    9,   10,    9,    9},	// S9: NOAS (Inside single-line comment)
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S10: ASNR (Single-line comment end)
-// 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S11: ASNR (Multi-line comment end)
 // };
 
 
@@ -346,6 +349,7 @@ static PTR_ACCFUN finalStateTable[NUM_STATES] = {
     funcCMT,	/* COM  [09] */
     funcCMT,	/* COM  [10] */
     funcCMT		/* COM  [11] */
+	
 };
 
 
@@ -365,20 +369,6 @@ static PTR_ACCFUN finalStateTable[NUM_STATES] = {
 // 	funcCMT		/* COM  [11] */
 // };
 
-/* TO_DO: Define the functions for the new comment states */
-
-// static PTR_ACCFUN finalStateTable[NUM_STATES] = {
-// 	NULL,		/* -    [00] */
-// 	NULL,		/* -    [01] */
-// 	funcID,		/* MNID	[02] */
-// 	funcKEY,	/* KEY  [03] */
-// 	NULL,		/* -    [04] */
-// 	funcSL,		/* SL   [05] */
-// 	NULL,		/* -    [06] */
-// 	funcCMT,	/* COM  [07] */
-// 	funcErr,	/* ERR1 [06] */
-// 	funcErr		/* ERR2 [07] */
-// };
 
 /*
 -------------------------------------------------
@@ -437,5 +427,6 @@ Rs_intg numScannerErrors;
 
 /* Scanner data */
 ScannerData scData;
+
 
 #endif
