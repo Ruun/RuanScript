@@ -255,6 +255,8 @@ static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
 };
 
 
+
+
 // /* Transition table - type of states defined in separate table */
 // static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
 // /*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other

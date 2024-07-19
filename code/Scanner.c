@@ -93,7 +93,10 @@
 TO_DO: Global vars definitions
 ----------------------------------------------------------------
 */
-
+// Declare the missing functions if they are not in the header
+int isInteger(const char *lexeme);
+int isFloat(const char *lexeme);
+int isIdentifier(const char *lexeme);
 
 /* Global objects - variables */
 /* This buffer is used as a repository for string literals. */
@@ -303,12 +306,63 @@ Token tokenizer(Rs_void) {
 		*/
 
 		/* TO_DO: Adjust / check the logic for your language */
+		  default: // general case
+                if (isdigit(c)) {
+                    state = 1; // Initial state for number recognition
+                    lexStart = readerGetPosRead(sourceBuffer) - 1;
+                    readerSetMark(sourceBuffer, lexStart);
+                    int isFloat = 0;
 
-		default: // general case
-			state = nextState(state, c);
+                    while (1) {
+                        c = readerGetChar(sourceBuffer);
+                        if (isdigit(c)) {
+                            // Stay in the same state
+                        } else if (c == '.' && !isFloat) {
+                            isFloat = 1;
+                            state = 2; // Transition to float state
+                        } else {
+                            readerRetract(sourceBuffer);
+                            break;
+                        }
+                    }
+
+                    lexEnd = readerGetPosRead(sourceBuffer);
+                    lexLength = lexEnd - lexStart;
+                    lexemeBuffer = readerCreate((Rs_intg)lexLength + 2, 0, MODE_FIXED);
+					
+
+
+
+
+                    if (!lexemeBuffer) {
+                        fprintf(stderr, "Scanner error: Can not create buffer\n");
+                        exit(1);
+                    }
+                    readerRestore(sourceBuffer);
+                    for (i = 0; i < lexLength; i++)
+                        readerAddChar(lexemeBuffer, readerGetChar(sourceBuffer));
+                    readerAddChar(lexemeBuffer, READER_TERMINATOR);
+
+                    if (isFloat) {
+                        currentToken.code = FLT_T;
+                        currentToken.attribute.floatValue = atof(readerGetContent(lexemeBuffer, 0));
+                    } else {
+                        currentToken.code = INT_T;
+                        currentToken.attribute.intValue = atoi(readerGetContent(lexemeBuffer, 0));
+                    }
+
+                    scData.scanHistogram[currentToken.code]++;
+                    readerRestore(lexemeBuffer);
+                    return currentToken;
+				}
+                 else {
+                    // Handle other cases or return error token
+                    // currentToken.code = ERR_T;
+                    // return currentToken;
+					state = nextState(state, c);
 			lexStart = readerGetPosRead(sourceBuffer) - 1;
 			readerSetMark(sourceBuffer, lexStart);
-			//int pos = 0; - might not be necessary
+			//int pos = 0; //- might not be necessary
 			while (stateType[state] == NOFS) {
 				c = readerGetChar(sourceBuffer);
 				state = nextState(state, c);
@@ -327,15 +381,16 @@ Token tokenizer(Rs_void) {
 			for (i = 0; i < lexLength; i++)
 				readerAddChar(lexemeBuffer, readerGetChar(sourceBuffer));
 			readerAddChar(lexemeBuffer, READER_TERMINATOR);
+			currentToken.code = isFloat ? FLT_T : INL_T;
+			
 			currentToken = (*finalStateTable[state])(readerGetContent(lexemeBuffer, 0));
+			scData.scanHistogram[currentToken.code]++;
 			readerRestore(lexemeBuffer);
 			return currentToken;
-		} // switch
-
-	} //while
-
-} // tokenizer
-
+ 		} // switch
+		} //while
+                }
+        } // switch
 
 /*
  ************************************************************
@@ -416,16 +471,16 @@ Rs_intg nextClass(Rs_char c) {
 	case CHRCOL4:
 		val = 4;
 		break;
-	//case CHRCOL6:
-		//val = 6;
-		//break;
+	case CHRCOL6:
+		val = 6;
+		break;
 	case CHARSEOF0:
 	case CHARSEOF255:
 		val = 5;
 		break;
-	case '/':
-		val = 6;
-		break;
+	//case '/':
+		//val = 6;
+		//break;
 	default:
 			val = 7;
 	}
@@ -471,6 +526,7 @@ Rs_intg nextClass(Rs_char c) {
 }
 
 
+
  /*
   ************************************************************
   * Acceptance State Function IL
@@ -486,13 +542,9 @@ Rs_intg nextClass(Rs_char c) {
 Token funcIL(Rs_string lexeme) {
 	Token currentToken = { 0 };
 	Rs_long tlong;
-	// if (lexeme[0] != '\0' && strlen(lexeme) > NUM_LEN) {
-	// 	currentToken = (*finalStateTable[ESNR])(lexeme);
-	// }
-	if (strlen(lexeme) > NUM_LEN) {
-        currentToken = (*finalStateTable[ESNR])(lexeme);
-    }
-	else {
+	if (lexeme[0] != '\0' && strlen(lexeme) > NUM_LEN) {
+		currentToken = (*finalStateTable[ESNR])(lexeme);
+	}else {
 		tlong = atol(lexeme);
 		if (tlong >= 0 && tlong <= SHRT_MAX) {
 			currentToken.code = INL_T;
@@ -505,6 +557,7 @@ Token funcIL(Rs_string lexeme) {
 	}
 	return currentToken;
 }
+
 
 
 /*
@@ -522,41 +575,141 @@ Token funcIL(Rs_string lexeme) {
  /* TO_DO: Adjust the function for ID */
 
 Token funcID(Rs_string lexeme) {
-	Token currentToken = { 0 };
-	size_t length = strlen(lexeme);
-	Rs_char lastch = lexeme[length - 1];
-	Rs_intg isID = FALSE;
-	switch (lastch) {
-		case MNID_SUF:
-			currentToken.code = MNID_T;
-			scData.scanHistogram[currentToken.code]++;
-			isID = TRUE;
-			break;
-		default:
+    Token currentToken = { 0 };
+    size_t length = strlen(lexeme);
+    Rs_char lastch = lexeme[length - 1];
+    Rs_intg isID = FALSE;
+
+    switch (lastch) {
+        case MNID_SUF:
+            currentToken.code = MNID_T;
+            scData.scanHistogram[currentToken.code]++;
+            isID = TRUE;
+            break;
+        default:
+		// Test if the lexeme is a keyword
+        lexeme[length - 1] = '\0';
+        currentToken = funcKEY(lexeme);
+        if (currentToken.code == ERR_T) {
+    // If not a keyword, check if it is a number
+    Rs_intg intValue;
+    Rs_float floatValue;
+    char* endPtr;
+
+    // Check for integer
+    intValue = strtol(lexeme, &endPtr, 10);
+    if (*endPtr == '\0') {
+        currentToken.code = INT_T;
+        scData.scanHistogram[currentToken.code]++;
+        currentToken.attribute.intValue = intValue;
+    } else {
+        // Check for float
+        floatValue = strtof(lexeme, &endPtr);
+        if (*endPtr == '\0') {
+            currentToken.code = FLT_T;
+            scData.scanHistogram[currentToken.code]++;
+            currentToken.attribute.floatValue = floatValue;
+        } else {
+            // If not a number, treat it as an identifier
+            currentToken.code = ID_T;
+            scData.scanHistogram[currentToken.code]++;
+            strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+            currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
+            isID = TRUE;
+        }
+    }
+
+
+
             // Test if the lexeme is a keyword
-			lexeme[length - 1] = '\0';
-            currentToken = funcKEY(lexeme);
-            if (currentToken.code == ERR_T) {
-                currentToken.code = ID_T;
+            // lexeme[length - 1] = '\0';
+            // currentToken = funcKEY(lexeme);
+            // if (currentToken.code == ERR_T) {
+            //     // If not a keyword, check if it is a number
+            //     Rs_intg intValue;
+            //     Rs_float floatValue;
+            //     if (sscanf(lexeme, "%d", &intValue) == 1) {
+            //         currentToken.code = INT_T;
+            //         scData.scanHistogram[currentToken.code]++;
+            //        currentToken.attribute.intValue = intValue;
+            //     } else if (sscanf(lexeme, "%f", &floatValue) == 1) {
+            //         currentToken.code = FLT_T;
+            //         scData.scanHistogram[currentToken.code]++;
+            //         currentToken.attribute.floatValue = floatValue;
+            //     } else {
+            //         currentToken.code = ID_T;
+            //         scData.scanHistogram[currentToken.code]++;
+            //         strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+            //         currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
+            //         isID = TRUE;
+            //     }
+            } else {
+                // It's a keyword
                 scData.scanHistogram[currentToken.code]++;
-				//added
-				 strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN); // Store identifier lexeme
-                currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0; // Null-terminate
-            
-                isID = TRUE;
             }
             break;
-			// Test Keyword
-			//lexeme[length - 1] = '\0'; - maybe not necessary
-			// currentToken = funcKEY(lexeme);
-			// break;
-	}
-	if (isID == TRUE) {
-		strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-		currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
-	}
-	return currentToken;
+    }
+
+    if (isID == TRUE) {
+        strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+        currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
+    }
+
+    return currentToken;
 }
+
+
+
+
+// Token funcID(Rs_string lexeme) {
+//     Token currentToken = { 0 };
+//     size_t length = strlen(lexeme);
+//     Rs_char lastch = lexeme[length - 1];
+//     Rs_intg isID = FALSE;
+
+//     switch (lastch) {
+//         case MNID_SUF:
+//             currentToken.code = MNID_T;
+//             scData.scanHistogram[currentToken.code]++;
+//             isID = TRUE;
+//             break;
+//         default:
+//             // Test if the lexeme is a keyword
+//             lexeme[length - 1] = '\0';
+//             currentToken = funcKEY(lexeme);
+//             if (currentToken.code == ERR_T) {
+//                 currentToken.code = ID_T;
+//                 scData.scanHistogram[currentToken.code]++;
+//                 strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN); // Store identifier lexeme
+//                 currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0; // Null-terminate
+//                 isID = TRUE;
+// 			} else if (!isID) {
+// 				Rs_intg intValue;
+// 				Rs_float floatValue;
+// 				if (sscanf(lexeme, "%d", &intValue) == 1) {
+// 					currentToken.code = INT_T;
+// 					scData.scanHistogram[currentToken.code]++;
+// 					currentToken.attribute.intValue = intValue;
+// 				} else if (sscanf(lexeme, "%f", &floatValue) == 1) {
+// 					currentToken.code = FLT_T;
+// 					scData.scanHistogram[currentToken.code]++;
+// 					currentToken.attribute.floatValue = floatValue;
+// 				} else {
+// 					currentToken.code = ERR_T;
+// 					scData.scanHistogram[currentToken.code]++;
+// 					strcpy(currentToken.attribute.errLexeme, "Invalid number");
+// 				}
+// 			}
+//             break;
+//     }
+
+//     if (isID == TRUE) {
+//         strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+//         currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
+//     }
+
+//     return currentToken;
+// }
 
 
 /*
@@ -643,23 +796,23 @@ Token funcKEY(Rs_string lexeme) {
         scData.scanHistogram[currentToken.code]++;
         currentToken.attribute.codeType = kwindex;
 
-    } else if (isInteger(lexeme)) {
-        // Lexeme is an integer
-        currentToken.code = INT_T;
-        currentToken.attribute.intValue = atoi(lexeme);
-    } else if (isFloat(lexeme)) {
-        // Lexeme is a float
-        currentToken.code = FLT_T;
-        currentToken.attribute.floatValue = atof(lexeme);
-    }else if (isIdentifier(lexeme)) {
-        // Lexeme is an identifier
-        currentToken.code = ID_T;
-        strncpy(currentToken.attribute.idLexeme, lexeme, sizeof(currentToken.attribute.idLexeme) - 1);
-        currentToken.attribute.idLexeme[sizeof(currentToken.attribute.idLexeme) - 1] = '\0';
-    } else {
-        // Keyword not found, treat as an error
-        currentToken = funcErr(lexeme);
-    }
+	} else if (isInteger(lexeme)) {
+		// Lexeme is an integer
+		currentToken.code = INT_T;
+		currentToken.attribute.intValue = atoi(lexeme);
+	} else if (isFloat(lexeme)) {
+		// Lexeme is a float
+		currentToken.code = FLT_T;
+		currentToken.attribute.floatValue = atof(lexeme);
+	} else if (isIdentifier(lexeme)) {
+		// Lexeme is an identifier
+		currentToken.code = ID_T;
+		strncpy(currentToken.attribute.idLexeme, lexeme, sizeof(currentToken.attribute.idLexeme) - 1);
+		currentToken.attribute.idLexeme[sizeof(currentToken.attribute.idLexeme) - 1] = '\0';
+	} else {
+		// Keyword not found, treat as an error
+		currentToken = funcErr(lexeme);
+	}
 
     return currentToken;
 }
@@ -798,6 +951,7 @@ Rs_void printToken(Token t) {
 		break;
 	case FLT_T:
 		printf("FLT_T\t\t%f\n", t.attribute.floatValue);
+		
 		break;
 	case INT_T:
 		printf("INT_T\t\t%d\n", t.attribute.intValue);
@@ -834,31 +988,29 @@ Rs_void printScannerData(ScannerData scData) {
 /*
 TO_DO: (If necessary): HERE YOU WRITE YOUR ADDITIONAL FUNCTIONS (IF ANY).
 */
-
-//Function to check if a lexeme is an integer
+// Function to check if a lexeme is an integer
 int isInteger(const char *lexeme) {
-    for (int i = 0; lexeme[i] != '\0'; i++) {
-        if (!isdigit(lexeme[i])) {
-            return 0;
-        }
-    }
-    return 1;
+	for (int i = 0; lexeme[i] != '\0'; i++) {
+		if (!isdigit(lexeme[i])) {
+			return 0;
+		}
+	}
+	return 1;
 }
-
-
 
 // Function to check if a lexeme is a float
 int isFloat(const char *lexeme) {
-    int dotCount = 0;
-    for (int i = 0; lexeme[i] != '\0'; i++) {
-        if (lexeme[i] == '.') {
-            dotCount++;
-        } else if (!isdigit(lexeme[i])) {
-            return 0;
-        }
-    }
-    return dotCount == 1;
+	int dotCount = 0;
+	for (int i = 0; lexeme[i] != '\0'; i++) {
+		if (lexeme[i] == '.') {
+			dotCount++;
+		} else if (!isdigit(lexeme[i])) {
+			return 0;
+		}
+	}
+	return dotCount == 1;
 }
+
 
 // Function to check if a lexeme is a valid identifier
 int isIdentifier(const char *lexeme) {
@@ -872,5 +1024,4 @@ int isIdentifier(const char *lexeme) {
     }
     return 1;
 }
-
 
