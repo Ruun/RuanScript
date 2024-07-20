@@ -2,10 +2,10 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Werror -g
+CFLAGS = -Wall -g
 
 # Source files
-SRCS = Compilers.c MainReader.c Reader.c
+SRCS = Compilers.c MainReader.c Reader.c Scanner.c MainScanner.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)

@@ -42,3 +42,17 @@
 42	236	7431401764575903	CMakeFiles/Compiler.dir/MainScanner.c.obj	f70b8cd612a82135
 33	240	7431401764626713	CMakeFiles/Compiler.dir/MainReader.c.obj	a8187c3450edeeda
 241	630	7431401767681309	Compiler.exe	50ec252a81c8dc23
+15	45	0	clean	3807ae1e948da024
+15	177	7431403764295279	CMakeFiles/Compiler.dir/Compilers.c.obj	415acfa213439be1
+28	181	7431403764346815	CMakeFiles/Compiler.dir/MainReader.c.obj	a8187c3450edeeda
+22	187	7431403764464506	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
+33	206	7431403764645136	CMakeFiles/Compiler.dir/MainScanner.c.obj	f70b8cd612a82135
+41	224	7431403764825972	CMakeFiles/Compiler.dir/Scanner.c.obj	e86ee7364d008e9b
+225	585	7431403767464009	Compiler.exe	50ec252a81c8dc23
+15	45	0	clean	3807ae1e948da024
+15	893	7431412964469268	CMakeFiles/Compiler.dir/Compilers.c.obj	415acfa213439be1
+35	915	7431412964445609	CMakeFiles/Compiler.dir/MainScanner.c.obj	f70b8cd612a82135
+22	916	7431412964447819	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
+42	932	7431412964782941	CMakeFiles/Compiler.dir/Scanner.c.obj	e86ee7364d008e9b
+28	944	7431412965035706	CMakeFiles/Compiler.dir/MainReader.c.obj	a8187c3450edeeda
+946	1370	7431412968524624	Compiler.exe	50ec252a81c8dc23
