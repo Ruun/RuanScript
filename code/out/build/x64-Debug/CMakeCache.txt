@@ -207,15 +207,6 @@ Compiler_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Compiler_SOURCE_DIR:STATIC=C:/Mac/Home/Downloads/RuanScript/code
 
-//Value Computed by CMake
-RuanScript_BINARY_DIR:STATIC=C:/Mac/Home/Downloads/RuanScript/code/out/build/x64-Debug
-
-//Value Computed by CMake
-RuanScript_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-RuanScript_SOURCE_DIR:STATIC=C:/Mac/Home/Downloads/RuanScript/code
-
 
 ########################
 # INTERNAL cache entries

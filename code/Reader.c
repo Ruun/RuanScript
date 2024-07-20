@@ -727,14 +727,20 @@ Rs_void readerPrintStat(BufferPointer const readerPointer) {
 *	- Adjust for your LANGUAGE.
 *************************************************************
 */
-Rs_intg readerNumErrors(BufferPointer const readerPointer) {
+Rs_intg readerNumErrors(BufferPointer const readerPointer) {//bufferPointer
 	/* TO_DO: Defensive programming */
 	if (!readerPointer) {
 		return READER_ERROR;
 	}
+	/* TO_DO: Updates the histogram */
+	int totalChar = 0;
+
+	for (int i = 0; i < NCHAR; i++) {
+		if (readerPointer->histogram[i] > 0)
+			totalChar += readerPointer->histogram[i];
+	}
 	/* TO_DO: Returns the number of errors */
-	//return readerPointer->errors;
-	return 0;
+	return readerPointer->numReaderErrors;
 }
 
 /*

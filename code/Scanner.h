@@ -9,23 +9,23 @@
 # ECHO "=---------------------------------------="
 # ECHO "|  COMPILERS - ALGONQUIN COLLEGE (S24)  |"
 # ECHO "=---------------------------------------="
-# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    �
-# ECHO "    @@                             @@    �
-# ECHO "    @@           %&@@@@@@@@@@@     @@    �
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    �
-# ECHO "    @@      @& @   @ @       @     @@    �
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    �
-# ECHO "    @@      & @ @  @@              @@    �
-# ECHO "    @@       @/ @*@ @ @   @        @@    �
-# ECHO "    @@           @@@@  @@ @ @      @@    �
-# ECHO "    @@            /@@    @@@ @     @@    �
-# ECHO "    @@     @      / /     @@ @     @@    �
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    �
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    �
-# ECHO "    @@                             @@    �
-# ECHO "    @@        RUANSCRIPT           @@    �
-# ECHO "    @@                             @@    �
-# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    �
+# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    î
+# ECHO "    @@                             @@    î
+# ECHO "    @@           %&@@@@@@@@@@@     @@    î
+# ECHO "    @@       @%% (@@@@@@@@@  @     @@    î
+# ECHO "    @@      @& @   @ @       @     @@    î
+# ECHO "    @@     @ @ %  / /   @@@@@@     @@    î
+# ECHO "    @@      & @ @  @@              @@    î
+# ECHO "    @@       @/ @*@ @ @   @        @@    î
+# ECHO "    @@           @@@@  @@ @ @      @@    î
+# ECHO "    @@            /@@    @@@ @     @@    î
+# ECHO "    @@     @      / /     @@ @     @@    î
+# ECHO "    @@     @ @@   /@/   @@@ @      @@    î
+# ECHO "    @@     @@@@@@@@@@@@@@@         @@    î
+# ECHO "    @@                             @@    î
+# ECHO "    @@         S O F I A           @@    î
+# ECHO "    @@                             @@    î
+# ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    î
 # ECHO "                                         "
 # ECHO "[READER SCRIPT .........................]"
 # ECHO "                                         "
@@ -35,7 +35,7 @@
 ************************************************************
 * File name: Scanner.h
 * Compiler: MS Visual Studio 2022
-* Course: CST 8152 � Compilers, Lab Section: [011, 012]
+* Course: CST 8152 ñ Compilers, Lab Section: [011, 012]
 * Assignment: A22, A32.
 * Date: May 01 2024
 * Purpose: This file is the main header for Scanner (.h)
@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 34
+#define NUM_TOKENS 30
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -86,27 +86,22 @@ enum TOKENS {
 	RTE_T,		/* 10: Run-time error token */
 	SEOF_T,		/* 11: Source end-of-file token */
 	CMT_T,		/* 12: Comment token */
-	LT_T,       /* 13: Less than operator token */
-    EQ_T,       /* 14: Equal operator token */
-    GT_T,       /* 15: Greater than operator token */
-    MUL_T,      /* 16: Multiply operator token */
-    LBRACK_T,   /* 17: Left bracket token */
-    RBRACK_T,   /* 18: Right bracket token */
-    MINUS_T,    /* 19: Minus operator token */
-    DIV_T,      /* 20: Divide operator token */
-    POW_T,      /* 21: Power operator token */
-    NOT_T,      /* 22: Not operator token */
-    PLUS_T,     /* 23: Plus operator token */
-    MOD_T,      /* 24: Modulus operator token */
-    AND_T,      /* 25: And operator token */
-    OR_T,       /* 26: Or operator token */
-    DQUOTE_T,   /* 27: Double quote token */
-    SQUOTE_T,   /* 28: Single quote token */
-    QMARK_T,    /* 29: Question mark token */
-    COLON_T,    /* 30: Colon token */
-    DOT_T,      /* 31: Dot token */
-    COMMA_T,    /* 32: Comma token */
-    UNDERSCORE_T /* 33: Underscore token */
+	ADD_T,		/* 13: Addition operator token */
+	SUB_T,		/* 14: Subtraction operator token */
+	MUL_T,		/* 15: Multiplication operator token */
+	DIV_T,		/* 16: Division operator token */
+	EQ_T,		/* 17: Equality operator token */
+	NE_T,		/* 18: Inequality operator token */
+	GT_T,		/* 19: Greater than operator token */
+	LT_T,		/* 20: Less than operator token */
+	AND_T,		/* 21: Logical AND operator token */
+	OR_T,		/* 22: Logical OR operator token */
+	NOT_T,		/* 23: Logical NOT operator token */
+	ID_T,       /* 24: Identifier token */
+	INT_T,      /* 26: Integer token */
+	FLT_T,      /* 27: Float token */
+	NUM_T,      /* 28: Number token */
+	CMA_T       /* 29: Comma token */
 };
 
 /* TO_DO: Define the list of keywords */
@@ -124,27 +119,22 @@ static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"RTE_T",
 	"SEOF_T",
 	"CMT_T",
+	"ADD_T",
+	"SUB_T",
+	"MUL_T",
+	"DIV_T",
+	"EQ_T",
+	"NE_T",
+	"GT_T",
 	"LT_T",
-    "EQ_T",
-    "GT_T",
-    "MUL_T",
-    "LBRACK_T",
-    "RBRACK_T",
-    "MINUS_T",
-    "DIV_T",
-    "POW_T",
-    "NOT_T",
-    "PLUS_T",
-    "MOD_T",
-    "AND_T",
-    "OR_T",
-    "DQUOTE_T",
-    "SQUOTE_T",
-    "QMARK_T",
-    "COLON_T",
-    "DOT_T",
-    "COMMA_T",
-    "UNDERSCORE_T"
+	"AND_T",
+	"OR_T",
+	"NOT_T",
+	"ID_T",
+	"INT_T",
+	"FLT_T",
+	"NUM_T",
+	"CMA_T"
 };
 
 /* TO_DO: Operators token attributes */
@@ -197,43 +187,48 @@ typedef struct scannerData {
 #define CHARSEOF255 0xFF
 
 /*  Special case tokens processed separately one by one in the token-driven part of the scanner:
- *  LPR_T, RPR_T, LBR_T, RBR_T, EOS_T, SEOF_T and special chars used for tokenis include _, & and ' */
+ *  LPR_T, RPR_T, LBR_T, RBR_T, EOS_T, SEOF_T and special chars used for tokenis include _, ( and ' */
 
 /* TO_DO: Define lexeme FIXED classes */
 /* These constants will be used on nextClass */
 #define CHRCOL2 '_'
-#define CHRCOL3 '&'
+#define CHRCOL3 '('
 #define CHRCOL4 '\''
-#define CHRCOL6 '#'
+#define CHRCOL6 '/' //was #
 
 /* These constants will be used on VID / MID function */
-#define MNID_SUF '&'
-#define COMM_SYM '#'
+#define MNID_SUF '('
+//#define COMM_SYM '/' //was # put back
 
 /* TO_DO: Error states and illegal state */
 #define ESNR	8		/* Error state with no retract */
 #define ESWR	9		/* Error state with retract */
 #define FS		10		/* Illegal state */
 
- /* TO_DO: State transition table definition */
-#define NUM_STATES		10
+/* TO_DO: State transition table definition */
+#define NUM_STATES		15
 #define CHAR_CLASSES	8
 
-/* TO_DO: Transition table - type of states defined in separate table */
+
+/* Transition table - type of states defined in separate table */
 static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
-/*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
-	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-	{     1, ESNR, ESNR, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOAS
-	{     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)
-	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)
-	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S8: ASNR (ES)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS}  // S9: ASWR (ER)
+/*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other
+       L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
+    {     1,    6, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
+    {     1,    1,    1,    2,    3,    3,    3,    3},	// S1: NOAS
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S2: ASNR (MVID)
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S3: ASWR (KEY)
+    {     4,    4,    4,    4,    5, ESWR,    4,    4},	// S4: NOAS
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S5: ASNR (SL)
+    {     6,    6,    6,    6,    6, ESWR,    7,    6},	// S6: NOAS (Number state)
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S7: ASNR (COM)
+    {     8,    8,    8,    8,    8,    8,    9,    8},	// S8: NOAS (Single-line comment start)
+    {     9,    9,    9,    9,    9,   10,    9,    9},	// S9: NOAS (Inside single-line comment)
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S10: ASNR (Single-line comment end)
+    {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S11: ASNR (Multi-line comment end)
 };
+
+
 
 /* Define accepting states types */
 #define NOFS	0		/* not accepting state */
@@ -250,9 +245,13 @@ static Rs_intg stateType[NUM_STATES] = {
 	FSNR, /* 05 (SL) */
 	NOFS, /* 06 */
 	FSNR, /* 07 (COM) */
-	FSNR, /* 08 (Err1 - no retract) */
-	FSWR  /* 09 (Err2 - retract) */
+	NOFS, /* 08 (Single-line comment start) */
+	FSNR, /* 09 (Single-line comment inside) */
+	FSNR, /* 10 (Single-line comment end) */
+	FSNR, /* 11 (Multi-line comment end) */
 };
+
+
 
 /*
 -------------------------------------------------
@@ -284,24 +283,31 @@ Token funcCMT   (Rs_string lexeme);
 Token funcKEY	(Rs_string lexeme);
 Token funcErr	(Rs_string lexeme);
 
+
 /* 
  * Accepting function (action) callback table (array) definition 
  * If you do not want to use the typedef, the equvalent declaration is:
  */
 
+/* Define accepting function (action) callback table (array) definition */
 /* TO_DO: Define final state table */
+/* Define accepting function (action) callback table (array) definition */
 static PTR_ACCFUN finalStateTable[NUM_STATES] = {
-	NULL,		/* -    [00] */
-	NULL,		/* -    [01] */
-	funcID,		/* MNID	[02] */
-	funcKEY,	/* KEY  [03] */
-	NULL,		/* -    [04] */
-	funcSL,		/* SL   [05] */
-	NULL,		/* -    [06] */
-	funcCMT,	/* COM  [07] */
-	funcErr,	/* ERR1 [06] */
-	funcErr		/* ERR2 [07] */
+    NULL,		/* -    [00] */
+    NULL,		/* -    [01] */
+    funcID,		/* MNID	[02] */
+    funcKEY,	/* KEY  [03] */
+    NULL,		/* -    [04] */
+    funcSL,		/* SL   [05] */
+    NULL,		/* -    [06] */
+    funcCMT,	/* COM  [07] */
+    NULL,		/* -    [08] */
+    funcCMT,	/* COM  [09] */
+    funcCMT,	/* COM  [10] */
+    funcCMT		/* COM  [11] */
+	
 };
+
 
 /*
 -------------------------------------------------
@@ -310,21 +316,33 @@ Language keywords
 */
 
 /* TO_DO: Define the number of Keywords from the language */
-#define KWT_SIZE 10
+#define KWT_SIZE 22
 
-/* TO_DO: Define the list of keywords */
 static Rs_string keywordTable[KWT_SIZE] = {
-	"data",		/* KW00 */
-	"code",		/* KW01 */
-	"int",		/* KW02 */
-	"real",		/* KW03 */
-	"string",	/* KW04 */
-	"if",		/* KW05 */
-	"then",		/* KW06 */
-	"else",		/* KW07 */
-	"while",	/* KW08 */
-	"do"		/* KW09 */
+    "data",     /* KW00 */
+    "code",     /* KW01 */
+    "int",      /* KW02 */
+    "float",    /* KW03 */
+    "string",   /* KW04 */
+    "if",       /* KW05 */
+    "then",     /* KW06 */
+    "else",     /* KW07 */
+    "while",    /* KW08 */
+    "do",       /* KW09 */
+    "return",   /* KW10 */
+    "function", /* KW11 */
+    "add",      /* KW12 */
+    "sub",      /* KW13 */
+    "mul",      /* KW14 */
+    "div",      /* KW15 */
+    "and",      /* KW16 */
+    "or",       /* KW17 */
+    "not",      /* KW18 */
+    "true",     /* KW19 */
+    "false",     /* KW20 */
+	"sqrt"		/* KW21 */
 };
+
 
 /* NEW SECTION: About indentation */
 
@@ -339,7 +357,9 @@ typedef struct languageAttributes {
 	Rs_char indentationCharType;
 	Rs_intg indentationCurrentPos;
 	/* TO_DO: Include any extra attribute to be used in your scanner (OPTIONAL and FREE) */
-	Rs_boln isIndentation;
+	Rs_intg numKeywords;
+	Rs_intg numOperators;
+	Rs_intg numLiterals;
 } LanguageAttributes;
 
 /* Number of errors */
@@ -347,5 +367,6 @@ Rs_intg numScannerErrors;
 
 /* Scanner data */
 ScannerData scData;
+
 
 #endif
