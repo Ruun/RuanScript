@@ -86,7 +86,6 @@ enum TOKENS {
 	RTE_T,		/* 10: Run-time error token */
 	SEOF_T,		/* 11: Source end-of-file token */
 	CMT_T,		/* 12: Comment token */
-
 	ADD_T,		/* 13: Addition operator token */
 	SUB_T,		/* 14: Subtraction operator token */
 	MUL_T,		/* 15: Multiplication operator token */
@@ -98,12 +97,11 @@ enum TOKENS {
 	AND_T,		/* 21: Logical AND operator token */
 	OR_T,		/* 22: Logical OR operator token */
 	NOT_T,		/* 23: Logical NOT operator token */
-
 	ID_T,       /* 24: Identifier token */
-	INT_T,   /* 26: Integer token */
-	FLT_T,  /* 27: Float token */
-	NUM_T,  /* 28: Number token */
-	CMA_T  /* 29: Comma token */
+	INT_T,      /* 26: Integer token */
+	FLT_T,      /* 27: Float token */
+	NUM_T,      /* 28: Number token */
+	CMA_T       /* 29: Comma token */
 };
 
 /* TO_DO: Define the list of keywords */
@@ -121,7 +119,6 @@ static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"RTE_T",
 	"SEOF_T",
 	"CMT_T",
-
 	"ADD_T",
 	"SUB_T",
 	"MUL_T",
@@ -133,7 +130,6 @@ static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"AND_T",
 	"OR_T",
 	"NOT_T",
-
 	"ID_T",
 	"INT_T",
 	"FLT_T",

@@ -94,8 +94,7 @@ TO_DO: Global vars definitions
 ----------------------------------------------------------------
 */
 // Declare the missing functions if they are not in the header
-int isInteger(const char *lexeme);
-int isFloat(const char *lexeme);
+
 int isIdentifier(const char *lexeme);
 
 /* Global objects - variables */
@@ -333,10 +332,6 @@ Token tokenizer(Rs_void) {
                     lexEnd = readerGetPosRead(sourceBuffer);
                     lexLength = lexEnd - lexStart;
                     lexemeBuffer = readerCreate((Rs_intg)lexLength + 2, 0, MODE_FIXED);
-					
-
-
-
 
                     if (!lexemeBuffer) {
                         fprintf(stderr, "Scanner error: Can not create buffer\n");
@@ -360,17 +355,13 @@ Token tokenizer(Rs_void) {
                     return currentToken;
 				}
                  else {
-                    // Handle other cases or return error token
-                    // currentToken.code = ERR_T;
-                    // return currentToken;
 					state = nextState(state, c);
-			lexStart = readerGetPosRead(sourceBuffer) - 1;
-			readerSetMark(sourceBuffer, lexStart);
-			//int pos = 0; //- might not be necessary
-			while (stateType[state] == NOFS) {
+			        lexStart = readerGetPosRead(sourceBuffer) - 1;
+			        readerSetMark(sourceBuffer, lexStart);
+			       while (stateType[state] == NOFS) {
 				c = readerGetChar(sourceBuffer);
 				state = nextState(state, c);
-				//pos++;
+				
 			}
 			if (stateType[state] == FSWR)
 				readerRetract(sourceBuffer);
@@ -385,16 +376,13 @@ Token tokenizer(Rs_void) {
 			for (i = 0; i < lexLength; i++)
 				readerAddChar(lexemeBuffer, readerGetChar(sourceBuffer));
 			readerAddChar(lexemeBuffer, READER_TERMINATOR);
-			currentToken.code = isFloat ? FLT_T : INL_T;
-			
 			currentToken = (*finalStateTable[state])(readerGetContent(lexemeBuffer, 0));
-			scData.scanHistogram[currentToken.code]++;
 			readerRestore(lexemeBuffer);
 			return currentToken;
  		} // switch
-		} //while
-                }
-        } // switch
+	} //while
+        }
+ } // switch
 
 /*
  ************************************************************
@@ -722,15 +710,6 @@ Token funcKEY(Rs_string lexeme) {
         currentToken.code = KW_T;
         scData.scanHistogram[currentToken.code]++;
         currentToken.attribute.codeType = kwindex;
-
-	} else if (isInteger(lexeme)) {
-		// Lexeme is an integer
-		currentToken.code = INT_T;
-		currentToken.attribute.intValue = atoi(lexeme);
-	} else if (isFloat(lexeme)) {
-		// Lexeme is a float
-		currentToken.code = FLT_T;
-		currentToken.attribute.floatValue = atof(lexeme);
 	} else if (isIdentifier(lexeme)) {
 		// Lexeme is an identifier
 		currentToken.code = ID_T;
@@ -917,28 +896,6 @@ Rs_void printScannerData(ScannerData scData) {
 /*
 TO_DO: (If necessary): HERE YOU WRITE YOUR ADDITIONAL FUNCTIONS (IF ANY).
 */
-// Function to check if a lexeme is an integer
-int isInteger(const char *lexeme) {
-	for (int i = 0; lexeme[i] != '\0'; i++) {
-		if (!isdigit(lexeme[i])) {
-			return 0;
-		}
-	}
-	return 1;
-}
-
-// Function to check if a lexeme is a float
-int isFloat(const char *lexeme) {
-	int dotCount = 0;
-	for (int i = 0; lexeme[i] != '\0'; i++) {
-		if (lexeme[i] == '.') {
-			dotCount++;
-		} else if (!isdigit(lexeme[i])) {
-			return 0;
-		}
-	}
-	return dotCount == 1;
-}
 
 
 // Function to check if a lexeme is a valid identifier
