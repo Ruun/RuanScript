@@ -287,6 +287,10 @@ Token tokenizer(Rs_void) {
 				readerRetract(sourceBuffer);
 				// handle error
 			}
+		case ',':
+			currentToken.code = CMA_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
 		/* Cases for END OF FILE */
 		case CHARSEOF0:
 			currentToken.code = SEOF_T;
@@ -619,30 +623,6 @@ Token funcID(Rs_string lexeme) {
         }
     }
 
-
-
-            // Test if the lexeme is a keyword
-            // lexeme[length - 1] = '\0';
-            // currentToken = funcKEY(lexeme);
-            // if (currentToken.code == ERR_T) {
-            //     // If not a keyword, check if it is a number
-            //     Rs_intg intValue;
-            //     Rs_float floatValue;
-            //     if (sscanf(lexeme, "%d", &intValue) == 1) {
-            //         currentToken.code = INT_T;
-            //         scData.scanHistogram[currentToken.code]++;
-            //        currentToken.attribute.intValue = intValue;
-            //     } else if (sscanf(lexeme, "%f", &floatValue) == 1) {
-            //         currentToken.code = FLT_T;
-            //         scData.scanHistogram[currentToken.code]++;
-            //         currentToken.attribute.floatValue = floatValue;
-            //     } else {
-            //         currentToken.code = ID_T;
-            //         scData.scanHistogram[currentToken.code]++;
-            //         strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-            //         currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
-            //         isID = TRUE;
-            //     }
             } else {
                 // It's a keyword
                 scData.scanHistogram[currentToken.code]++;
@@ -657,59 +637,6 @@ Token funcID(Rs_string lexeme) {
 
     return currentToken;
 }
-
-
-
-
-// Token funcID(Rs_string lexeme) {
-//     Token currentToken = { 0 };
-//     size_t length = strlen(lexeme);
-//     Rs_char lastch = lexeme[length - 1];
-//     Rs_intg isID = FALSE;
-
-//     switch (lastch) {
-//         case MNID_SUF:
-//             currentToken.code = MNID_T;
-//             scData.scanHistogram[currentToken.code]++;
-//             isID = TRUE;
-//             break;
-//         default:
-//             // Test if the lexeme is a keyword
-//             lexeme[length - 1] = '\0';
-//             currentToken = funcKEY(lexeme);
-//             if (currentToken.code == ERR_T) {
-//                 currentToken.code = ID_T;
-//                 scData.scanHistogram[currentToken.code]++;
-//                 strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN); // Store identifier lexeme
-//                 currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0; // Null-terminate
-//                 isID = TRUE;
-// 			} else if (!isID) {
-// 				Rs_intg intValue;
-// 				Rs_float floatValue;
-// 				if (sscanf(lexeme, "%d", &intValue) == 1) {
-// 					currentToken.code = INT_T;
-// 					scData.scanHistogram[currentToken.code]++;
-// 					currentToken.attribute.intValue = intValue;
-// 				} else if (sscanf(lexeme, "%f", &floatValue) == 1) {
-// 					currentToken.code = FLT_T;
-// 					scData.scanHistogram[currentToken.code]++;
-// 					currentToken.attribute.floatValue = floatValue;
-// 				} else {
-// 					currentToken.code = ERR_T;
-// 					scData.scanHistogram[currentToken.code]++;
-// 					strcpy(currentToken.attribute.errLexeme, "Invalid number");
-// 				}
-// 			}
-//             break;
-//     }
-
-//     if (isID == TRUE) {
-//         strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-//         currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
-//     }
-
-//     return currentToken;
-// }
 
 
 /*
@@ -951,13 +878,15 @@ Rs_void printToken(Token t) {
 		break;
 	case FLT_T:
 		printf("FLT_T\t\t%f\n", t.attribute.floatValue);
-		
 		break;
 	case INT_T:
 		printf("INT_T\t\t%d\n", t.attribute.intValue);
 		break;
 	case NUM_T:
 		printf("NUM_T\t\t%d\n", t.attribute.intValue);
+		break;
+	case CMA_T:
+		printf("CMA_T\n");
 		break;
 	default:
 		printf("Scanner error: invalid token code: %d\n", t.code);

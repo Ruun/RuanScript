@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 28
+#define NUM_TOKENS 30
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -102,9 +102,8 @@ enum TOKENS {
 	ID_T,       /* 24: Identifier token */
 	INT_T,   /* 26: Integer token */
 	FLT_T,  /* 27: Float token */
-	NUM_T  /* 28: Number token */
-
-
+	NUM_T,  /* 28: Number token */
+	CMA_T  /* 29: Comma token */
 };
 
 /* TO_DO: Define the list of keywords */
@@ -138,7 +137,8 @@ static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"ID_T",
 	"INT_T",
 	"FLT_T",
-	"NUM_T"
+	"NUM_T",
+	"CMA_T"
 };
 
 /* TO_DO: Operators token attributes */
@@ -212,28 +212,6 @@ typedef struct scannerData {
 /* TO_DO: State transition table definition */
 #define NUM_STATES		15
 #define CHAR_CLASSES	8
-/*might delete later*/
-/* Transition table - type of states defined in separate table */
-// static int transitionTable[NUM_STATES][CHAR_CLASSES] = {
-// /*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other
-//        L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-//     {     1,    6, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
-//     {     1,    1,    1,    2,    3,    3,    3,    3},	// S1: NOAS
-//     {     2,    2,    2,    2,    2,    2,    2,    2},	// S2: NOAS
-//     {     3,    3,    3,    3,    3,    3,    3,    3},	// S3: NOAS
-//     {     4,    4,    4,    4,    4,    4,    4,    4},	// S4: NOAS
-//     {     5,    5,    5,    5,    5,    5,    5,    5},	// S5: NOAS
-//     {     6,    6,    6,    6,    6,    6,    6,    6},	// S6: NOAS
-//     {     7,    7,    7,    7,    7,    7,    7,    7},	// S7: NOAS
-//     {     8,    8,    8,    8,    8,    8,    8,    8},	// S8: NOAS
-//     {     9,    9,    9,    9,    9,    9,    9,    9},	// S9: NOAS
-//     {    10,   10,   10,   10,   10,   10,   10,   10},	// S10: NOAS
-//     {    11,   11,   11,   11,   11,   11,   11,   11},	// S11: NOAS
-//     {    12,   12,   12,   12,   12,   12,   12,   12},	// S12: NOAS
-//     {    13,   13,   13,   13,   13,   13,   13,   13},	// S13: NOAS
-//     {    14,   14,   14,   14,   14,   14,   14,   14},	// S14: NOAS
-// };
-
 
 
 /* Transition table - type of states defined in separate table */
@@ -254,26 +232,6 @@ static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
     {    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS},	// S11: ASNR (Multi-line comment end)
 };
 
-
-
-
-// /* Transition table - type of states defined in separate table */
-// static Rs_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
-// /*    [A-z],[0-9],    _,    &,   \', SEOF,    /, other
-//        L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-//     {     1, ESNR, ESNR, ESNR,    4, ESWR,    8, ESNR},	// S0: NOAS
-//     {     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
-//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID)
-//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)
-//     {     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
-//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)
-//     {     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
-//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
-//     {     8,    8,    8,    8,    8,    8,	  9,    8},	// S8: NOAS (Single-line comment start)
-//     {     9,    9,    9,    9,    9,   10,    9,    9},	// S9: NOAS (Inside single-line comment)
-//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S10: ASNR (Single-line comment end)
-//     {    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S11: ASNR (Multi-line comment end)
-// };
 
 
 /* Define accepting states types */
@@ -355,23 +313,6 @@ static PTR_ACCFUN finalStateTable[NUM_STATES] = {
 };
 
 
-/* TO_DO: Define final state table */
-// static PTR_ACCFUN finalStateTable[NUM_STATES] = {
-// 	NULL,		/* -    [00] */
-// 	NULL,		/* -    [01] */
-// 	funcID,		/* MNID	[02] */
-// 	funcKEY,	/* KEY  [03] */
-// 	NULL,		/* -    [04] */
-// 	funcSL,		/* SL   [05] */
-// 	NULL,		/* -    [06] */
-// 	funcCMT,	/* COM  [07] */
-// 	NULL,		/* -    [08] */
-// 	funcCMT,	/* COM  [09] */
-// 	funcCMT,	/* COM  [10] */
-// 	funcCMT		/* COM  [11] */
-// };
-
-
 /*
 -------------------------------------------------
 Language keywords
@@ -379,7 +320,7 @@ Language keywords
 */
 
 /* TO_DO: Define the number of Keywords from the language */
-#define KWT_SIZE 21
+#define KWT_SIZE 22
 
 static Rs_string keywordTable[KWT_SIZE] = {
     "data",     /* KW00 */
@@ -402,7 +343,8 @@ static Rs_string keywordTable[KWT_SIZE] = {
     "or",       /* KW17 */
     "not",      /* KW18 */
     "true",     /* KW19 */
-    "false"     /* KW20 */
+    "false",     /* KW20 */
+	"sqrt"		/* KW21 */
 };
 
 

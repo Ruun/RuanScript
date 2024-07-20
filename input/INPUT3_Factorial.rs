@@ -7,15 +7,13 @@ main() {
     int n = 0;
     int f = 1;
 
-  
+    n = input('Write a number: ');
 
-    n = input('Write a number:');
-
-    while (i < n) {
+    while (i <= n) {
         f = f * i;
         i = i + 1;
     };
 
-    print('Factorial:');
+    print('Factorial: ');
     print(f);
 }
