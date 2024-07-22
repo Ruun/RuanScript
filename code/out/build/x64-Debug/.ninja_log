@@ -1,16 +1,8 @@
 # ninja log v5
-15	893	7431412964469268	CMakeFiles/Compiler.dir/Compilers.c.obj	415acfa213439be1
-28	944	7431412965035706	CMakeFiles/Compiler.dir/MainReader.c.obj	a8187c3450edeeda
-42	932	7431412964782941	CMakeFiles/Compiler.dir/Scanner.c.obj	e86ee7364d008e9b
-22	916	7431412964447819	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
-35	915	7431412964445609	CMakeFiles/Compiler.dir/MainScanner.c.obj	f70b8cd612a82135
-946	1370	7431412968524624	Compiler.exe	50ec252a81c8dc23
-15	45	0	clean	3807ae1e948da024
-19	1073	7433186992525761	CMakeFiles/Compiler.dir/Scanner.c.obj	e86ee7364d008e9b
-1077	1581	7433186996748873	Compiler.exe	50ec252a81c8dc23
-21	167	7433191712143637	CMakeFiles/Compiler.dir/MainScanner.c.obj	f70b8cd612a82135
-29	180	7433191712277132	CMakeFiles/Compiler.dir/Scanner.c.obj	e86ee7364d008e9b
-182	566	7433191715352844	Compiler.exe	50ec252a81c8dc23
-34	950	7433207325683206	CMakeFiles/Compiler.dir/MainScanner.c.obj	f70b8cd612a82135
-56	957	7433207325752401	CMakeFiles/Compiler.dir/Scanner.c.obj	e86ee7364d008e9b
-958	1436	7433207329990086	Compiler.exe	50ec252a81c8dc23
+22	217	7433297103827129	CMakeFiles/Compiler.dir/Compilers.c.obj	415acfa213439be1
+35	253	7433297104255477	CMakeFiles/Compiler.dir/MainReader.c.obj	a8187c3450edeeda
+18	192	7433298449917263	CMakeFiles/Compiler.dir/Scanner.c.obj	e86ee7364d008e9b
+29	228	7433297103972502	CMakeFiles/Compiler.dir/Reader.c.obj	a4c8113ae2b0e945
+40	236	7433297104071555	CMakeFiles/Compiler.dir/MainScanner.c.obj	f70b8cd612a82135
+195	527	7433298452515870	Compiler.exe	50ec252a81c8dc23
+24	73	0	clean	3807ae1e948da024

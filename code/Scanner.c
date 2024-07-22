@@ -201,13 +201,27 @@ Token tokenizer(Rs_void) {
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
 		case '+':
+		c = readerGetChar(sourceBuffer);
+		if (c == '+') {
+			currentToken.code = INC_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		} else {
 			currentToken.code = ADD_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
+		}
 		case '-':
+			c = readerGetChar(sourceBuffer);
+			if (c == '-') {
+				currentToken.code = DEC_T;
+				scData.scanHistogram[currentToken.code]++;
+				return currentToken;
+			} else {
 			currentToken.code = SUB_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
+			}
 		case '*':
 			currentToken.code = MUL_T;
 			scData.scanHistogram[currentToken.code]++;
@@ -275,13 +289,27 @@ Token tokenizer(Rs_void) {
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
 		case '>':
+		c = readerGetChar(sourceBuffer);
+		if (c == '=') {
+			currentToken.code = GE_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		} else {
 			currentToken.code = GT_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
+		}
 		case '<':
+			c = readerGetChar(sourceBuffer);
+			if (c == '=') {
+				currentToken.code = LE_T;
+				scData.scanHistogram[currentToken.code]++;
+				return currentToken;
+			} else {
 			currentToken.code = LT_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
+			}
 		case '&':
 			c = readerGetChar(sourceBuffer);
 			if (c == '&') {
@@ -426,7 +454,7 @@ Token tokenizer(Rs_void) {
  */
  /* TO_DO: Just change the datatypes */
 
-Rs_intg nextState(Rs_intg state, Rs_char c) {
+Rs_intg nextState(Rs_intg state, Rs_char c){
 	Rs_intg col;
 	Rs_intg next;
 	col = nextClass(c);
@@ -598,46 +626,47 @@ Token funcID(Rs_string lexeme) {
 		// Test if the lexeme is a keyword
         lexeme[length - 1] = '\0';
         currentToken = funcKEY(lexeme);
-        if (currentToken.code == ERR_T) {
+        // if (currentToken.code == ERR_T) {
     // If not a keyword, check if it is a number
-    Rs_intg intValue;
-    Rs_float floatValue;
-    char* endPtr;
+    // Rs_intg intValue;
+    // Rs_float floatValue;
+    // char* endPtr;
 
     // Check for integer
-    intValue = strtol(lexeme, &endPtr, 10);
-    if (*endPtr == '\0') {
-        currentToken.code = INT_T;
-        scData.scanHistogram[currentToken.code]++;
-        currentToken.attribute.intValue = intValue;
-    } else {
-        // Check for float
-        floatValue = strtof(lexeme, &endPtr);
-        if (*endPtr == '\0') {
-            currentToken.code = FLT_T;
-            scData.scanHistogram[currentToken.code]++;
-            currentToken.attribute.floatValue = floatValue;
-        } else {
-            // If not a number, treat it as an identifier
-            currentToken.code = ID_T;
-            scData.scanHistogram[currentToken.code]++;
-            strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-            currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
-            isID = TRUE;
-        }
+    // intValue = strtol(lexeme, &endPtr, 10);
+    // if (*endPtr == '\0') {
+    //     currentToken.code = INT_T;
+    //     scData.scanHistogram[currentToken.code]++;
+    //     currentToken.attribute.intValue = intValue;
+    // } else {
+    //     // Check for float
+    //     floatValue = strtof(lexeme, &endPtr);
+    //     if (*endPtr == '\0') {
+    //         currentToken.code = FLT_T;
+    //         scData.scanHistogram[currentToken.code]++;
+    //         currentToken.attribute.floatValue = floatValue;
+    //     } 
+		// else {
+        //     // If not a number, treat it as an identifier
+        //     currentToken.code = ID_T;
+        //     scData.scanHistogram[currentToken.code]++;
+        //     strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+        //     currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
+        //     isID = TRUE;
+        // }
+    //  }
+
+            // } else {
+            //     // It's a keyword
+            //     scData.scanHistogram[currentToken.code]++;
+            // }
+            // break;
     }
 
-            } else {
-                // It's a keyword
-                scData.scanHistogram[currentToken.code]++;
-            }
-            break;
-    }
-
-    if (isID == TRUE) {
-        strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-        currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
-    }
+    // if (isID == TRUE) {
+    //     strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+    //     currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
+    // }
 
     return currentToken;
 }
@@ -894,6 +923,18 @@ Rs_void printToken(Token t) {
 		break;
 	case SBR_T:
 		printf("SBR_T\n");
+		break;
+	case GE_T:
+		printf("GE_T\n");
+		break;
+	case LE_T:
+		printf("LE_T\n");
+		break;
+	case INC_T:
+		printf("INC_T\n");
+		break;
+	case DEC_T:
+		printf("DEC_T\n");
 		break;
 	default:
 		printf("Scanner error: invalid token code: %d\n", t.code);

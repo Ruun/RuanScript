@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 33
+#define NUM_TOKENS 37
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -106,6 +106,10 @@ enum TOKENS {
 	SBR_T,       /* 31: Square bracket right token */
 	POW_T,      /* 31: Power operator token */
 	MOD_T,      /* 32: Modulus operator token */
+	GE_T,	   /* 33: Greater or equal operator token */
+	LE_T,	   /* 34: Less or equal operator token */
+	INC_T,
+	DEC_T
 };
 
 /* TO_DO: Define the list of keywords */
@@ -143,6 +147,10 @@ static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"SBR_T",
 	"POW_T",
 	"MOD_T",
+	"GE_T",
+	"LE_T",
+	"INC_T",
+	"DEC_T"
 };
 
 /* TO_DO: Operators token attributes */
