@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.github\\workflows",
     "\\code",
-    "\\code\\out",
     "\\input"
   ],
-  "SelectedNode": "\\input",
+  "SelectedNode": "\\code",
   "PreviewInSolutionExplorer": false
 }

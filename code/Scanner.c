@@ -212,6 +212,14 @@ Token tokenizer(Rs_void) {
 			currentToken.code = MUL_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
+		case '[':
+			currentToken.code = SBL_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case ']':
+			currentToken.code = SBR_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
 		case '/':
 			c = readerGetChar(sourceBuffer);
 			if (c == '/') {
@@ -258,6 +266,14 @@ Token tokenizer(Rs_void) {
 				scData.scanHistogram[currentToken.code]++;
 				return currentToken;
 			}
+		case '^':
+			currentToken.code = POW_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case '%':
+			currentToken.code = MOD_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
 		case '>':
 			currentToken.code = GT_T;
 			scData.scanHistogram[currentToken.code]++;
@@ -346,7 +362,7 @@ Token tokenizer(Rs_void) {
                         currentToken.code = FLT_T;
                         currentToken.attribute.floatValue = atof(readerGetContent(lexemeBuffer, 0));
                     } else {
-                        currentToken.code = INT_T;
+                        currentToken.code = INL_T;
                         currentToken.attribute.intValue = atoi(readerGetContent(lexemeBuffer, 0));
                     }
 
@@ -866,6 +882,18 @@ Rs_void printToken(Token t) {
 		break;
 	case CMA_T:
 		printf("CMA_T\n");
+		break;
+	case POW_T:
+		printf("POW_T\n");
+		break;
+	case MOD_T:
+		printf("MOD_T\n");
+		break;
+	case SBL_T:
+		printf("SBL_T\n");
+		break;
+	case SBR_T:
+		printf("SBR_T\n");
 		break;
 	default:
 		printf("Scanner error: invalid token code: %d\n", t.code);
