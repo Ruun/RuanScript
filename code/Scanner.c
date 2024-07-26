@@ -491,8 +491,6 @@ Rs_intg nextClass(Rs_char c) {
         val = 0;
     else if (isdigit(c))
         val = 1;
-	//else if (c == '.')
-        //val = 1;
     else {
 	switch (c) {
 	 case '.':
@@ -593,8 +591,6 @@ Token funcIL(Rs_string lexeme) {
 	}
 	return currentToken;
 }
-
-
 
 /*
  ************************************************************
@@ -733,7 +729,7 @@ Token funcSL(Rs_string lexeme) {
 
 Token funcKEY(Rs_string lexeme) {
     Token currentToken = { 0 };
-    Rs_intg kwindex = -1, j = 0;
+    Rs_intg kwindex = -1;
     Rs_intg len = (Rs_intg)strlen(lexeme);
 
     // Ensure the lexeme is null-terminated properly
@@ -743,7 +739,7 @@ Token funcKEY(Rs_string lexeme) {
     // lexeme[len - 1] = '\0';
 
     // Search for the keyword in the keyword table
-    for (j = 0; j < KWT_SIZE; j++) {
+    for (int j = 0; j < KWT_SIZE; j++) {
         if (!strcmp(lexeme, keywordTable[j])) {
             kwindex = j;
             break;
@@ -753,7 +749,7 @@ Token funcKEY(Rs_string lexeme) {
     if (kwindex != -1) {
         // Keyword found
         currentToken.code = KW_T;
-        scData.scanHistogram[currentToken.code]++;
+        //scData.scanHistogram[currentToken.code]++;
         currentToken.attribute.codeType = kwindex;
 	} else if (isIdentifier(lexeme)) {
 		// Lexeme is an identifier
