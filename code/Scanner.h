@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 30
+#define NUM_TOKENS 37
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -101,7 +101,15 @@ enum TOKENS {
 	INT_T,      /* 26: Integer token */
 	FLT_T,      /* 27: Float token */
 	NUM_T,      /* 28: Number token */
-	CMA_T       /* 29: Comma token */
+	CMA_T,      /* 29: Comma token */
+	SBL_T,      /* 30: Square bracket left token */
+	SBR_T,       /* 31: Square bracket right token */
+	POW_T,      /* 31: Power operator token */
+	MOD_T,      /* 32: Modulus operator token */
+	GE_T,	   /* 33: Greater or equal operator token */
+	LE_T,	   /* 34: Less or equal operator token */
+	INC_T,
+	DEC_T
 };
 
 /* TO_DO: Define the list of keywords */
@@ -134,11 +142,19 @@ static Rs_string tokenStrTable[NUM_TOKENS] = {
 	"INT_T",
 	"FLT_T",
 	"NUM_T",
-	"CMA_T"
+	"CMA_T",
+	"SBL_T",
+	"SBR_T",
+	"POW_T",
+	"MOD_T",
+	"GE_T",
+	"LE_T",
+	"INC_T",
+	"DEC_T"
 };
 
 /* TO_DO: Operators token attributes */
-typedef enum ArithmeticOperators { OP_ADD, OP_SUB, OP_MUL, OP_DIV } AriOperator;
+typedef enum ArithmeticOperators { OP_ADD, OP_SUB, OP_MUL, OP_DIV,OP_POW, OP_MOD } AriOperator;
 typedef enum RelationalOperators { OP_EQ, OP_NE, OP_GT, OP_LT } RelOperator;
 typedef enum LogicalOperators { OP_AND, OP_OR, OP_NOT } LogOperator;
 typedef enum SourceEndOfFile { SEOF_0, SEOF_255 } EofOperator;
@@ -319,8 +335,8 @@ Language keywords
 #define KWT_SIZE 22
 
 static Rs_string keywordTable[KWT_SIZE] = {
-    "data",     /* KW00 */
-    "code",     /* KW01 */
+    "const",     /* KW00 */
+    "array",     /* KW01 */
     "int",      /* KW02 */
     "float",    /* KW03 */
     "string",   /* KW04 */

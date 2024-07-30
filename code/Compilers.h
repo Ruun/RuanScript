@@ -132,7 +132,7 @@ Rs_intg mainReader(Rs_intg argc, Rs_string* argv);
 TO_DO: Include later mainScaner (A22) and mainParser (A32)
 */
 Rs_intg mainScanner(Rs_intg argc, Rs_string* argv);
-// Rs_intg mainParser(Rs_intg argc, Rs_string* argv); 
+Rs_intg mainParser(Rs_intg argc, Rs_string* argv); 
 
 Rs_void printLogo();
 
