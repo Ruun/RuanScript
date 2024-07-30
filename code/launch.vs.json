@@ -6,7 +6,7 @@
       "projectTarget": "Compiler.exe",
       "name": "Compiler.exe",
       "args": [
-        "s",
+        "p",
         "C:/Mac/Home/Downloads/RuanScript/input/INPUT2_Volume.rs"
       ]
     }

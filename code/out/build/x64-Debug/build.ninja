@@ -84,6 +84,20 @@ build CMakeFiles\Compiler.dir\Scanner.c.obj: C_COMPILER__Compiler_unscanned_Debu
   TARGET_COMPILE_PDB = CMakeFiles\Compiler.dir\
   TARGET_PDB = Compiler.pdb
 
+build CMakeFiles\Compiler.dir\MainParser.c.obj: C_COMPILER__Compiler_unscanned_Debug C$:\Mac\Home\Downloads\RuanScript\code\MainParser.c || cmake_object_order_depends_target_Compiler
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1
+  OBJECT_DIR = CMakeFiles\Compiler.dir
+  OBJECT_FILE_DIR = CMakeFiles\Compiler.dir
+  TARGET_COMPILE_PDB = CMakeFiles\Compiler.dir\
+  TARGET_PDB = Compiler.pdb
+
+build CMakeFiles\Compiler.dir\Parser.c.obj: C_COMPILER__Compiler_unscanned_Debug C$:\Mac\Home\Downloads\RuanScript\code\Parser.c || cmake_object_order_depends_target_Compiler
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1
+  OBJECT_DIR = CMakeFiles\Compiler.dir
+  OBJECT_FILE_DIR = CMakeFiles\Compiler.dir
+  TARGET_COMPILE_PDB = CMakeFiles\Compiler.dir\
+  TARGET_PDB = Compiler.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Compiler
@@ -92,7 +106,7 @@ build CMakeFiles\Compiler.dir\Scanner.c.obj: C_COMPILER__Compiler_unscanned_Debu
 #############################################
 # Link the executable Compiler.exe
 
-build Compiler.exe: C_EXECUTABLE_LINKER__Compiler_Debug CMakeFiles\Compiler.dir\Compilers.c.obj CMakeFiles\Compiler.dir\Reader.c.obj CMakeFiles\Compiler.dir\MainReader.c.obj CMakeFiles\Compiler.dir\MainScanner.c.obj CMakeFiles\Compiler.dir\Scanner.c.obj
+build Compiler.exe: C_EXECUTABLE_LINKER__Compiler_Debug CMakeFiles\Compiler.dir\Compilers.c.obj CMakeFiles\Compiler.dir\Reader.c.obj CMakeFiles\Compiler.dir\MainReader.c.obj CMakeFiles\Compiler.dir\MainScanner.c.obj CMakeFiles\Compiler.dir\Scanner.c.obj CMakeFiles\Compiler.dir\MainParser.c.obj CMakeFiles\Compiler.dir\Parser.c.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

@@ -102,7 +102,7 @@ Rs_intg main(int argc, char** argv) {
         break;
     case PGM_PARSER:
         printf("%s%c%s", "\n[Option '", PGM_PARSER, "': Starting PARSER .....]\n\n");
-		// mainParser(argc, argv);
+		mainParser(argc, argv);
         break;
 	default:
 		printf("%s%c%s%c%s%c%s", "* OPTIONS:\n- [",

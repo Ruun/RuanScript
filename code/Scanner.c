@@ -622,48 +622,8 @@ Token funcID(Rs_string lexeme) {
 		// Test if the lexeme is a keyword
         lexeme[length - 1] = '\0';
         currentToken = funcKEY(lexeme);
-        // if (currentToken.code == ERR_T) {
-    // If not a keyword, check if it is a number
-    // Rs_intg intValue;
-    // Rs_float floatValue;
-    // char* endPtr;
-
-    // Check for integer
-    // intValue = strtol(lexeme, &endPtr, 10);
-    // if (*endPtr == '\0') {
-    //     currentToken.code = INT_T;
-    //     scData.scanHistogram[currentToken.code]++;
-    //     currentToken.attribute.intValue = intValue;
-    // } else {
-    //     // Check for float
-    //     floatValue = strtof(lexeme, &endPtr);
-    //     if (*endPtr == '\0') {
-    //         currentToken.code = FLT_T;
-    //         scData.scanHistogram[currentToken.code]++;
-    //         currentToken.attribute.floatValue = floatValue;
-    //     } 
-		// else {
-        //     // If not a number, treat it as an identifier
-        //     currentToken.code = ID_T;
-        //     scData.scanHistogram[currentToken.code]++;
-        //     strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-        //     currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
-        //     isID = TRUE;
-        // }
-    //  }
-
-            // } else {
-            //     // It's a keyword
-            //     scData.scanHistogram[currentToken.code]++;
-            // }
-            // break;
-    }
-
-    // if (isID == TRUE) {
-    //     strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-    //     currentToken.attribute.idLexeme[VID_LEN] = CHARSEOF0;
-    // }
-
+	}
+ 
     return currentToken;
 }
 
