@@ -69,10 +69,13 @@ extern ParserData psData; /* BNF statistics */
 
 Rs_void startParser() {
 	/* TO_DO: Initialize Parser data */
-	histogramInit(psData.parsHistogram, NUM_BNF_RULES);
+	psData.parsHistogram[BNF_program] = 0;
+	psData.parsHistogram[BNF_comment] = 0;
+	psData.parsHistogram[BNF_dataSession] = 0;
+	psData.parsHistogram[BNF_optVarListDeclarations] = 0;
+	psData.parsHistogram[BNF_codeSession] = 0;
+
 	
-
-
 	Rs_intg i = 0;
 	for (i = 0; i < NUM_BNF_RULES; i++) {
 		psData.parsHistogram[i] = 0;
@@ -98,6 +101,37 @@ Rs_void matchToken(Rs_intg tokenCode, Rs_intg tokenAttribute) {
 	switch (lookahead.code) {
 	case KW_T:
 		if (lookahead.attribute.codeType != tokenAttribute)
+			matchFlag = 0;
+	case MNID_T:
+		if (strncmp(lookahead.attribute.idLexeme, LANG_WRTE, 6) == 0) {
+			if (lookahead.attribute.errLexeme != tokenAttribute)
+				matchFlag = 0;
+		}
+	case CMT_T:
+		comment();
+	case STR_T:
+		if (lookahead.attribute.contentString != tokenAttribute)
+			matchFlag = 0;
+	case NUM_T:
+		if (lookahead.attribute.intValue != tokenAttribute)
+			matchFlag = 0;
+	case FLT_T:
+		if (lookahead.attribute.floatValue != tokenAttribute)
+			matchFlag = 0;
+	case EOS_T:
+		if (lookahead.attribute.errLexeme != tokenAttribute)
+			matchFlag = 0;
+	case LPR_T:
+		if (lookahead.attribute.errLexeme != tokenAttribute)
+			matchFlag = 0;
+	case RPR_T:
+		if (lookahead.attribute.errLexeme != tokenAttribute)
+			matchFlag = 0;
+	case LBR_T:
+		if (lookahead.attribute.errLexeme != tokenAttribute)
+			matchFlag = 0;
+	case RBR_T:
+		if (lookahead.attribute.errLexeme != tokenAttribute)
 			matchFlag = 0;
 	default:
 		if (lookahead.code != tokenCode)
@@ -279,8 +313,7 @@ Rs_void program() {
 		if (strncmp(lookahead.attribute.idLexeme, LANG_MAIN, 5) == 0) {
 			matchToken(MNID_T, NO_ATTR);
 			matchToken(LBR_T, NO_ATTR);
-			// dataSession();
-			// codeSession();
+			
 			matchToken(RBR_T, NO_ATTR);
 			break;
 		}
@@ -307,28 +340,9 @@ Rs_void comment() {
 	psData.parsHistogram[BNF_comment]++;
 	matchToken(CMT_T, NO_ATTR);
 	printf("%s%s\n", STR_LANGNAME, ": Comment parsed");
+	
 }
 
-/*
- ************************************************************
- * dataSession
- * BNF: <dataSession> -> data { <opt_varlist_declarations> }
- * FIRST(<program>)= {KW_T (KW_data)}.
- ***********************************************************
- */
-Rs_void dataSession() {
-	psData.parsHistogram[BNF_dataSession]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	default:
-		matchToken(KW_T, NO_ATTR); //was KW_data
-		matchToken(LBR_T, NO_ATTR);
-		optVarListDeclarations();
-		matchToken(RBR_T, NO_ATTR);
-		printf("%s%s\n", STR_LANGNAME, ": Data Session parsed");
-	}
-}
 
 /*
  ************************************************************
@@ -344,27 +358,6 @@ Rs_void optVarListDeclarations() {
 		; // Empty
 	}
 	printf("%s%s\n", STR_LANGNAME, ": Optional Variable List Declarations parsed");
-}
-
-/*
- ************************************************************
- * codeSession statement
- * BNF: <codeSession> -> code { <opt_statements> }
- * FIRST(<codeSession>)= {KW_T (KW_code)}.
- ***********************************************************
- */
-Rs_void codeSession() {
-	psData.parsHistogram[BNF_codeSession]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	default:
-		matchToken(KW_T, NO_ATTR);// was KW_code
-		matchToken(LBR_T, NO_ATTR);
-		optionalStatements();
-		matchToken(RBR_T, NO_ATTR);
-		printf("%s%s\n", STR_LANGNAME, ": Code Session parsed");
-	}
 }
 
 /* TO_DO: Continue the development (all non-terminal functions) */

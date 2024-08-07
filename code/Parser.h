@@ -74,9 +74,9 @@ extern Token			tokenizer(Rs_void);
 extern Rs_string		keywordTable[KWT_SIZE];
 static Rs_intg		syntaxErrorNumber = 0;
 
-#define LANG_WRTE		"print&"
-#define LANG_READ		"input&"
-#define LANG_MAIN		"main&"
+#define LANG_WRTE		"print("
+#define LANG_READ		"input("
+#define LANG_MAIN		"main("
 
 /* TO_DO: Create ALL constants for keywords (sequence given in table.h) */
 
@@ -149,9 +149,7 @@ enum BNF_RULES {
 /* TO_DO: Define the list of keywords */
 static Rs_string BNFStrTable[NUM_BNF_RULES] = {
 	"BNF_error",
-	"BNF_codeSession",
 	"BNF_comment",
-	"BNF_dataSession",
 	"BNF_optVarListDeclarations",
 	"BNF_optionalStatements",
 	"BNF_outputStatement",
@@ -160,12 +158,13 @@ static Rs_string BNFStrTable[NUM_BNF_RULES] = {
 	"BNF_statement",
 	"BNF_statements",
 	"BNF_statementsPrime"
+
 };
 
 /* TO_DO: Place ALL non-terminal function declarations */
-Rs_void codeSession();
+
 Rs_void comment();
-Rs_void dataSession();
+
 Rs_void optVarListDeclarations();
 Rs_void optionalStatements();
 Rs_void outputStatement();
