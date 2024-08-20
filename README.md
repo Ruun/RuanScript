@@ -2,6 +2,9 @@
 
 **RuanScript** is an innovative programming language inspired by JavaScript, specifically crafted for high school, calculus, and introductory college/university level mathematics. 
 
+# Course:
+CST8152 - Compilers
+
 ## Key Features
 
 - **User-Friendly Syntax**: Simplified syntax based on JavaScript, making it accessible for beginners.
